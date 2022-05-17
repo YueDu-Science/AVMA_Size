@@ -26,7 +26,7 @@ psychoJS.openWindow({
 // store info about the experiment session:
 let expName = 'AVMA_Size';  // from the Builder filename that created this script
 //let expInfo = {'participant': '', 'session': ['', 1, 2, 3], 'hand': ['Right']};
-let expInfo = {'participant': '', 'session': ['', 1, 2, 3]};
+let expInfo = {'participant': '', 'session': ['', 1, 2]};
 
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
@@ -128,6 +128,18 @@ psychoJS.start({
     {'name': 'media/dmnb.png', 'path': './media/dmnb.png'},
     {'name': 'media/dmnb_g.png', 'path': './media/dmnb_g.png'},
     {'name': 'media/dmnb_r.png', 'path': './media/dmnb_r.png'},
+    {'name': 'media/denb.png', 'path': './media/denb.png'},
+    {'name': 'media/denb_g.png', 'path': './media/denb_g.png'},
+    {'name': 'media/denb_r.png', 'path': './media/denb_r.png'},
+    {'name': 'media/danb.png', 'path': './media/danb.png'},
+    {'name': 'media/danb_g.png', 'path': './media/danb_g.png'},
+    {'name': 'media/danb_r.png', 'path': './media/danb_r.png'},
+    {'name': 'media/dhnb.png', 'path': './media/dhnb.png'},
+    {'name': 'media/dhnb_g.png', 'path': './media/dhnb_g.png'},
+    {'name': 'media/dhnb_r.png', 'path': './media/dhnb_r.png'},
+    {'name': 'media/dknb.png', 'path': './media/dknb.png'},
+    {'name': 'media/dknb_g.png', 'path': './media/dknb_g.png'},
+    {'name': 'media/dknb_r.png', 'path': './media/dknb_r.png'},
     {'name': 'media/coin.wav', 'path': './media/coin.wav'},
     {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
     {'name': 'media/beep.wav', 'path': './media/beep.wav'}

@@ -24,7 +24,7 @@ psychoJS.openWindow({
 });
 
 // store info about the experiment session:
-let expName = 'AVMA_Hick';  // from the Builder filename that created this script
+let expName = 'AVMA_Size';  // from the Builder filename that created this script
 //let expInfo = {'participant': '', 'session': ['', 1, 2, 3], 'hand': ['Right']};
 let expInfo = {'participant': '', 'session': ['', 1, 2, 3]};
 
