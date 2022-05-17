@@ -386,7 +386,7 @@ function experimentInit() {
   
   
   //determine which group participants are in
-  if  (participant < 500){  // e.g., 401
+  if (participant < 500) {  // e.g., 401
       grp = 4;
       num_symb = 4;
       //choose which set to use; have to include all fingers
@@ -394,9 +394,9 @@ function experimentInit() {
         set = [0,1,2,3];
       } else if (rng1 >= 0.33 && rng1 < 0.67){
           set = [4,5,6,7];
-        } else if (rng1 >= 0.67){
-            set = [8,9,10,11];
-          }
+      } else if (rng1 >= 0.67){
+          set = [8,9,10,11];
+      }
   } else if (participant < 900 && participant > 800) { //e.g., 801
       grp = 8;
       num_symb = 8;
@@ -404,14 +404,14 @@ function experimentInit() {
         set = [0,1,2,3,4,5,6,7];
       } else if (rng1 >= 0.33 && rng1 < 0.67){
           set = [4,5,6,7,8,9,10,11];
-        } else if (rng1 >= 0.67){
-          set = [0,1,2,3,8,9,10,11];
-          }
-    } else if (participant < 130 && participant > 1200) {  // e.g. 1201
+      } else if (rng1 >= 0.67){
+        set = [0,1,2,3,8,9,10,11];
+      }
+    } else if (participant < 1300 && participant > 1200) {  // e.g. 1201
       grp = 12
       num_symb = 12;
       set = [0, 1,2,3,4,5,6,7,8,9,10,11];
-      }
+    }
 
   ////////////////////////////////////
   tr_block_hand = 4;
