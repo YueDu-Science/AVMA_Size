@@ -24,9 +24,9 @@ psychoJS.openWindow({
 });
 
 // store info about the experiment session:
-let expName = 'AVMA_Size';  // from the Builder filename that created this script
-//let expInfo = {'participant': '', 'session': ['', 1, 2, 3], 'hand': ['Right']};
-let expInfo = {'participant': '', 'session': ['', 1, 2]};
+let expName = 'Initiation_Letter';  // from the Builder filename that created this script
+// let expInfo = {'participant': '', 'session': ''};
+let expInfo = {'participant': ''};
 
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
@@ -49,10 +49,9 @@ flowScheduler.add(Import_StimLoopEnd);
 flowScheduler.add(Init_StimRoutineBegin());
 flowScheduler.add(Init_StimRoutineEachFrame());
 flowScheduler.add(Init_StimRoutineEnd());
-const Instr_Exp_BoolLoopScheduler = new Scheduler(psychoJS);
-flowScheduler.add(Instr_Exp_BoolLoopBegin, Instr_Exp_BoolLoopScheduler);
-flowScheduler.add(Instr_Exp_BoolLoopScheduler);
-flowScheduler.add(Instr_Exp_BoolLoopEnd);
+flowScheduler.add(Instr_ExpRoutineBegin());
+flowScheduler.add(Instr_ExpRoutineEachFrame());
+flowScheduler.add(Instr_ExpRoutineEnd());
 const RT_Hand_BoolLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(RT_Hand_BoolLoopBegin, RT_Hand_BoolLoopScheduler);
 flowScheduler.add(RT_Hand_BoolLoopScheduler);
@@ -85,10 +84,6 @@ const TR_New_BoolLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(TR_New_BoolLoopBegin, TR_New_BoolLoopScheduler);
 flowScheduler.add(TR_New_BoolLoopScheduler);
 flowScheduler.add(TR_New_BoolLoopEnd);
-const Refresh_Exp_BoolLoopScheduler = new Scheduler(psychoJS);
-flowScheduler.add(Refresh_Exp_BoolLoopBegin, Refresh_Exp_BoolLoopScheduler);
-flowScheduler.add(Refresh_Exp_BoolLoopScheduler);
-flowScheduler.add(Refresh_Exp_BoolLoopEnd);
 flowScheduler.add(Instr_End_ExpRoutineBegin());
 flowScheduler.add(Instr_End_ExpRoutineEachFrame());
 flowScheduler.add(Instr_End_ExpRoutineEnd());
@@ -101,45 +96,8 @@ psychoJS.start({
   expName: expName,
   expInfo: expInfo,
   resources: [
-    {'name': 'media/dnnb.png', 'path': './media/dnnb.png'},
-    {'name': 'media/dnnb_g.png', 'path': './media/dnnb_g.png'},
-    {'name': 'media/dnnb_r.png', 'path': './media/dnnb_r.png'},
-    {'name': 'media/dinb.png', 'path': './media/dinb.png'},
-    {'name': 'media/dinb_g.png', 'path': './media/dinb_g.png'},
-    {'name': 'media/dinb_r.png', 'path': './media/dinb_r.png'},
     {'name': 'media/hand.png', 'path': './media/hand.png'},
-    {'name': 'media/hand_rev.png', 'path': './media/hand_rev.png'},
-    {'name': 'media/dgnb.png', 'path': './media/dgnb.png'},
-    {'name': 'media/dgnb_g.png', 'path': './media/dgnb_g.png'},
-    {'name': 'media/dgnb_r.png', 'path': './media/dgnb_r.png'},
     {'name': 'conditions.xlsx', 'path': './conditions.xlsx'},
-    {'name': 'media/djnb.png', 'path': './media/djnb.png'},
-    {'name': 'media/djnb_g.png', 'path': './media/djnb_g.png'},
-    {'name': 'media/djnb_r.png', 'path': './media/djnb_r.png'},
-    {'name': 'media/ddnb.png', 'path': './media/ddnb.png'},
-    {'name': 'media/ddnb_g.png', 'path': './media/ddnb_g.png'},
-    {'name': 'media/ddnb_r.png', 'path': './media/ddnb_r.png'},
-    {'name': 'media/dfnb.png', 'path': './media/dfnb.png'},
-    {'name': 'media/dfnb_g.png', 'path': './media/dfnb_g.png'},
-    {'name': 'media/dfnb_r.png', 'path': './media/dfnb_r.png'},
-    {'name': 'media/dcnb.png', 'path': './media/dcnb.png'},
-    {'name': 'media/dcnb_g.png', 'path': './media/dcnb_g.png'},
-    {'name': 'media/dcnb_r.png', 'path': './media/dcnb_r.png'},
-    {'name': 'media/dmnb.png', 'path': './media/dmnb.png'},
-    {'name': 'media/dmnb_g.png', 'path': './media/dmnb_g.png'},
-    {'name': 'media/dmnb_r.png', 'path': './media/dmnb_r.png'},
-    {'name': 'media/denb.png', 'path': './media/denb.png'},
-    {'name': 'media/denb_g.png', 'path': './media/denb_g.png'},
-    {'name': 'media/denb_r.png', 'path': './media/denb_r.png'},
-    {'name': 'media/danb.png', 'path': './media/danb.png'},
-    {'name': 'media/danb_g.png', 'path': './media/danb_g.png'},
-    {'name': 'media/danb_r.png', 'path': './media/danb_r.png'},
-    {'name': 'media/dhnb.png', 'path': './media/dhnb.png'},
-    {'name': 'media/dhnb_g.png', 'path': './media/dhnb_g.png'},
-    {'name': 'media/dhnb_r.png', 'path': './media/dhnb_r.png'},
-    {'name': 'media/dknb.png', 'path': './media/dknb.png'},
-    {'name': 'media/dknb_g.png', 'path': './media/dknb_g.png'},
-    {'name': 'media/dknb_r.png', 'path': './media/dknb_r.png'},
     {'name': 'media/coin.wav', 'path': './media/coin.wav'},
     {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
     {'name': 'media/beep.wav', 'path': './media/beep.wav'}
@@ -176,12 +134,10 @@ function updateInfo() {
 var Import_Stim_FileClock;
 var Init_StimClock;
 var block_type;
-var participant = [];
-var session = [];
-var handedness = [];
+var participant;
+var session;
 var grp_stop = 0;
-var grp_swap = 1;
-var grp;
+var grp_swap = 0;
 var beep_lead_in = 0.1;
 var color_p = [(- 1), 1, (- 1)];
 var color_n = [1, (- 1), (- 1)];
@@ -195,17 +151,15 @@ var time_limit = 1.5;
 var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["h", "u", "i", "l"];
-var x_symb = [0,1,2,3,4,5,6,7,8,9,10,11];
+var x_symb = [0, 1, 2, 3, 4, 5, 6, 7];
 var x_hand = [0,1,2,3,0,1,2,3];
-var x4_new = x_symb;
-var x8 = x4_new.concat(x4_new);
+var x8_new = x_symb;
+var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
 var num_pos = 4;
-var num_symb;
+var num_symb = 8;
 var symb_perm = permute(x_symb);
 var n_map = symb_perm.length;
-var t_prep_prac;
-var beep_number;
 
 var symb_remap_ind;
 var symb_map_ind;
@@ -215,27 +169,29 @@ var symb_g_map = [];
 var symb_g_remap = [];
 var symb_r_map = [];
 var symb_r_remap = [];
+////////////////////////////////////
+var tr_block_hand = 4;
+var num_trials_hand = 96;
+var num_trials_cr = 2000;
+var num_criterion = 5;
+var num_trials = 96;
+var rt_block = 12;
+var tr_block_old = 2;
+var tr_block_new_swap = 0;
+var tr_block_new_stop = 0;
 
-var instr_exp;
-var tr_block_hand;
-var num_trials_hand;
-var num_trials_cr;
-var num_criterion;
-var num_trials;
-var rt_block;
-var tr_block_old;
-var tr_block_new_swap;
-var tr_block_new_stop;
-var tr_old_pre_yes;
-var tr_old_post_yes = 0;
-var tr_hand_yes;
-var rt_hand_yes;
-var cr_old_yes;
-var cr_new_yes;
-var rt_yes;
-var tr_new_yes;
-var refresh_exp;
+var tr_hand_yes = 1;
+var rt_hand_yes = 1;
+var cr_old_yes = 1;
+var cr_new_yes = 1;
+var rt_yes = 1;
+var tr_old_pre_yes = 1;
+var tr_old_post_yes = 1;
+var tr_new_yes = 1;
 //////////////////////////////////////
+
+var pre = 0;
+var post = 0;
 
 var timing_tol_early = 0.1;
 var timing_tol_late = 0.075;
@@ -265,9 +221,6 @@ var prep_time_interval;
 var Instr_ExpClock;
 var Instr_Exp_Text;
 var Instr_Exp_Key;
-var Refresh_ExpClock;
-var Refresh_Exp_Text;
-var Refresh_Exp_Key; 
 var Instr_RT_HandClock;
 var Instr_RT_Hand_Rext;
 var Instr_RT_Hand_Key;
@@ -316,6 +269,7 @@ var Pre_Trial_Rec_Frame;
 var RT_Enter_TrialClock;
 var RT_Rec_Frame;
 var RT_Stim_Image;
+var Letter;
 var RT_Press;
 var RT_FeedbackClock;
 var CR_Feedback_Coin_Old;
@@ -361,7 +315,8 @@ var Instr_End_Exp_Text;
 var Instr_End_Exp_Key;
 var globalClock;
 var routineTimer;
-var sample_num;
+
+
 function experimentInit() {
   document.body.style.cursor='none';
   
@@ -372,93 +327,38 @@ function experimentInit() {
   
   participant = Number.parseInt(expInfo["participant"]);
   //session = Number.parseInt(expInfo["session"]);
-  session = Number.parseInt(expInfo["session"]);
-  //handedness = expInfo["hand"];
-  handedness = 'Right';
-  
-  ////////////////////////////////////
-  tr_block_hand = 4;
-  num_trials_hand = 100;
-  num_trials_cr = 2000;
-  num_criterion = 5;
-  num_trials = 100;
-  rt_block = 10;
-  tr_block_old = 40;
-  tr_block_new_swap = 10;
-  tr_block_new_stop = 0;
-
-  instr_exp = 0;
-  tr_hand_yes = 0;
-  rt_hand_yes = 0;
-  cr_old_yes = 0;
-  cr_new_yes = 0;
-  rt_yes = 0;
-  tr_new_yes = 0;
-  refresh_exp = 0;
-  tr_old_pre_yes = 0;
- 
-  
-  if (!(isNaN(participant) || isNaN(session) || handedness.length === 0 || session > 3)){
-    if ((session === 1)) {
-      instr_exp = 1;
-      tr_hand_yes = 1;
-      rt_hand_yes = 1;
-      cr_old_yes = 1;
-      tr_old_pre_yes = 1;
-      tr_block_old = 10;
-
-    } else {
-      if (session === 2) {
-        tr_old_pre_yes = 1;
-        tr_block_old = 20;
-
-      } else {
-          if (session === 3) {
-            tr_old_pre_yes = 1;
-            tr_block_old = 10;
-            cr_new_yes = 1;
-            tr_new_yes = 1;
-            tr_block_new_swap = 5;
-             } 
-          } 
-    } 
-  } else {
-    refresh_exp = 1;
-  }
-
+  session = 1;
 
   var myrng = new Math.seedrandom(participant);   //use new here so it does not affect Math.random()
-  rng1 = myrng()
-  rng2 = myrng()
+  //rng1 = myrng()
+  //rng2 = myrng()
   rng3 = myrng()
   
   //determine which group participants are in
-  if ((rng1 < 0.5)) {
-      grp = 'short';
-      t_prep_prac = 0.4;
-      beep_number = 'THIRD';
+  if ((participant < 2000)) {
+      grp_stop = 1;
+      tr_block_new_stop = 6;
   } else {
-      grp = 'long';
-      t_prep_prac = 0.8;
-      beep_number = 'SECOND';
-  }
-  
-  
-  // randomize prep-time so that prep-time for each symbol spread over a good range
-  sample_num = [2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2];
-  for (var i = 0; i<sample_num.length; ++i) {
-    let LEN = sample_num[i];
-    let tmp = new Array(LEN).fill(i);
-    prep_time_ind_tmp = prep_time_ind_tmp.concat(tmp);
+      grp_swap = 1;
+      tr_block_new_swap = 6;
   }
 
+  // session # determines which blocks they do
+  //if ((session === 1)) {
+  //    rt_block = 1;
+  //}
+  
+  // randomize prep-time so that prep-time for each symbol spread over a good range
+  for (var i = 0, _pj_a = 12; (i < _pj_a); i += 1) {
+      prep_time_ind_tmp.push(i);
+  }
   count = 0;
   while ((count < num_symb)) {
       util.shuffle(prep_time_ind_tmp);
       prep_time_ind.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
   }
-  prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
+  prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
   
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
@@ -475,22 +375,6 @@ function experimentInit() {
   });
   
   Instr_Exp_Key = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-
-
-  Refresh_ExpClock = new util.Clock();
-  Refresh_Exp_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Refresh_Exp_Text',
-    text: 'default text',
-    alignText: 'center',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Refresh_Exp_Key = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Initialize components for Routine "Instr_RT_Hand"
   Instr_RT_HandClock = new util.Clock();
@@ -812,6 +696,17 @@ function experimentInit() {
   });
   RT_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
+  Letter = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'Letter',
+    text: 'default text',
+    font: 'Arial',
+    units: undefined, 
+    pos: [0, 0], height: 0.25,  wrapWidth: undefined, ori: 0,
+    color: new util.Color('white'),  opacity: 1,
+    depth: -5.0 
+  });
+
   // Initialize components for Routine "RT_Feedback"
   RT_FeedbackClock = new util.Clock();
   CR_Feedback_Coin_Old = new sound.Sound({
@@ -1658,72 +1553,6 @@ function Import_StimLoopEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var Instr_Exp_Bool;
-function Instr_Exp_BoolLoopBegin(thisScheduler) {
-  // set up handler to look after randomisation of conditions etc
-  Instr_Exp_Bool = new TrialHandler({
-    psychoJS: psychoJS,
-    nReps: instr_exp, method: TrialHandler.Method.SEQUENTIAL,
-    extraInfo: expInfo, originPath: undefined,
-    trialList: undefined,
-    seed: undefined, name: 'Instr_Exp_Bool'
-  });
-  psychoJS.experiment.addLoop(Instr_Exp_Bool); // add the loop to the experiment
-  currentLoop = Instr_Exp_Bool;  // we're now the current loop
-
-  // Schedule all the trials in the trialList:
-  for (const thisInstr_Exp_Bool of Instr_Exp_Bool) {
-    const snapshot = Instr_Exp_Bool.getSnapshot();
-    thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Instr_ExpRoutineBegin(snapshot));
-    thisScheduler.add(Instr_ExpRoutineEachFrame(snapshot));
-    thisScheduler.add(Instr_ExpRoutineEnd(snapshot));
-    thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
-  }
-
-  return Scheduler.Event.NEXT;
-}
-
-
-function Instr_Exp_BoolLoopEnd() {
-  psychoJS.experiment.removeLoop(Instr_Exp_Bool);
-
-  return Scheduler.Event.NEXT;
-}
-
-
-var Refresh_Exp_Bool;
-function Refresh_Exp_BoolLoopBegin(thisScheduler) {
-  // set up handler to look after randomisation of conditions etc
-  Refresh_Exp_Bool = new TrialHandler({
-    psychoJS: psychoJS,
-    nReps: refresh_exp, method: TrialHandler.Method.SEQUENTIAL,
-    extraInfo: expInfo, originPath: undefined,
-    trialList: undefined,
-    seed: undefined, name: 'Refresh_Exp_Bool'
-  });
-  psychoJS.experiment.addLoop(Refresh_Exp_Bool); // add the loop to the experiment
-  currentLoop = Refresh_Exp_Bool;  // we're now the current loop
-
-  // Schedule all the trials in the trialList:
-  for (const thisRefresh_Exp_Bool of Refresh_Exp_Bool) {
-    const snapshot = Instr_Exp_Bool.getSnapshot();
-    thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Refresh_ExpRoutineBegin(snapshot));
-    thisScheduler.add(Refresh_ExpRoutineEachFrame(snapshot));
-    thisScheduler.add(Refresh_ExpRoutineEnd(snapshot));
-    thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
-  }
-
-  return Scheduler.Event.NEXT;
-}
-
-
-function Refresh_Exp_BoolLoopEnd() {
-  psychoJS.experiment.removeLoop(Refresh_Exp_Bool);
-
-  return Scheduler.Event.NEXT;
-}
 
 var RT_Hand_Bool;
 function RT_Hand_BoolLoopBegin(thisScheduler) {
@@ -3211,6 +3040,7 @@ function Import_Stim_FileRoutineEnd(trials) {
   };
 }
 
+
 var coin;
 var beep;
 var symb_map_rnd;
@@ -3227,37 +3057,24 @@ function Init_StimRoutineBegin(trials) {
     // update component parameters for each repeat
     
     StimList = Import_Stim.trialList;
-    if (["right", "Right", "RIGHT"].includes(handedness)){
-      hand_shape = StimList[0]["Hand"];
-    } else {
-      if (["left", "Left", "LEFT"].includes(handedness)) {
-        hand_shape = StimList[1]["Hand"];
-      }
-    }
-   
-
+    hand_shape = StimList[0]["Hand"];
     coin = StimList[0]["Sound_P"];
     beep = StimList[0]["Beep"];
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
         stimnum.push(StimList[i]["StimNum"]);
         symb.push(StimList[i]["Symb"]);
-        symb_r.push(StimList[i]["Symb_R"]);
-        symb_g.push(StimList[i]["Symb_G"]);
+        //symb_r.push(StimList[i]["Symb_R"]);
+        //symb_g.push(StimList[i]["Symb_G"]);
         key.push(StimList[i]["Key"]);
         keynum.push(StimList[i]["KeyNum"]);
-        if (["right", "Right", "RIGHT"].includes(handedness)){
-          x.push(StimList[i]["X_pos"]);
-          y.push(StimList[i]["Y_pos"]);
-        } else {
-          if (["left", "Left", "LEFT"].includes(handedness)) {
-            x.push(StimList[i]["X_pos_rev"]);
-            y.push(StimList[i]["Y_pos_rev"]);
-          }
-        }
+        x.push(StimList[i]["X_pos"]);
+        y.push(StimList[i]["Y_pos"]);
     }
 
-    symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
-    symb_map_ind = symb_perm[symb_map_rnd];
+    //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
+    //symb_map_ind = symb_perm[symb_map_rnd];
+    //symb_map_ind = x_symb;
+    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
 
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
@@ -3270,19 +3087,16 @@ function Init_StimRoutineBegin(trials) {
     
     symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
     symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-  //  symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-  //  symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
-    
-    symb_remap_ind = Object.values(symb_remap_ind)
-    
+    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
 
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
         symb_map.push(symb[symb_map_ind[i]]);
         symb_remap.push(symb[symb_remap_ind[i]]);
-        symb_g_map.push(symb_g[symb_map_ind[i]]);
-        symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-        symb_r_map.push(symb_r[symb_map_ind[i]]);
-        symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+        //symb_g_map.push(symb_g[symb_map_ind[i]]);
+        //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+        //symb_r_map.push(symb_r[symb_map_ind[i]]);
+        //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
     }
     psychoJS.experiment.addData("symb_map", symb_map_ind);
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
@@ -3334,7 +3148,6 @@ function Init_StimRoutineEachFrame(trials) {
   };
 }
 
-var refresh_exp_text;
 var instr_end_exp_text;
 var instr_exp_text;
 var instr_rt_text_hand;
@@ -3359,11 +3172,6 @@ function Init_StimRoutineEnd(trials) {
       }
     }
 
-    refresh_exp_text = `It seems that you did not type in correct information on the previous page.
-    
-Please press (f5) and then input your "participant ID", select the "session" number (1, 2, or 3), and select "right" or "left" hand.`
-    ;
-
     instr_end_exp_text = `Great job! You have completed the task.
     
 Press (space) to proceed so that your data can be saved. The saving process may take up to 1 minute.
@@ -3373,20 +3181,17 @@ After the data are saved, click 'OK' to exit and close the webpage.`
 
     instr_exp_text = `Thank you for participating in our study!
     
-This is a three-day study and it will take about 50 minutes to 1 hour today. 
+This study will take about 1 hour and 20 minutes. 
 
-Once you start, you can take a break between rounds. Please DO NOT turn off your web browser until you complete the task, unless you decide to withdraw from this study.
+Once you start, you can take a break between rounds, Please DO NOT turn off your web browser until you complete the task, unless you decide to withdraw from this study.
+    
 
 
 Press (space) to continue.`
     ;
-    if (["right", "Right", "RIGHT"].includes(handedness)){
-      instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
+    instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
     
-Place your Index, Middle, Ring, and Pinky fingers on (H, U, I, L) respectively.
-
-
-Your fingers will rest on these keys for the entirety of the experiment.
+With your Right hand, place your Index, Middle, Ring, and Pinky fingers on (H, U, I, L) respectively. Your fingers will rest on these keys for the entirety of the experiment.
     
 You will see a hand appear on the screen. One of the fingers on the screen will light up and your job is to press the corresponding finger as quickly and as accurately as possible.
     
@@ -3394,29 +3199,13 @@ You will see a hand appear on the screen. One of the fingers on the screen will 
 
 Press (H, U, I, or L) to continue.`
     ;
-    } else {
-      if (["left", "Left", "LEFT"].includes(handedness)){
-        instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
-    
-Place your Index, Middle, Ring, and Pinky fingers on (L, I, U, H) respectively.
-
-
-Your fingers will rest on these keys for the entirety of the experiment.
-    
-You will see a hand appear on the screen. One of the fingers on the screen will light up and your job is to press the corresponding finger as quickly and as accurately as possible.
-    
-
-
-Press (H, U, I, or L) to continue.`
-    ;
-      }
-    }
     instr_tr_text_hand = `Great Job!
     
 In the following blocks, you will hear 4 beeps. You need to press the corresponding finger ON the fourth beep. 
 
 
 Sometimes, the finger will light up at the very last second. You will not have enough time to know which finger to press. In this case, MAKE A GUESS. Always press one of your fingers ON the fourth beep.
+
 
 There will be at least 2 blocks, depending on how well you press ON the fourth beep.
 
@@ -3425,54 +3214,18 @@ Press (H, U, I, or L) to continue.`
     ;
     instr_cr_old_text = `Good Job! You are now ready for the tasks!
     
-In the upcoming block, you will see four symbols on the screen, one at a time. Each symbol corresponds to one of (H, U, I, L). 
-    
-Your job is to figure out which symbol corresponds with which key.
-    
-    
+In the upcoming block, you will see eight symbols (1, 2, 3, 4, a, b, c, d) on the screen, one at a time. 
+
+Each symbol corresponds to one of (H, U, I, L). For example, press key (H) to symbols (1) and (a), press key (U) to symbols (2) and (b), and so on.
+
 ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
-        
     
-    
+
+
 Ready? Press (H, U, I, or L) to continue.`
     ;
     if ((session === 1)) {
-      instr_tr_old_pre_text = `Now you are going to practice the symbol-key map you learned. 
-    
-In the following ${tr_block_old} blocks, you will hear 4 beeps.
-
-The symbol will always show up on the ${beep_number} beep. You need to press the corresponding key ON the fourth beep. 
-        
-    
-Press (H, U, I, or L) to start.`
-    ;  
-      
-    } else {
-        if ((session === 2)) {
-          instr_tr_old_pre_text = `Today, we continue to practice the symbol-key maps for ${tr_block_old} blocks.
-    
-Remember that the symbol will always show up on the ${beep_number} beep. Your job is to press the corresponding key ON the fourth beep.
-
-This session is a bit long (about 1 hour 10 minutes to 1 hour 30 minutes). Take a break between blocks whenever you need. Please DO NOT turn off your web browser.
-    
-Whenever you are ready, press (H, U, I, or L) to start.`
-    ;
-        } else {
-            if (session === 3){
-              instr_tr_old_pre_text = `Welcome back! Today's session will take about 1 hour to 1 hour 10 minutes.
-                
-We first continue to practice the symbol-key maps for ${tr_block_old} blocks.
-                  
-You will hear 4 beeps. The symbol will always show up on the ${beep_number} beep. Your job is to press the corresponding key ON the fourth beep.
-                  
-Whenever you are ready, press (H, U, I, or L) to start.`
-    ;
-                }
-        }
-    }
-    
-
-    instr_rt_text = `Now you are going to practice the symbol-key map you learned. 
+        instr_rt_text = `Now you are going to practice the symbol-key map you learned. 
         
 Your job is to press the corresponding key as quickly and as accurately as possible.
     
@@ -3481,42 +3234,96 @@ There will be ${rt_block} blocks with short breaks in between.
 
 Whenever you are ready, press (H, U, I, or L) to start.`
     ;
+    } else {
+        if ((1 < session)) {
+            instr_rt_text = `Today, we first continue to practice the symbol-key maps for ${rt_block} blocks.
+    
+Remember, your job is to press the corresponding key as quickly and accurately as you can.
+    
+Whenever you are ready, press (H, U, I, or L) to start.`
+    ;
+        }
+    }
+    instr_tr_old_pre_text = `Good job so far.
+    
+In the following ${tr_block_old} blocks, use the symbol-key map you learned. Press the corresponding key ON the fourth beep. 
+
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
+    
+
+Press (H, U, I, or L) to start.`
+    ;
     instr_tr_old_post_text = `Great job.
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
-    
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
-        
-    
-Press (H, U, I, or L) to start.`
-    ;
 
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
     
-    instr_cr_new_text =  `Great job.
-    
-In the next block, you will see the same four symbols, but this time they may correspond with a different key (H, U, I, L).
-    
-Your job is to figure out the new association between the symbols and the keys.
-    
-    
-ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
-    
-    
+
 Press (H, U, I, or L) to start.`
     ;
+    if ((grp_stop === 1)) {
+        instr_cr_new_text = `Great job.
+    
+In next block, you will see the same eight symbols, but this time some of them may no longer correspond with a key (H, U, I, L).
         
-    instr_tr_new_text = `Great job.
+Your job is to figure out which are those symbols and DO NOT PRESS ANY KEY when they appear. Instead, simply wait for 2 seconds.
+        
+        
+ACCURACY is the priority, so go as slowly as you need to. The more mistaks you make, the longer this block will take.
+        
+        
+Press (H, U, I, or L) to start.`
+    ;
+    } else {
+        if ((grp_swap === 1)) {
+            instr_cr_new_text = `Great job.
+    
+In the next block, you will see the same eight symbols, but this time they may correspond with a different key (H, U, I, L).
+
+Your job is to figure out the new association between the symbols and the keys.
+
+
+ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
+
+
+Press (H, U, I, or L) to start.`
+    ;
+        }
+    }
+    if ((grp_swap === 1)) {
+        instr_tr_new_text = `Great job. We are almost there!
 
 In the last ${tr_block_new_swap} blocks, use the NEW symbol-key map you just learned: 
 Press the corresponding key ON the fourth beep. 
-                
-The symbol will appear at a random time and sometimes may show up very late. In this case, MAKE A GUESS. Always press one of keys on the fourth beep.
+            
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
 
-This task is designed to be difficult, so it is okay to make a guess if the symbol appears very late.
-    
-                            
+            
+        
 Press (H, U, I, or L) to start.`
     ;
+    } else {
+        if ((grp_stop === 1)) {
+            instr_tr_new_text = `Great job. We are almost there!
+            
+In the last ${tr_block_new_stop} blocks, use the NEW symbol-key map you just learned:
+If you see a symbol that requires a response, press the corresponding key ON the fourth beep.             
+If you see a symbol that does NOT require a response, DO NOT PRESS ANYTHING.
+
+
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. If you decide to press, remember to respond ON the fourth beep.
+
+This task is designed to be difficult, so it is okay to make a guess.
+
+
+
+
+
+Press (H, U, I, or L) to start.`
+    ;
+        }
+    }
     penalty_toolate_text = `Response was too late.
 2 second penalty.
 After 2 second, press (H, U, I, or L) to continue.`
@@ -3535,7 +3342,6 @@ After 2 second, press (H, U, I, or L) to continue.`
     return Scheduler.Event.NEXT;
   };
 }
-
 
 var _Instr_Exp_Key_allKeys;
 var Instr_ExpComponents;
@@ -3648,125 +3454,6 @@ function Instr_ExpRoutineEnd(trials) {
         }
     
     Instr_Exp_Key.stop();
-    // the Routine "Instr_Exp" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset();
-    
-    return Scheduler.Event.NEXT;
-  };
-}
-
-
-var _Refresh_Exp_Key_allKeys;
-var Refresh_ExpComponents;
-function Refresh_ExpRoutineBegin(trials) {
-  return function () {
-    //------Prepare to start Routine 'Instr_Exp'-------
-    t = 0;
-    Refresh_ExpClock.reset(); // clock
-    frameN = -1;
-    // update component parameters for each repeat
-    Refresh_Exp_Text.setText(refresh_exp_text);
-    Refresh_Exp_Key.keys = undefined;
-    Refresh_Exp_Key.rt = undefined;
-    _Refresh_Exp_Key_allKeys = [];
-    // keep track of which components have finished
-    Refresh_ExpComponents = [];
-    Refresh_ExpComponents.push(Refresh_Exp_Text);
-    Refresh_ExpComponents.push(Refresh_Exp_Key);
-    
-    for (const thisComponent of Refresh_ExpComponents)
-      if ('status' in thisComponent)
-        thisComponent.status = PsychoJS.Status.NOT_STARTED;
-    
-    return Scheduler.Event.NEXT;
-  };
-}
-
-
-function Refresh_ExpRoutineEachFrame(trials) {
-  return function () {
-    //------Loop for each frame of Routine 'Instr_Exp'-------
-    let continueRoutine = true; // until we're told otherwise
-    // get current time
-    t = Refresh_ExpClock.getTime();
-    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
-    // update/draw components on each frame
-    
-    // *Refresh_Exp_Text* updates
-    if (t >= 0.0 && Refresh_Exp_Text.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      Refresh_Exp_Text.tStart = t;  // (not accounting for frame time here)
-      Refresh_Exp_Text.frameNStart = frameN;  // exact frame index
-      
-      Refresh_Exp_Text.setAutoDraw(true);
-    }
-
-    
-    // *Instr_Exp_Key* updates
-    if (t >= 0.0 && Refresh_Exp_Key.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      Refresh_Exp_Key.tStart = t;  // (not accounting for frame time here)
-      Refresh_Exp_Key.frameNStart = frameN;  // exact frame index
-      
-      // keyboard checking is just starting
-      psychoJS.window.callOnFlip(function() { Refresh_Exp_Key.clock.reset(); });  // t=0 on next screen flip
-      psychoJS.window.callOnFlip(function() { Refresh_Exp_Key.start(); }); // start on screen flip
-      psychoJS.window.callOnFlip(function() { Refresh_Exp_Key.clearEvents(); });
-    }
-
-    if (Refresh_Exp_Key.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Refresh_Exp_Key.getKeys({keyList: ['z'], waitRelease: false});
-      _Refresh_Exp_Key_allKeys = _Refresh_Exp_Key_allKeys.concat(theseKeys);
-      if (_Refresh_Exp_Key_allKeys.length > 0) {
-        Refresh_Exp_Key.keys = _Refresh_Exp_Key_allKeys[0].name;  // just the first key pressed
-        Refresh_Exp_Key.rt = _Refresh_Exp_Key_allKeys[0].rt;
-        // a response ends the routine
-        continueRoutine = false;
-      }
-    }
-    
-    // check for quit (typically the Esc key)
-    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
-      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
-    }
-    
-    // check if the Routine should terminate
-    if (!continueRoutine) {  // a component has requested a forced-end of Routine
-      return Scheduler.Event.NEXT;
-    }
-    
-    continueRoutine = false;  // reverts to True if at least one component still running
-    for (const thisComponent of Refresh_ExpComponents)
-      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
-        continueRoutine = true;
-        break;
-      }
-    
-    // refresh the screen if continuing
-    if (continueRoutine) {
-      return Scheduler.Event.FLIP_REPEAT;
-    } else {
-      return Scheduler.Event.NEXT;
-    }
-  };
-}
-
-
-function Refresh_ExpRoutineEnd(trials) {
-  return function () {
-    //------Ending Routine 'Instr_Exp'-------
-    for (const thisComponent of Refresh_ExpComponents) {
-      if (typeof thisComponent.setAutoDraw === 'function') {
-        thisComponent.setAutoDraw(false);
-      }
-    }
-    psychoJS.experiment.addData('Refresh_Exp_Key.keys', Refresh_Exp_Key.keys);
-    if (typeof Refresh_Exp_Key.keys !== 'undefined') {  // we had a response
-        psychoJS.experiment.addData('Refresh_Exp_Key.rt', Refresh_Exp_Key.rt);
-        routineTimer.reset();
-        }
-    
-    Refresh_Exp_Key.stop();
     // the Routine "Instr_Exp" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -3929,8 +3616,8 @@ function Creat_StimSeqRoutineBegin(trials) {
     trial_count = 0;
     repeat_count = 0;
     tr_timing_good = 0;
-    sum_corr = [0, 0, 0, 0];
-    trial_count_item = [0, 0, 0, 0];
+    sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
+    trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
     if ((stim_type === "Hand")) {
         seq_stimnum_hand = [];
         seq_handx = [];
@@ -3962,35 +3649,35 @@ function Creat_StimSeqRoutineBegin(trials) {
     }
     if ((block_type === "CR")) {
         count = 0;
-        while ((count < (num_trials_cr / 20))) {
-            util.shuffle(x8);
-            for (var i, _pj_c = 0, _pj_a = x8, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+        while ((count < (num_trials_cr / 40))) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
-            util.shuffle(x8);
-            for (var i, _pj_c = 0, _pj_a = x8, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
-            util.shuffle(x4_new);
-            for (var i, _pj_c = 0, _pj_a = x4_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            util.shuffle(x8_new);
+            for (var i, _pj_c = 0, _pj_a = x8_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             count = (count + 1);
@@ -3999,35 +3686,15 @@ function Creat_StimSeqRoutineBegin(trials) {
     
     if (((block_type !== "CR") && (stim_type === "Symb"))) {
         count = 0;
-        while ((count < (num_trials / 20))) {
-            util.shuffle(x8);
-            for (var i, _pj_c = 0, _pj_a = x8, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+        while ((count < (num_trials / 16))) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(x8);
-            for (var i, _pj_c = 0, _pj_a = x8, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(x4_new);
-            for (var i, _pj_c = 0, _pj_a = x4_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             count = (count + 1);
@@ -4114,6 +3781,7 @@ function Pre_Trial_HandRoutineBegin(trials) {
     t = 0;
     Pre_Trial_HandClock.reset(); // clock
     frameN = -1;
+
     // update component parameters for each repeat
     Pre_Trial_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
     Pre_Trial_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
@@ -4229,16 +3897,17 @@ function Pre_Trial_HandRoutineEnd(trials) {
     psychoJS.experiment.addData("stim_type", stim_type);
     psychoJS.experiment.addData("key", key_item);
     psychoJS.experiment.addData("block_type", block_type);
+    psychoJS.experiment.addData("tr_old_pre", pre);
+    psychoJS.experiment.addData("tr_old_post", post);
     psychoJS.experiment.addData("remap", remap);
     psychoJS.experiment.addData("repeat_count", repeat_count);
     psychoJS.experiment.addData("trial_Count", trial_count);
     psychoJS.experiment.addData("grp_stop", grp_stop);
     psychoJS.experiment.addData("grp_swap", grp_swap);
-    psychoJS.experiment.addData("grp",grp);
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
-    psychoJS.experiment.addData("hand", handedness);
+    
     // the Routine "Pre_Trial_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -5502,8 +5171,8 @@ function Instr_CR_OldRoutineBegin(trials) {
     block_count = 0;
     remap = 0;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
     // keep track of which components have finished
     Instr_CR_OldComponents = [];
@@ -5629,22 +5298,17 @@ function Pre_TrialRoutineBegin(trials) {
     stimnum_item = seq_stimnum[trial_count];
     key_item = seq_key[trial_count];
     symb_item = seq_symb[trial_count];
-    symb_g_item = seq_symb_g[trial_count];
-    symb_r_item = seq_symb_r[trial_count];
+    //symb_g_item = seq_symb_g[trial_count];
+    //symb_r_item = seq_symb_r[trial_count];
     keynum_item = seq_keynum[trial_count];
-    if ((block_type === "TR" && remap === 1)) {
+    if ((block_type === "TR")) {
         interval_ind = prep_time_ind[stimnum_item][trial_count_item[stimnum_item]];
         prep_time = ((Math.random() * (prep_time_interval[interval_ind][1] - prep_time_interval[interval_ind][0])) + prep_time_interval[interval_ind][0]);
         stim_start_time = ((prep_time_range[1] - prep_time) + beep_lead_in);
         trial_count_item[stimnum_item] = (trial_count_item[stimnum_item] + 1);
     } else {
-      if ((block_type === "TR" && remap === 0)) {
-        prep_time = t_prep_prac;
-        stim_start_time = ((prep_time_range[1] - prep_time) + beep_lead_in);
-      } else {
         stim_start_time = 99;
         prep_time = 99;
-      }
     }
     
     // keep track of which components have finished
@@ -5726,16 +5390,17 @@ function Pre_TrialRoutineEnd(trials) {
     psychoJS.experiment.addData("stim_type", stim_type);
     psychoJS.experiment.addData("key", key_item);
     psychoJS.experiment.addData("block_type", block_type);
+    psychoJS.experiment.addData("tr_old_pre", pre);
+    psychoJS.experiment.addData("tr_old_post", post);
     psychoJS.experiment.addData("remap", remap);
     psychoJS.experiment.addData("repeat_count", repeat_count);
     psychoJS.experiment.addData("trial_Count", trial_count);
     psychoJS.experiment.addData("grp_stop", grp_stop);
     psychoJS.experiment.addData("grp_swap", grp_swap);
-    psychoJS.experiment.addData("grp",grp);
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
-    psychoJS.experiment.addData("hand", handedness);
+    
     // the Routine "Pre_Trial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -5756,14 +5421,17 @@ function RT_Enter_TrialRoutineBegin(trials) {
     RT_Rec_Frame.setOpacity(rec_frame_opacity);
     RT_Rec_Frame.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame.setLineWidth(rec_wd);
-    RT_Stim_Image.setImage(symb_item);
+    //RT_Stim_Image.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
     _RT_Press_allKeys = [];
     // keep track of which components have finished
     RT_Enter_TrialComponents = [];
     RT_Enter_TrialComponents.push(RT_Rec_Frame);
-    RT_Enter_TrialComponents.push(RT_Stim_Image);
+    //RT_Enter_TrialComponents.push(RT_Stim_Image);
+    RT_Enter_TrialComponents.push(Letter)
     RT_Enter_TrialComponents.push(RT_Press);
     
     for (const thisComponent of RT_Enter_TrialComponents)
@@ -5795,12 +5463,12 @@ function RT_Enter_TrialRoutineEachFrame(trials) {
 
     
     // *RT_Stim_Image* updates
-    if (t >= 0.0 && RT_Stim_Image.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      RT_Stim_Image.tStart = t;  // (not accounting for frame time here)
-      RT_Stim_Image.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      RT_Stim_Image.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     
@@ -5860,7 +5528,7 @@ function RT_Enter_TrialRoutineEachFrame(trials) {
 }
 
 
-var feedback_image;
+var feedback_col;
 function RT_Enter_TrialRoutineEnd(trials) {
   return function () {
     //------Ending Routine 'RT_Enter_Trial'-------
@@ -5872,12 +5540,12 @@ function RT_Enter_TrialRoutineEnd(trials) {
     sound_vol = 0;
     if (RT_Press.corr) {
         corr = 1;
-        feedback_image = symb_g_item;
+        feedback_col = color_p;
         feedback_dur = 0.3;
         sound_vol = 1;
     } else {
         corr = 0;
-        feedback_image = symb_r_item;
+        feedback_col = color_n;
         feedback_dur = 1;
     }
     actual_press = RT_Press.keys;
@@ -5933,13 +5601,16 @@ function RT_FeedbackRoutineBegin(trials) {
     RT_Rec_Frame_Feedback.setOpacity(rec_frame_opacity);
     RT_Rec_Frame_Feedback.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame_Feedback.setLineWidth(rec_wd);
-    RT_Feedback_Image.setImage(feedback_image);
+    //RT_Feedback_Image.setImage(feedback_image);
+    Letter.setColor(new util.Color(feedback_col));
+    Letter.setText(symb_item);
     // keep track of which components have finished
     RT_FeedbackComponents = [];
     RT_FeedbackComponents.push(CR_Feedback_Coin_Old);
     RT_FeedbackComponents.push(RT_Rec_Frame_Feedback);
-    RT_FeedbackComponents.push(RT_Feedback_Image);
-    
+    //RT_FeedbackComponents.push(RT_Feedback_Image);
+    RT_FeedbackComponents.push(Letter);
+
     for (const thisComponent of RT_FeedbackComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -5987,17 +5658,17 @@ function RT_FeedbackRoutineEachFrame(trials) {
     }
     
     // *RT_Feedback_Image* updates
-    if (t >= 0.0 && RT_Feedback_Image.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      RT_Feedback_Image.tStart = t;  // (not accounting for frame time here)
-      RT_Feedback_Image.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      RT_Feedback_Image.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (RT_Feedback_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      RT_Feedback_Image.setAutoDraw(false);
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
@@ -6157,9 +5828,10 @@ function Instr_TR_Old_PreRoutineBegin(trials) {
     stim_type = "Symb";
     remap = 0;
     block_count = 0;
+    pre = 1;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
     // keep track of which components have finished
     Instr_TR_Old_PreComponents = [];
@@ -6293,7 +5965,9 @@ function TR_Enter_TrialsRoutineBegin(trials) {
     TR_Rec_Frame.setOpacity(rec_frame_opacity);
     TR_Rec_Frame.setLineColor(new util.Color(rec_frame_color));
     TR_Rec_Frame.setLineWidth(rec_wd);
-    TR_Stim_Image.setImage(symb_item);
+    //TR_Stim_Image.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     TR_Press.keys = undefined;
     TR_Press.rt = undefined;
     _TR_Press_allKeys = [];
@@ -6301,7 +5975,8 @@ function TR_Enter_TrialsRoutineBegin(trials) {
     TR_Enter_TrialsComponents = [];
     TR_Enter_TrialsComponents.push(TR_Beep_Hand);
     TR_Enter_TrialsComponents.push(TR_Rec_Frame);
-    TR_Enter_TrialsComponents.push(TR_Stim_Image);
+    //TR_Enter_TrialsComponents.push(TR_Stim_Image);
+    TR_Enter_TrialsComponents.push(Letter);
     TR_Enter_TrialsComponents.push(TR_Press);
     
     for (const thisComponent of TR_Enter_TrialsComponents)
@@ -6351,17 +6026,17 @@ function TR_Enter_TrialsRoutineEachFrame(trials) {
     }
     
     // *TR_Stim_Image* updates
-    if (t >= stim_start_time && TR_Stim_Image.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Stim_Image.tStart = t;  // (not accounting for frame time here)
-      TR_Stim_Image.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      TR_Stim_Image.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (TR_Stim_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      TR_Stim_Image.setAutoDraw(false);
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
     // *TR_Press* updates
@@ -6436,10 +6111,10 @@ function TR_Enter_TrialsRoutineEnd(trials) {
     if ((TR_Press.keys !== undefined)) {
         if (TR_Press.corr) {
             corr = 1;
-            feedback_image = symb_g_item;
+            feedback_col = color_p;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
+            feedback_col = color_n;
         }
         if ((TR_Press.rt < ((time_limit - 0.2) - 0.3))) {
             tr_press_tooearly = 1;
@@ -6546,13 +6221,16 @@ function TR_FeedbackRoutineBegin(trials) {
     Tr_Rec_Frame_Feedback.setLineWidth(rec_wd);
     TR_Feedback_Text.setColor(new util.Color(tr_feedback_text_color));
     TR_Feedback_Text.setText(tr_feedback_text);
-    TR_Feedback_Image.setImage(feedback_image);
+    //TR_Feedback_Image.setImage(feedback_image);
+    Letter.setText(symb_item);
+    Letter.setColor(new util.Color(feedback_col));
     // keep track of which components have finished
     TR_FeedbackComponents = [];
     TR_FeedbackComponents.push(TR_Feedback_Coin);
     TR_FeedbackComponents.push(Tr_Rec_Frame_Feedback);
     TR_FeedbackComponents.push(TR_Feedback_Text);
-    TR_FeedbackComponents.push(TR_Feedback_Image);
+    //TR_FeedbackComponents.push(TR_Feedback_Image);
+    TR_FeedbackComponents.push(Letter);
     
     for (const thisComponent of TR_FeedbackComponents)
       if ('status' in thisComponent)
@@ -6615,17 +6293,17 @@ function TR_FeedbackRoutineEachFrame(trials) {
     }
     
     // *TR_Feedback_Image* updates
-    if (t >= 0.0 && TR_Feedback_Image.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Feedback_Image.tStart = t;  // (not accounting for frame time here)
-      TR_Feedback_Image.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      TR_Feedback_Image.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (TR_Feedback_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      TR_Feedback_Image.setAutoDraw(false);
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
@@ -6691,12 +6369,12 @@ function Instr_RTRoutineBegin(trials) {
         block_count = 0;
     } else {
         if ((session === 2)) {
-            block_count = 0;
+            block_count = 5;
         }
     }
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
     // keep track of which components have finished
     Instr_RTComponents = [];
@@ -6821,10 +6499,10 @@ function Instr_TR_Old_PostRoutineBegin(trials) {
     stim_type = "Symb";
     remap = 0;
     block_count = 0;
-    
+    post = 1;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
     // keep track of which components have finished
     Instr_TR_Old_PostComponents = [];
@@ -6952,13 +6630,13 @@ function Instr_CR_NewRoutineBegin(trials) {
     
     if (grp_stop === 1) {
         symb = symb_map;
-        symb_g = symb_g_map;
-        symb_r = symb_r_map;
+        //symb_g = symb_g_map;
+        //symb_r = symb_r_map;
     } else {
         if (grp_swap === 1) {
             symb = symb_remap;
-            symb_g = symb_g_remap;
-            symb_r = symb_r_remap;
+            //symb_g = symb_g_remap;
+            //symb_r = symb_r_remap;
         }
     }
     
@@ -7080,14 +6758,17 @@ function RT_Enter_Trial_StopRoutineBegin(trials) {
     RT_Rec_Frame_Stop.setOpacity(rec_frame_opacity);
     RT_Rec_Frame_Stop.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame_Stop.setLineWidth(rec_wd);
-    RT_Stim_Image_Stop.setImage(symb_item);
+    //RT_Stim_Image_Stop.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     RT_Press_Stop.keys = undefined;
     RT_Press_Stop.rt = undefined;
     _RT_Press_Stop_allKeys = [];
     // keep track of which components have finished
     RT_Enter_Trial_StopComponents = [];
     RT_Enter_Trial_StopComponents.push(RT_Rec_Frame_Stop);
-    RT_Enter_Trial_StopComponents.push(RT_Stim_Image_Stop);
+    //RT_Enter_Trial_StopComponents.push(RT_Stim_Image_Stop);
+    RT_Enter_Trial_StopComponents.push(Letter);
     RT_Enter_Trial_StopComponents.push(RT_Press_Stop);
     
     for (const thisComponent of RT_Enter_Trial_StopComponents)
@@ -7123,17 +6804,17 @@ function RT_Enter_Trial_StopRoutineEachFrame(trials) {
     }
     
     // *RT_Stim_Image_Stop* updates
-    if (t >= 0.0 && RT_Stim_Image_Stop.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      RT_Stim_Image_Stop.tStart = t;  // (not accounting for frame time here)
-      RT_Stim_Image_Stop.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      RT_Stim_Image_Stop.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     frameRemains = 0.0 + stop_tol - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (RT_Stim_Image_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      RT_Stim_Image_Stop.setAutoDraw(false);
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
     // *RT_Press_Stop* updates
@@ -7209,29 +6890,29 @@ function RT_Enter_Trial_StopRoutineEnd(trials) {
     if ((remap_pair_1.includes(stimnum_item)) || (remap_pair_2.includes(stimnum_item))) {
         if ((RT_Press_Stop.keys === undefined)) {
             corr = 1;
-            feedback_image = symb_g_item;
+            feedback_col = color_p;
             feedback_dur = 0.3;
             sound_vol = 1;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
+            feedback_col = color_n;
             feedback_dur = 1;
         }
-    } else {
+      } else {
         if ((RT_Press_Stop.keys !== undefined)) {
           if (RT_Press_Stop.corr) {
               corr = 1;
-              feedback_image = symb_g_item;
+              feedback_col = color_p;
               feedback_dur = 0.3;
               sound_vol = 1;
           } else {
               corr = 0;
-              feedback_image = symb_r_item;
+              feedback_col = color_n;
               feedback_dur = 1;
           }
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
+            feedback_col = color_n;
             feedback_dur = 1;
         }
     }
@@ -7296,13 +6977,13 @@ function Instr_TR_NewRoutineBegin(trials) {
     block_count = 0;
     if (grp_stop === 1) {
         symb = symb_map;
-        symb_g = symb_g_map;
-        symb_r = symb_r_map;
+        //symb_g = symb_g_map;
+        //symb_r = symb_r_map;
     } else {
         if (grp_swap === 1) {
             symb = symb_remap;
-            symb_g = symb_g_remap;
-            symb_r = symb_r_remap;
+            //symb_g = symb_g_remap;
+            //symb_r = symb_r_remap;
         }
     }
     
@@ -7444,7 +7125,9 @@ function TR_Enter_Trials_StopRoutineBegin(trials) {
     TR_Rec_Frame_Stop.setOpacity(rec_frame_opacity);
     TR_Rec_Frame_Stop.setLineColor(new util.Color(rec_frame_color));
     TR_Rec_Frame_Stop.setLineWidth(rec_wd);
-    TR_Stim_Image_Stop.setImage(symb_item);
+    //TR_Stim_Image_Stop.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     TR_Press_Stop.keys = undefined;
     TR_Press_Stop.rt = undefined;
     _TR_Press_Stop_allKeys = [];
@@ -7452,7 +7135,8 @@ function TR_Enter_Trials_StopRoutineBegin(trials) {
     TR_Enter_Trials_StopComponents = [];
     TR_Enter_Trials_StopComponents.push(TR_Beep_Hand);
     TR_Enter_Trials_StopComponents.push(TR_Rec_Frame_Stop);
-    TR_Enter_Trials_StopComponents.push(TR_Stim_Image_Stop);
+    //TR_Enter_Trials_StopComponents.push(TR_Stim_Image_Stop);
+    TR_Enter_Trials_StopComponents.push(Letter);
     TR_Enter_Trials_StopComponents.push(TR_Press_Stop);
     
     for (const thisComponent of TR_Enter_Trials_StopComponents)
@@ -7503,17 +7187,17 @@ function TR_Enter_Trials_StopRoutineEachFrame(trials) {
     }
     
     // *TR_Stim_Image_Stop* updates
-    if (t >= stim_start_time && TR_Stim_Image_Stop.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Stim_Image_Stop.tStart = t;  // (not accounting for frame time here)
-      TR_Stim_Image_Stop.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      TR_Stim_Image_Stop.setAutoDraw(true);
+      Letter.setAutoDraw(true);
     }
 
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (TR_Stim_Image_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      TR_Stim_Image_Stop.setAutoDraw(false);
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
     // *TR_Press_Stop* updates
@@ -7587,13 +7271,13 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
     if ((remap_pair_1.includes(stimnum_item)) || (remap_pair_2.includes(stimnum_item))) {
         if ((TR_Press_Stop.keys === undefined)) {
             corr = 1;
-            feedback_image = symb_g_item;
+            feedback_col = color_p;
             tr_feedback = 1;
             sound_vol = 1;
             tr_text = 0;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
+            feedback_col = color_n;
             if ((TR_Press_Stop.rt < ((time_limit - 0.2) - 0.3))) {
                 tr_press_tooearly = 1;
                 tr_penalty = 1;
@@ -7619,11 +7303,11 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
         if ((TR_Press_Stop.keys !== undefined)) {
             if (TR_Press_Stop.corr) {
                 corr = 1;
-                feedback_image = symb_g_item;
+                feedback_col = color_p;
                 feedback_dur = 0.3;
             } else {
                 corr = 0;
-                feedback_image = symb_r_item;
+                feedback_col = color_n;
                 feedback_dur = 1;
             }
             if ((TR_Press_Stop.rt < ((time_limit - 0.2) - 0.3))) {
@@ -7647,7 +7331,7 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
             corr = 0;
             tr_press_late = 1;
             tr_feedback = 1;
-            feedback_image = symb_r_item;
+            feedback_col = color_n;
         }
     }
     feedback_dur = 0.3;
