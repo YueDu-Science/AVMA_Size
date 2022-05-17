@@ -101,7 +101,9 @@ psychoJS.start({
   expName: expName,
   expInfo: expInfo,
   resources: [
-    ia/dnnb_r.png', 'path': './media/dnnb_r.png'},
+    {'name': 'media/dnnb.png', 'path': './media/dnnb.png'},
+    {'name': 'media/dnnb_g.png', 'path': './media/dnnb_g.png'},
+    {'name': 'media/dnnb_r.png', 'path': './media/dnnb_r.png'},
     {'name': 'media/dinb.png', 'path': './media/dinb.png'},
     {'name': 'media/dinb_g.png', 'path': './media/dinb_g.png'},
     {'name': 'media/dinb_r.png', 'path': './media/dinb_r.png'},
