@@ -386,7 +386,7 @@ function experimentInit() {
   
   
   //determine which group participants are in
-  if (participant < 500) {  // e.g., 401
+  /* if (participant < 500) {  // e.g., 401
       grp = 4;
       num_symb = 4;
       //choose which set to use; have to include all fingers
@@ -411,7 +411,7 @@ function experimentInit() {
       grp = 12
       num_symb = 12;
       set = [0, 1,2,3,4,5,6,7,8,9,10,11];
-    }
+    } */
 
   ////////////////////////////////////
   tr_block_hand = 4;
@@ -420,22 +420,22 @@ function experimentInit() {
   num_criterion = 5;
   num_trials = 144;
   rt_block = 20;
-  tr_block_old = 0;
+  tr_block_old = 3;
   tr_block_new_swap = 10;
   tr_block_new_stop = 0;
 
-  instr_exp = 0;
-  tr_hand_yes = 0;
-  rt_hand_yes = 0;
-  cr_old_yes = 0;
-  cr_new_yes = 0;
-  rt_yes = 0;
-  tr_new_yes = 0;
-  refresh_exp = 0;
+  instr_exp = 1;
+  tr_hand_yes = 1;
+  rt_hand_yes = 1;
+  cr_old_yes = 1;
+  cr_new_yes = 1;
+  rt_yes = 1;
+  tr_new_yes = 1;
+  refresh_exp = 1;
   tr_old_pre_yes = 0;
-  tr_old_post_yes = 0;
+  tr_old_post_yes = 1;
  
-  if (grp === 4) {
+  /* if (grp === 4) {
     if ((isNaN(participant) || isNaN(session) || handedness.length === 0 || session > 1)){
       refresh_exp = 1;
     } else {
@@ -502,12 +502,25 @@ function experimentInit() {
             tr_block_new_swap = 4;
           } 
         }
-      }
+      } */
     
       
+      sample_num = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+      for (var i = 0; i<sample_num.length; ++i) {
+        let LEN = sample_num[i];
+        let tmp = new Array(LEN).fill(i);
+        prep_time_ind_tmp = prep_time_ind_tmp.concat(tmp);
+      }
   
+      count = 0;
+      while ((count < num_symb)) {
+          util.shuffle(prep_time_ind_tmp);
+          prep_time_ind.push(prep_time_ind_tmp.slice(0));
+          count = (count + 1);
+      }
+      prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
   // randomize prep-time so that prep-time for each symbol spread over a good range
-  if (grp === 4) {
+  /* if (grp === 4) {
     sample_num = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
     for (var i = 0; i<sample_num.length; ++i) {
       let LEN = sample_num[i];
@@ -552,7 +565,7 @@ function experimentInit() {
           count = (count + 1);
       }
       prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-    }
+    } */
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
   Instr_Exp_Text = new visual.TextStim({
