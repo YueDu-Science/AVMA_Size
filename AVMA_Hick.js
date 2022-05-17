@@ -24,7 +24,7 @@ psychoJS.openWindow({
 });
 
 // store info about the experiment session:
-let expName = 'AVMA_TR';  // from the Builder filename that created this script
+let expName = 'AVMA_Hick';  // from the Builder filename that created this script
 //let expInfo = {'participant': '', 'session': ['', 1, 2, 3], 'hand': ['Right']};
 let expInfo = {'participant': '', 'session': ['', 1, 2, 3]};
 
@@ -128,6 +128,18 @@ psychoJS.start({
     {'name': 'media/dmnb.png', 'path': './media/dmnb.png'},
     {'name': 'media/dmnb_g.png', 'path': './media/dmnb_g.png'},
     {'name': 'media/dmnb_r.png', 'path': './media/dmnb_r.png'},
+    {'name': 'media/denb.png', 'path': './media/denb.png'},
+    {'name': 'media/denb_g.png', 'path': './media/denb_g.png'},
+    {'name': 'media/denb_r.png', 'path': './media/denb_r.png'},
+    {'name': 'media/danb.png', 'path': './media/danb.png'},
+    {'name': 'media/danb_g.png', 'path': './media/danb_g.png'},
+    {'name': 'media/danb_r.png', 'path': './media/danb_r.png'},
+    {'name': 'media/dhnb.png', 'path': './media/dhnb.png'},
+    {'name': 'media/dhnb_g.png', 'path': './media/dhnb_g.png'},
+    {'name': 'media/dhnb_r.png', 'path': './media/dhnb_r.png'},
+    {'name': 'media/dknb.png', 'path': './media/dknb.png'},
+    {'name': 'media/dknb_g.png', 'path': './media/dknb_g.png'},
+    {'name': 'media/dknb_r.png', 'path': './media/dknb_r.png'},
     {'name': 'media/coin.wav', 'path': './media/coin.wav'},
     {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
     {'name': 'media/beep.wav', 'path': './media/beep.wav'}
@@ -183,13 +195,13 @@ var time_limit = 1.5;
 var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["h", "u", "i", "l"];
-var x_symb = [0, 1, 2, 3];
+var x_symb = [0, 1, 2, 3,4,5,6,7,8,9,10,11];
 var x_hand = [0,1,2,3,0,1,2,3];
-var x4_new = x_symb;
-var x8 = x4_new.concat(x4_new);
+var x12_new = x_symb;
+var x24 = x12_new.concat(x12_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
 var num_pos = 4;
-var num_symb = 4;
+var num_symb;
 var symb_perm = permute(x_symb);
 var n_map = symb_perm.length;
 var t_prep_prac;
