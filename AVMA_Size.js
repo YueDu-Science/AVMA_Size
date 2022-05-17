@@ -362,7 +362,6 @@ var Instr_End_Exp_Key;
 var globalClock;
 var routineTimer;
 var sample_num;
-var set;
 function experimentInit() {
   document.body.style.cursor='none';
   
