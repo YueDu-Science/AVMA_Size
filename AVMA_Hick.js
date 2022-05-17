@@ -142,7 +142,7 @@ psychoJS.start({
     {'name': 'media/dknb_r.png', 'path': './media/dknb_r.png'},
     {'name': 'media/coin.wav', 'path': './media/coin.wav'},
     {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
-    {'name': 'media/beep.wav', 'path': './media/beep.wav'}
+    {'name': 'media/beep.wav', 'path': './media/beep.wav'},
   ]
   });
 
