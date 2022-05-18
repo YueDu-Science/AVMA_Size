@@ -3108,19 +3108,6 @@ function Init_StimRoutineBegin(trials) {
             remap_pair_2.push((i + 4));
         }
     }
-    symb_remap_ind = Object.assign({}, symb_map_ind);
-    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
-    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
-    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
-      symb_map.push(symb[symb_map_ind[i]]);
-      symb_remap.push(symb[symb_remap_ind[i]]);
-      //symb_g_map.push(symb_g[symb_map_ind[i]]);
-      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-      //symb_r_map.push(symb_r[symb_map_ind[i]]);
-      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
-    }
 
     // create subset symb_map_ind for both grp 4 and grp 8
     if (grp === 8) {
@@ -3140,6 +3127,24 @@ function Init_StimRoutineBegin(trials) {
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
     }
+
+    console.log(subset)
+
+    symb_remap_ind = Object.assign({}, symb_map_ind);
+    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
+      symb_map.push(symb[symb_map_ind[i]]);
+      symb_remap.push(symb[symb_remap_ind[i]]);
+      //symb_g_map.push(symb_g[symb_map_ind[i]]);
+      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+      //symb_r_map.push(symb_r[symb_map_ind[i]]);
+      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+    }
+
+    
     //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
     //symb_map_ind = symb_perm[symb_map_rnd];
     //symb_map_ind = x_symb;
