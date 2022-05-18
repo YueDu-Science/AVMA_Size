@@ -3871,7 +3871,7 @@ function Creat_StimSeqRoutineBegin(trials) {
 
   if (block_type === "TR" && stim_type === "Symb") {
       if (grp === 4) {
-        x_new - subset.concat(subset)
+        x_new = subset.concat(subset)
         count = 0;
         while ((count < (num_trials / 8))) {
           
