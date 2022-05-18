@@ -172,11 +172,11 @@ var symb_r_map = [];
 var symb_r_remap = [];
 ////////////////////////////////////
 var tr_block_hand = 4;
-var num_trials_hand = 96;
-var num_trials_cr = 2000;
-var num_criterion = 5;
-var num_trials = 96;
-var rt_block = 12;
+var num_trials_hand = 16;
+var num_trials_cr = 5000;
+var num_criterion = 2;
+var num_trials = 24;
+var rt_block = 2;
 var tr_block_old = 2;
 var tr_block_new_swap = 0;
 var tr_block_new_stop = 0;
@@ -338,9 +338,14 @@ function experimentInit() {
   if (participant < 500 && participant > 400) {
       grp = 4;
       num_symb = 4;
+      tr_block_old = 6;
+      tr_block_new_swap = 6;
+      
   } else if (participant < 900 && participant > 800) {
       grp = 8;
       num_symb = 8;
+      tr_block_old = 12;
+      tr_block_new_swap = 12;
   }
 
   // session # determines which blocks they do
@@ -3299,7 +3304,21 @@ Remember, the symbol may show up very late. In this case, MAKE A GUESS. This tas
 
 Press (H, U, I, or L) to start.`
     ;
+
+    if (grp === 4) {
     instr_tr_old_post_text = `Great job.
+    
+In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
+
+Only ${num_symb} symbols will be used in these blocks.
+
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
+    
+
+Press (H, U, I, or L) to start.`
+    ;
+    } else if (grp === 8) {
+      instr_tr_old_post_text = `Great job.
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
@@ -3308,6 +3327,8 @@ Remember, the symbol may show up very late. In this case, MAKE A GUESS. This tas
 
 Press (H, U, I, or L) to start.`
     ;
+    }
+
     if ((grp_stop === 1)) {
         instr_cr_new_text = `Great job.
     
@@ -3325,7 +3346,7 @@ Press (H, U, I, or L) to start.`
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same eight symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same ${num_symb} symbols, but this time they may correspond with a different key (H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
