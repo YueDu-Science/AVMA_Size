@@ -3103,7 +3103,7 @@ function Init_StimRoutineBegin(trials) {
     } else if (grp === 4) {
       //first randomly choose a subset
       subset_pair_rnd = Math.floor(rng1 * subset_pairs.length)
-      subset_pair1 = subset_pairs[subset_pair_rnd];
+      subset_pair_1 = subset_pairs[subset_pair_rnd];
       for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
         if  (!(subset_pair_1.includes(i))) {
             subset_pair_2.push((i + 4));
