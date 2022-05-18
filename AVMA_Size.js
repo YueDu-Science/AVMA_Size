@@ -158,7 +158,8 @@ var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
 var subset_pairs = remap_pairs;
 var num_pos = 4;
-var num_symb;
+var num_symb = 8;
+var num_symb_grp;
 var symb_perm = permute(x_symb);
 var n_map = symb_perm.length;
 
@@ -338,13 +339,13 @@ function experimentInit() {
   //determine which group participants are in
   if (participant < 500 && participant > 400) {
       grp = 4;
-      num_symb = 4;
+      num_symb_grp = 4;
       tr_block_old = 6;
       tr_block_new_swap = 6;
       
   } else if (participant < 900 && participant > 800) {
       grp = 8;
-      num_symb = 8;
+      num_symb_grp = 8;
       tr_block_old = 12;
       tr_block_new_swap = 12;
   }
@@ -359,7 +360,7 @@ function experimentInit() {
       prep_time_ind_tmp.push(i);
   }
   count = 0;
-  while ((count < num_symb)) {
+  while ((count < num_symb_grp)) {
       util.shuffle(prep_time_ind_tmp);
       prep_time_ind.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
@@ -374,7 +375,7 @@ function experimentInit() {
     }
 
     count = 0;
-    while ((count < num_symb)) {
+    while ((count < num_symb_grp)) {
         util.shuffle(prep_time_ind_tmp);
         prep_time_ind.push(prep_time_ind_tmp.slice(0));
         count = (count + 1);
