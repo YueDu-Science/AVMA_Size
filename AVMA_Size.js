@@ -176,7 +176,7 @@ var tr_block_hand = 4;
 var num_trials_hand = 16;
 var num_trials_cr = 5000;
 var num_criterion = 2;
-var num_trials = 24;
+var num_trials = 16;
 var rt_block = 2;
 var tr_block_old = 2;
 var tr_block_new_swap = 0;
@@ -3110,10 +3110,7 @@ function Init_StimRoutineBegin(trials) {
         }
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
-    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
-    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+    
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
       symb_map.push(symb[symb_map_ind[i]]);
       symb_remap.push(symb[symb_remap_ind[i]]);
@@ -3124,13 +3121,14 @@ function Init_StimRoutineBegin(trials) {
     }
 
     // create subset symb_map_ind for both grp 4 and grp 8
+    // for group 4, subsets are the same as remap_pairs with rng3
     if (grp === 8) {
       subset_pair_1 = [0,1,2,3]
       subset_pair_2 = [4,5,6,7]
       subset = [0, 1, 2, 3, 4, 5, 6, 7];
     } else if (grp === 4) {
       //first randomly choose a subset
-      subset_pair_rnd = Math.floor(rng1 * subset_pairs.length)
+      subset_pair_rnd = Math.floor(rng3 * subset_pairs.length)
       subset_pair_1 = subset_pairs[subset_pair_rnd];
       for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
         if  (!(subset_pair_1.includes(i))) {
@@ -3142,6 +3140,22 @@ function Init_StimRoutineBegin(trials) {
       subset = subset_pair_1.concat(subset_pair_2);
     }
 
+    // now decide which pair will be swapped for group 4 and group 8
+    if (grp === 8) {
+      symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+      symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+      symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+      symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+    } else if (grp === 8) {
+      if (rng1 < 0.5) {
+        symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+        symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+      } else if (rng1 >= 0.5) {
+        symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+        symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+      }
+    }
+    
     
     //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
     //symb_map_ind = symb_perm[symb_map_rnd];
