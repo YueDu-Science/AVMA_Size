@@ -360,7 +360,7 @@ function experimentInit() {
       prep_time_ind_tmp.push(i);
   }
   count = 0;
-  while ((count < num_symb_grp)) {
+  while ((count < num_symb)) {
       util.shuffle(prep_time_ind_tmp);
       prep_time_ind.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
@@ -376,7 +376,7 @@ function experimentInit() {
     }
 
     count = 0;
-    while ((count < num_symb_grp)) {
+    while ((count < num_symb)) {
         util.shuffle(prep_time_ind_tmp);
         prep_time_ind.push(prep_time_ind_tmp.slice(0));
         count = (count + 1);
