@@ -188,7 +188,7 @@ var cr_old_yes = 0;
 var cr_new_yes = 1;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
-var tr_old_post_yes = 1;
+var tr_old_post_yes = 0;
 var tr_new_yes = 1;
 //////////////////////////////////////
 var grp;
