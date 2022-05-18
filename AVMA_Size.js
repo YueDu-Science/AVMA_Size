@@ -3365,7 +3365,7 @@ Press (H, U, I, or L) to start.`
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same ${num_symb} symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same ${num_symb_grp} symbols, but this time they may correspond with a different key (H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
@@ -3680,6 +3680,7 @@ var repeat_count;
 var trial_count_item;
 var tr_timing_good;
 var sum_corr;
+var sum_corr_subset;
 var seq_stimnum_hand;
 var seq_stimnum;
 var seq_keynum;
@@ -5956,7 +5957,12 @@ function Criterion_DetRoutineBegin(trials) {
         trials.finished =  true;
       }
     } else if (remap === 1) {
-      if (CR_Crit(sum_corr[subset])) {
+      // extract those used elements
+      for (var i = 0, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
+        sum_corr_subset.append(sum_corr[subset[i]])
+      }
+      
+      if (CR_Crit(sum_corr_subset)) {
         trials.finished =  true;
       }
     }
