@@ -3689,6 +3689,7 @@ function Creat_StimSeqRoutineBegin(trials) {
         seq_symb_r = [];
         seq_keynum = [];
     }
+
     if ((stim_type === "Hand")) {
         count = 0;
         while ((count < (num_trials_hand / 8))) {
@@ -3814,58 +3815,58 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
       }
-      }
+    }
 
-      if (block_type === "RT") {
+  if (block_type === "RT" && stim_type === "Symb") {
+      count = 0;
+      while ((count < (num_trials / 16))) {
+          util.shuffle(x16);
+          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+              i = _pj_a[_pj_c];
+              seq_stimnum.push(stimnum[i]);
+              seq_key.push(key[i]);
+              seq_symb.push(symb[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
+              seq_keynum.push(keynum[i]);
+          }
+          count = (count + 1);
+      }
+  }
+
+  if (block_type === "TR" && stim_type === "Symb") {
+      if (grp === 4) {
+        count = 0;
+        while ((count < (num_trials / 8))) {
+          util.shuffle(subset.concat(subset));
+          for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+              i = _pj_a[_pj_c];
+              seq_stimnum.push(stimnum[i]);
+              seq_key.push(key[i]);
+              seq_symb.push(symb[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
+              seq_keynum.push(keynum[i]);
+          }
+          count = (count + 1);
+        }
+      } else if (grp === 8) {
         count = 0;
         while ((count < (num_trials / 16))) {
-            util.shuffle(x16);
-            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
+          util.shuffle(x16);
+          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+              i = _pj_a[_pj_c];
+              seq_stimnum.push(stimnum[i]);
+              seq_key.push(key[i]);
+              seq_symb.push(symb[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
+              seq_keynum.push(keynum[i]);
+          }
+          count = (count + 1);
         }
-    }
-
-    if (block_type === "TR") {
-        if (grp === 4) {
-          count = 0;
-          while ((count < (num_trials / 8))) {
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-          }
-        } else if (grp === 8) {
-          count = 0;
-          while ((count < (num_trials / 16))) {
-            util.shuffle(x16);
-            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-          }
-        } 
-    }
+      } 
+  }
     
     // keep track of which components have finished
     Creat_StimSeqComponents = [];
