@@ -162,6 +162,7 @@ var num_symb = 8;
 var num_symb_grp;
 var symb_perm = permute(x_symb);
 var n_map = symb_perm.length;
+var sum_corr_subset = [];
 
 var symb_remap_ind;
 var symb_map_ind;
@@ -3680,7 +3681,6 @@ var repeat_count;
 var trial_count_item;
 var tr_timing_good;
 var sum_corr;
-var sum_corr_subset = [];
 var seq_stimnum_hand;
 var seq_stimnum;
 var seq_keynum;
