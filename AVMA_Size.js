@@ -3099,7 +3099,7 @@ function Init_StimRoutineBegin(trials) {
 
 
     // Despite the gtoup, the original map involves all 8 elements
-    symb_map_ind = x_symb;
+    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
 
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
@@ -3113,7 +3113,7 @@ function Init_StimRoutineBegin(trials) {
     if (grp === 8) {
       subset_pair_1 = [0,1,2,3]
       subset_pair_2 = [4,5,6,7]
-      subset = x_symb;
+      subset = [0, 1, 2, 3, 4, 5, 6, 7];
     } else if (grp === 4) {
       //first randomly choose a subset
       subset_pair_rnd = Math.floor(rng1 * subset_pairs.length)
@@ -3127,7 +3127,8 @@ function Init_StimRoutineBegin(trials) {
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
     }
-
+    console.log(x_symb)
+    console.log(grp)
     console.log(subset)
 
     symb_remap_ind = Object.assign({}, symb_map_ind);
