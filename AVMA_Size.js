@@ -5614,7 +5614,7 @@ function RT_Enter_TrialRoutineBegin(trials) {
     //RT_Stim_Image.setImage(symb_item);
     Letter.setColor(new util.Color('white'));
     Letter.setText(symb_item);
-    console.print(symb_item);
+    console.log(symb_item);
 
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
