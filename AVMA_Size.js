@@ -3329,7 +3329,7 @@ Press (H, U, I, or L) to start.`
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
-Only ${num_symb} symbols will be used in these blocks.
+Only ${num_symb_grp} symbols will be used in these blocks.
 
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
     
@@ -3692,6 +3692,7 @@ var seq_handy;
 var seq_key_hand;
 var seq_keynum_hand;
 var Creat_StimSeqComponents;
+var x_new;
 function Creat_StimSeqRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Creat_StimSeq'-------
@@ -3777,10 +3778,12 @@ function Creat_StimSeqRoutineBegin(trials) {
 
     if ((block_type === "CR" && remap === 1))  {
       if (grp === 4) {
+        x_new = subset.concat(subset)
         count = 0;
         while ((count < (num_trials_cr / 20))) {
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
@@ -3789,8 +3792,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
@@ -3814,8 +3817,8 @@ function Creat_StimSeqRoutineBegin(trials) {
       } else if (grp === 8) {
         count = 0;
         while ((count < (num_trials_cr / 40))) {
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = subset.concat(set), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
@@ -3824,8 +3827,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
@@ -3868,10 +3871,12 @@ function Creat_StimSeqRoutineBegin(trials) {
 
   if (block_type === "TR" && stim_type === "Symb") {
       if (grp === 4) {
+        x_new - subset.concat(subset)
         count = 0;
         while ((count < (num_trials / 8))) {
-          util.shuffle(subset.concat(subset));
-          for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+          
+          util.shuffle(x_new);
+          for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
               i = _pj_a[_pj_c];
               seq_stimnum.push(stimnum[i]);
               seq_key.push(key[i]);
