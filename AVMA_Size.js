@@ -3065,6 +3065,8 @@ var remap_pair_1 = [];
 var remap_pair_2 = [];
 var subset;
 var subset_pair_rnd;
+var subset_pair_1 = [];
+var subset_pair_2 = [];
 var Init_StimComponents;
 function Init_StimRoutineBegin(trials) {
   return function () {
@@ -3103,7 +3105,8 @@ function Init_StimRoutineBegin(trials) {
       }
 
       // concat two pairs
-      symb_map_ind = subset_pair_1.concat(subset_pair_2);
+      subset = subset_pair_1.concat(subset_pair_2);
+      symb_map_ind = subset;
     }
     //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
     //symb_map_ind = symb_perm[symb_map_rnd];
