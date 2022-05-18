@@ -186,7 +186,7 @@ var tr_hand_yes = 0;
 var rt_hand_yes = 0;
 var cr_old_yes = 0;
 var cr_new_yes = 1;
-var rt_yes = 1;
+var rt_yes = 0;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 0;
 var tr_new_yes = 1;
@@ -3680,7 +3680,7 @@ var repeat_count;
 var trial_count_item;
 var tr_timing_good;
 var sum_corr;
-var sum_corr_subset;
+var sum_corr_subset = [];
 var seq_stimnum_hand;
 var seq_stimnum;
 var seq_keynum;
@@ -5961,7 +5961,10 @@ function Criterion_DetRoutineBegin(trials) {
       for (var i = 0, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
         sum_corr_subset.append(sum_corr[subset[i]])
       }
-      
+      console.log(sum_corr)
+      console.log(sum_corr_subset)
+
+
       if (CR_Crit(sum_corr_subset)) {
         trials.finished =  true;
       }
