@@ -5961,6 +5961,7 @@ function Criterion_DetRoutineBegin(trials) {
       for (var i = 0, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
         sum_corr_subset.append(sum_corr[subset[i]])
       }
+      console.log(subset)
       console.log(sum_corr)
       console.log(sum_corr_subset)
 
