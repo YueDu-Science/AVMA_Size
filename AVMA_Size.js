@@ -177,14 +177,14 @@ var num_trials_hand = 16;
 var num_trials_cr = 5000;
 var num_criterion = 2;
 var num_trials = 16;
-var rt_block = 2;
+var rt_block = 1;
 var tr_block_old = 2;
 var tr_block_new_swap = 0;
 var tr_block_new_stop = 0;
 
 var tr_hand_yes = 0;
 var rt_hand_yes = 0;
-var cr_old_yes = 1;
+var cr_old_yes = 0;
 var cr_new_yes = 1;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
