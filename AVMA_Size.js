@@ -156,7 +156,7 @@ var x_hand = [0,1,2,3,0,1,2,3];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
-var subset_pairs = [[0, 5], [0, 6], [0, 7], [1, 4], [1, 6], [1, 7], [2, 4], [2, 5], [2, 7], [3, 4], [3, 5], [3, 6]];
+var subset_pairs = remap_pairs;
 var num_pos = 4;
 var num_symb;
 var symb_perm = permute(x_symb);
@@ -316,7 +316,6 @@ var Instr_End_Exp_Text;
 var Instr_End_Exp_Key;
 var globalClock;
 var routineTimer;
-var subset;
 
 function experimentInit() {
   document.body.style.cursor='none';
@@ -376,7 +375,7 @@ function experimentInit() {
     }
     prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
   }  
-  
+
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
   Instr_Exp_Text = new visual.TextStim({
@@ -3064,6 +3063,8 @@ var symb_map_rnd;
 var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
+var subset;
+var subset_pair_rnd;
 var Init_StimComponents;
 function Init_StimRoutineBegin(trials) {
   return function () {
@@ -3087,11 +3088,27 @@ function Init_StimRoutineBegin(trials) {
         x.push(StimList[i]["X_pos"]);
         y.push(StimList[i]["Y_pos"]);
     }
+    // create symb_map_ind for both grp 4 and grp 8
+    if (grp === 8) {
+      subset = x_symb;
+      symb_map_ind = subset;
+    } else if (grp === 4) {
+      //first randomly choose a subset
+      subset_pair_rnd = Math.floor(rng1 * subset_pairs.length)
+      subset_pair1 = subset_pairs[subset_pair_rnd];
+      for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
+        if  (!(subset_pair_1.includes(i))) {
+            subset_pair_2.push((i + 4));
+        }
+      }
 
+      // concat two pairs
+      symb_map_ind = subset_pair_1.concat(subset_pair_2);
+    }
     //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
     //symb_map_ind = symb_perm[symb_map_rnd];
     //symb_map_ind = x_symb;
-    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
+    
 
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
@@ -3102,10 +3119,15 @@ function Init_StimRoutineBegin(trials) {
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
+
+
     symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
     symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+
+    if (grp === 8) {
     symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
     symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+    }
 
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
         symb_map.push(symb[symb_map_ind[i]]);
@@ -3115,10 +3137,14 @@ function Init_StimRoutineBegin(trials) {
         //symb_r_map.push(symb_r[symb_map_ind[i]]);
         //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
     }
+    psychoJS.experiment.addData("Subset_Pair_1", subset_pair_1);
+    psychoJS.experiment.addData("Subset_Pair_2", subset_pair_2);
     psychoJS.experiment.addData("symb_map", symb_map_ind);
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
     psychoJS.experiment.addData("Remap_Pair_2", remap_pair_2);
+    
+
     
     // keep track of which components have finished
     Init_StimComponents = [];
@@ -3924,6 +3950,7 @@ function Pre_Trial_HandRoutineEnd(trials) {
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
+    psychoJS.experiment.addData("grp", grp);
     
     // the Routine "Pre_Trial_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
