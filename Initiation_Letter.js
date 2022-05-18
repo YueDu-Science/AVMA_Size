@@ -24,7 +24,7 @@ psychoJS.openWindow({
 });
 
 // store info about the experiment session:
-let expName = 'Letter';  // from the Builder filename that created this script
+let expName = 'Initiation_Letter';  // from the Builder filename that created this script
 // let expInfo = {'participant': '', 'session': ''};
 let expInfo = {'participant': ''};
 
@@ -137,7 +137,7 @@ var block_type;
 var participant;
 var session;
 var grp_stop = 0;
-var grp_swap = 1;
+var grp_swap = 0;
 var beep_lead_in = 0.1;
 var color_p = [(- 1), 1, (- 1)];
 var color_n = [1, (- 1), (- 1)];
@@ -156,9 +156,8 @@ var x_hand = [0,1,2,3,0,1,2,3];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
-var subset_pairs = remap_pairs;
 var num_pos = 4;
-var num_symb;
+var num_symb = 8;
 var symb_perm = permute(x_symb);
 var n_map = symb_perm.length;
 
@@ -172,25 +171,25 @@ var symb_r_map = [];
 var symb_r_remap = [];
 ////////////////////////////////////
 var tr_block_hand = 4;
-var num_trials_hand = 16;
-var num_trials_cr = 5000;
-var num_criterion = 2;
-var num_trials = 24;
-var rt_block = 2;
+var num_trials_hand = 96;
+var num_trials_cr = 2000;
+var num_criterion = 5;
+var num_trials = 96;
+var rt_block = 12;
 var tr_block_old = 2;
 var tr_block_new_swap = 0;
 var tr_block_new_stop = 0;
 
-var tr_hand_yes = 0;
-var rt_hand_yes = 0;
+var tr_hand_yes = 1;
+var rt_hand_yes = 1;
 var cr_old_yes = 1;
 var cr_new_yes = 1;
 var rt_yes = 1;
-var tr_old_pre_yes = 0;
+var tr_old_pre_yes = 1;
 var tr_old_post_yes = 1;
 var tr_new_yes = 1;
 //////////////////////////////////////
-var grp;
+
 var pre = 0;
 var post = 0;
 
@@ -316,7 +315,7 @@ var Instr_End_Exp_Text;
 var Instr_End_Exp_Key;
 var globalClock;
 var routineTimer;
-var sample_num;
+
 
 function experimentInit() {
   document.body.style.cursor='none';
@@ -331,29 +330,24 @@ function experimentInit() {
   session = 1;
 
   var myrng = new Math.seedrandom(participant);   //use new here so it does not affect Math.random()
-  rng1 = myrng()
-  rng2 = myrng()
+  //rng1 = myrng()
+  //rng2 = myrng()
   rng3 = myrng()
   
   //determine which group participants are in
-  if (participant < 500 && participant > 400) {
-      grp = 4;
-      num_symb = 4;
-      tr_block_old = 6;
+  if ((participant < 2000)) {
+      grp_stop = 1;
+      tr_block_new_stop = 6;
+  } else {
+      grp_swap = 1;
       tr_block_new_swap = 6;
-      
-  } else if (participant < 900 && participant > 800) {
-      grp = 8;
-      num_symb = 8;
-      tr_block_old = 12;
-      tr_block_new_swap = 12;
   }
 
   // session # determines which blocks they do
   //if ((session === 1)) {
   //    rt_block = 1;
   //}
-  if (grp === 8) {
+  
   // randomize prep-time so that prep-time for each symbol spread over a good range
   for (var i = 0, _pj_a = 12; (i < _pj_a); i += 1) {
       prep_time_ind_tmp.push(i);
@@ -365,23 +359,7 @@ function experimentInit() {
       count = (count + 1);
   }
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-  } else if (grp === 4) {
-    sample_num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
-    for (var i = 0; i<sample_num.length; ++i) {
-      let LEN = sample_num[i];
-      let tmp = new Array(LEN).fill(i);
-      prep_time_ind_tmp = prep_time_ind_tmp.concat(tmp);
-    }
-
-    count = 0;
-    while ((count < num_symb)) {
-        util.shuffle(prep_time_ind_tmp);
-        prep_time_ind.push(prep_time_ind_tmp.slice(0));
-        count = (count + 1);
-    }
-    prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-  }  
-
+  
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
   Instr_Exp_Text = new visual.TextStim({
@@ -3069,10 +3047,6 @@ var symb_map_rnd;
 var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
-var subset;
-var subset_pair_rnd;
-var subset_pair_1 = [];
-var subset_pair_2 = [];
 var Init_StimComponents;
 function Init_StimRoutineBegin(trials) {
   return function () {
@@ -3097,9 +3071,10 @@ function Init_StimRoutineBegin(trials) {
         y.push(StimList[i]["Y_pos"]);
     }
 
-
-    // Despite the gtoup, the original map involves all 8 elements
-    symb_map_ind = x_symb;
+    //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
+    //symb_map_ind = symb_perm[symb_map_rnd];
+    //symb_map_ind = x_symb;
+    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
 
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
@@ -3109,50 +3084,24 @@ function Init_StimRoutineBegin(trials) {
         }
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
+    
     symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
     symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
     symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
     symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
-      symb_map.push(symb[symb_map_ind[i]]);
-      symb_remap.push(symb[symb_remap_ind[i]]);
-      //symb_g_map.push(symb_g[symb_map_ind[i]]);
-      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-      //symb_r_map.push(symb_r[symb_map_ind[i]]);
-      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+        symb_map.push(symb[symb_map_ind[i]]);
+        symb_remap.push(symb[symb_remap_ind[i]]);
+        //symb_g_map.push(symb_g[symb_map_ind[i]]);
+        //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+        //symb_r_map.push(symb_r[symb_map_ind[i]]);
+        //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
     }
-
-    // create subset symb_map_ind for both grp 4 and grp 8
-    if (grp === 8) {
-      subset_pair_1 = [0,1,2,3]
-      subset_pair_2 = [4,5,6,7]
-      subset = x_symb;
-    } else if (grp === 4) {
-      //first randomly choose a subset
-      subset_pair_rnd = Math.floor(rng1 * subset_pairs.length)
-      subset_pair_1 = subset_pairs[subset_pair_rnd];
-      for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
-        if  (!(subset_pair_1.includes(i))) {
-            subset_pair_2.push((i + 4));
-        }
-      }
-
-      // concat two pairs
-      subset = subset_pair_1.concat(subset_pair_2);
-    }
-    //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
-    //symb_map_ind = symb_perm[symb_map_rnd];
-    //symb_map_ind = x_symb;
-    
-    psychoJS.experiment.addData("Subset_Pair_1", subset_pair_1);
-    psychoJS.experiment.addData("Subset_Pair_2", subset_pair_2);
-    psychoJS.experiment.addData("Subset", subset);
     psychoJS.experiment.addData("symb_map", symb_map_ind);
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
     psychoJS.experiment.addData("Remap_Pair_2", remap_pair_2);
-    
-
     
     // keep track of which components have finished
     Init_StimComponents = [];
@@ -3304,31 +3253,15 @@ Remember, the symbol may show up very late. In this case, MAKE A GUESS. This tas
 
 Press (H, U, I, or L) to start.`
     ;
-
-    if (grp === 4) {
     instr_tr_old_post_text = `Great job.
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
-Only ${num_symb} symbols will be used in these blocks.
-
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
     
 
 Press (H, U, I, or L) to start.`
     ;
-    } else if (grp === 8) {
-      instr_tr_old_post_text = `Great job.
-    
-In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
-
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
-    
-
-Press (H, U, I, or L) to start.`
-    ;
-    }
-
     if ((grp_stop === 1)) {
         instr_cr_new_text = `Great job.
     
@@ -3346,7 +3279,7 @@ Press (H, U, I, or L) to start.`
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same ${num_symb} symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same eight symbols, but this time they may correspond with a different key (H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
@@ -3683,19 +3616,8 @@ function Creat_StimSeqRoutineBegin(trials) {
     trial_count = 0;
     repeat_count = 0;
     tr_timing_good = 0;
-    if (remap === 0) {
-      sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
-      trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
-    } else if (remap === 1) {
-      if (grp === 8) {
-        sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
-        trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
-      } else if (grp === 4) {
-        sum_corr = [0, 0, 0, 0];
-        trial_count_item = [0, 0, 0, 0];
-      }
-    }
-    
+    sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
+    trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
     if ((stim_type === "Hand")) {
         seq_stimnum_hand = [];
         seq_handx = [];
@@ -3710,7 +3632,6 @@ function Creat_StimSeqRoutineBegin(trials) {
         seq_symb_r = [];
         seq_keynum = [];
     }
-
     if ((stim_type === "Hand")) {
         count = 0;
         while ((count < (num_trials_hand / 8))) {
@@ -3726,7 +3647,7 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
     }
-    if (block_type === "CR" && remap === 0) {
+    if ((block_type === "CR")) {
         count = 0;
         while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
@@ -3763,131 +3684,22 @@ function Creat_StimSeqRoutineBegin(trials) {
         }
     }
     
-
-    if ((block_type === "CR" && remap === 1))  {
-      if (grp === 4) {
-        count = 0;
-        while ((count < (num_trials_cr / 20))) {
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset);
-            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-        }
-      } else if (grp === 8) {
-        count = 0;
-        while ((count < (num_trials_cr / 40))) {
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = subset.concat(set), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset.concat(subset));
-            for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset);
-            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-        }
-      }
-    }
-
-  if (block_type === "RT" && stim_type === "Symb") {
-      count = 0;
-      while ((count < (num_trials / 16))) {
-          util.shuffle(x16);
-          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              //seq_symb_g.push(symb_g[i]);
-              //seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          count = (count + 1);
-      }
-  }
-
-  if (block_type === "TR" && stim_type === "Symb") {
-      if (grp === 4) {
-        count = 0;
-        while ((count < (num_trials / 8))) {
-          util.shuffle(subset.concat(subset));
-          for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              //seq_symb_g.push(symb_g[i]);
-              //seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          count = (count + 1);
-        }
-      } else if (grp === 8) {
+    if (((block_type !== "CR") && (stim_type === "Symb"))) {
         count = 0;
         while ((count < (num_trials / 16))) {
-          util.shuffle(x16);
-          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              //seq_symb_g.push(symb_g[i]);
-              //seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          count = (count + 1);
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
         }
-      } 
-  }
+    }
     
     // keep track of which components have finished
     Creat_StimSeqComponents = [];
@@ -4095,7 +3907,6 @@ function Pre_Trial_HandRoutineEnd(trials) {
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
-    psychoJS.experiment.addData("grp", grp);
     
     // the Routine "Pre_Trial_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
@@ -5613,8 +5424,6 @@ function RT_Enter_TrialRoutineBegin(trials) {
     //RT_Stim_Image.setImage(symb_item);
     Letter.setColor(new util.Color('white'));
     Letter.setText(symb_item);
-    console.log(symb_item);
-
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
     _RT_Press_allKeys = [];
