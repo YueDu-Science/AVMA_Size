@@ -340,14 +340,14 @@ function experimentInit() {
   if (participant < 500 && participant > 400) {
       grp = 4;
       num_symb_grp = 4;
-      tr_block_old = 6;
-      tr_block_new_swap = 6;
+      tr_block_old = 2;
+      tr_block_new_swap = 2;
       
   } else if (participant < 900 && participant > 800) {
       grp = 8;
       num_symb_grp = 8;
-      tr_block_old = 12;
-      tr_block_new_swap = 12;
+      tr_block_old = 2;
+      tr_block_new_swap = 2;
   }
 
   // session # determines which blocks they do
@@ -365,6 +365,7 @@ function experimentInit() {
       prep_time_ind.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
   }
+  console.log(prep_time_ind)
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
   } else if (grp === 4) {
     sample_num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
@@ -380,6 +381,7 @@ function experimentInit() {
         prep_time_ind.push(prep_time_ind_tmp.slice(0));
         count = (count + 1);
     }
+    console.log(prep_time_ind)
     prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
   }  
 
@@ -3700,18 +3702,10 @@ function Creat_StimSeqRoutineBegin(trials) {
     trial_count = 0;
     repeat_count = 0;
     tr_timing_good = 0;
-    if (remap === 0) {
-      sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
-      trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
-    } else if (remap === 1) {
-      if (grp === 8) {
-        sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
-        trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
-      } else if (grp === 4) {
-        sum_corr = [0, 0, 0, 0];
-        trial_count_item = [0, 0, 0, 0];
-      }
-    }
+    
+    sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
+    trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
+    
     
     if ((stim_type === "Hand")) {
         seq_stimnum_hand = [];
@@ -3745,8 +3739,6 @@ function Creat_StimSeqRoutineBegin(trials) {
     }
     if (block_type === "CR" && remap === 0) {
         count = 0;
-        console.log(x16)
-        console.log(symb)
         while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
             for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
@@ -3780,7 +3772,6 @@ function Creat_StimSeqRoutineBegin(trials) {
             }
             count = (count + 1);
         }
-        console.log(seq_symb)
     }
     
 
@@ -5633,7 +5624,6 @@ function RT_Enter_TrialRoutineBegin(trials) {
     //RT_Stim_Image.setImage(symb_item);
     Letter.setColor(new util.Color('white'));
     Letter.setText(symb_item);
-    console.log(symb_item);
 
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
@@ -5955,8 +5945,15 @@ function Criterion_DetRoutineBegin(trials) {
         }
         return true;
     }
-    if (CR_Crit(sum_corr)) {
-      trials.finished =  true;
+
+    if (remap === 0) {
+      if (CR_Crit(sum_corr)) {
+        trials.finished =  true;
+      }
+    } else if (remap === 1) {
+      if (CR_Crit(sum_corr[subset])) {
+        trials.finished =  true;
+      }
     }
     
     // keep track of which components have finished
