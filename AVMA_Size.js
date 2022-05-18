@@ -156,6 +156,7 @@ var x_hand = [0,1,2,3,0,1,2,3];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
+var subset_pairs = [[0, 5], [0, 6], [0, 7], [1, 4], [1, 6], [1, 7], [2, 4], [2, 5], [2, 7], [3, 4], [3, 5], [3, 6]];
 var num_pos = 4;
 var num_symb;
 var symb_perm = permute(x_symb);
@@ -189,7 +190,7 @@ var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
 var tr_new_yes = 1;
 //////////////////////////////////////
-
+var grp;
 var pre = 0;
 var post = 0;
 
@@ -315,7 +316,7 @@ var Instr_End_Exp_Text;
 var Instr_End_Exp_Key;
 var globalClock;
 var routineTimer;
-
+var subset;
 
 function experimentInit() {
   document.body.style.cursor='none';
@@ -330,8 +331,8 @@ function experimentInit() {
   session = 1;
 
   var myrng = new Math.seedrandom(participant);   //use new here so it does not affect Math.random()
-  //rng1 = myrng()
-  //rng2 = myrng()
+  rng1 = myrng()
+  rng2 = myrng()
   rng3 = myrng()
   
   //determine which group participants are in
@@ -347,7 +348,7 @@ function experimentInit() {
   //if ((session === 1)) {
   //    rt_block = 1;
   //}
-  
+  if (grp === 8) {
   // randomize prep-time so that prep-time for each symbol spread over a good range
   for (var i = 0, _pj_a = 12; (i < _pj_a); i += 1) {
       prep_time_ind_tmp.push(i);
@@ -359,6 +360,22 @@ function experimentInit() {
       count = (count + 1);
   }
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
+  } else if (grp === 4) {
+    sample_num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+    for (var i = 0; i<sample_num.length; ++i) {
+      let LEN = sample_num[i];
+      let tmp = new Array(LEN).fill(i);
+      prep_time_ind_tmp = prep_time_ind_tmp.concat(tmp);
+    }
+
+    count = 0;
+    while ((count < num_symb)) {
+        util.shuffle(prep_time_ind_tmp);
+        prep_time_ind.push(prep_time_ind_tmp.slice(0));
+        count = (count + 1);
+    }
+    prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
+  }  
   
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
