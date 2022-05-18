@@ -3108,6 +3108,19 @@ function Init_StimRoutineBegin(trials) {
             remap_pair_2.push((i + 4));
         }
     }
+    symb_remap_ind = Object.assign({}, symb_map_ind);
+    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
+      symb_map.push(symb[symb_map_ind[i]]);
+      symb_remap.push(symb[symb_remap_ind[i]]);
+      //symb_g_map.push(symb_g[symb_map_ind[i]]);
+      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+      //symb_r_map.push(symb_r[symb_map_ind[i]]);
+      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+    }
 
     // create subset symb_map_ind for both grp 4 and grp 8
     if (grp === 8) {
@@ -3126,23 +3139,6 @@ function Init_StimRoutineBegin(trials) {
 
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
-    }
-    console.log(x_symb)
-    console.log(grp)
-    console.log(subset)
-
-    symb_remap_ind = Object.assign({}, symb_map_ind);
-    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
-    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
-    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
-      symb_map.push(symb[symb_map_ind[i]]);
-      symb_remap.push(symb[symb_remap_ind[i]]);
-      //symb_g_map.push(symb_g[symb_map_ind[i]]);
-      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-      //symb_r_map.push(symb_r[symb_map_ind[i]]);
-      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
     }
 
     
@@ -3734,6 +3730,8 @@ function Creat_StimSeqRoutineBegin(trials) {
     }
     if (block_type === "CR" && remap === 0) {
         count = 0;
+        console.log(x16)
+        console.log(symb)
         while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
             for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
@@ -3767,6 +3765,7 @@ function Creat_StimSeqRoutineBegin(trials) {
             }
             count = (count + 1);
         }
+        console.log(seq_symb)
     }
     
 
