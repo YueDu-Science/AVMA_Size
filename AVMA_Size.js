@@ -181,8 +181,8 @@ var tr_block_old = 2;
 var tr_block_new_swap = 0;
 var tr_block_new_stop = 0;
 
-var tr_hand_yes = 1;
-var rt_hand_yes = 1;
+var tr_hand_yes = 0;
+var rt_hand_yes = 0;
 var cr_old_yes = 1;
 var cr_new_yes = 1;
 var rt_yes = 1;
@@ -3775,8 +3775,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             util.shuffle(subset.concat(subset));
@@ -3785,8 +3785,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             util.shuffle(subset);
@@ -3795,8 +3795,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             count = (count + 1);
@@ -3810,8 +3810,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             util.shuffle(subset.concat(subset));
@@ -3820,8 +3820,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             util.shuffle(subset);
@@ -3830,8 +3830,8 @@ function Creat_StimSeqRoutineBegin(trials) {
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
             count = (count + 1);
@@ -5614,6 +5614,8 @@ function RT_Enter_TrialRoutineBegin(trials) {
     //RT_Stim_Image.setImage(symb_item);
     Letter.setColor(new util.Color('white'));
     Letter.setText(symb_item);
+    console.print(symb_item);
+
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
     _RT_Press_allKeys = [];
