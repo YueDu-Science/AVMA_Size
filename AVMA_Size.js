@@ -3662,8 +3662,19 @@ function Creat_StimSeqRoutineBegin(trials) {
     trial_count = 0;
     repeat_count = 0;
     tr_timing_good = 0;
-    sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
-    trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
+    if (remap === 0) {
+      sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
+      trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
+    } else if (remap === 1) {
+      if (grp === 8) {
+        sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
+        trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
+      } else if (grp === 4) {
+        sum_corr = [0, 0, 0, 0];
+        trial_count_item = [0, 0, 0, 0];
+      }
+    }
+    
     if ((stim_type === "Hand")) {
         seq_stimnum_hand = [];
         seq_handx = [];
@@ -3693,7 +3704,7 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
     }
-    if ((block_type === "CR")) {
+    if (block_type === "CR" && remap === 0) {
         count = 0;
         while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
@@ -3730,7 +3741,82 @@ function Creat_StimSeqRoutineBegin(trials) {
         }
     }
     
-    if (((block_type !== "CR") && (stim_type === "Symb"))) {
+
+    if ((block_type === "CR" && remap === 1))  {
+      if (grp === 4) {
+        count = 0;
+        while ((count < (num_trials_cr / 20))) {
+            util.shuffle(subset.concat(subset));
+            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset.concat(subset));
+            for (var i, _pj_c = 0, _pj_a = set.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset);
+            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+      } else if (grp === 8) {
+        count = 0;
+        while ((count < (num_trials_cr / 40))) {
+            util.shuffle(subset.concat(subset));
+            for (var i, _pj_c = 0, _pj_a = subset.concat(set), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset.concat(subset));
+            for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset);
+            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                seq_symb_g.push(symb_g[i]);
+                seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+      }
+      }
+
+      if (block_type === "RT") {
         count = 0;
         while ((count < (num_trials / 16))) {
             util.shuffle(x16);
@@ -3745,6 +3831,40 @@ function Creat_StimSeqRoutineBegin(trials) {
             }
             count = (count + 1);
         }
+    }
+
+    if (block_type === "TR") {
+        if (grp === 4) {
+          count = 0;
+          while ((count < (num_trials / 8))) {
+            util.shuffle(subset.concat(subset));
+            for (var i, _pj_c = 0, _pj_a = subset.concat(subset), _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+          }
+        } else if (grp === 8) {
+          count = 0;
+          while ((count < (num_trials / 16))) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+          }
+        } 
     }
     
     // keep track of which components have finished
