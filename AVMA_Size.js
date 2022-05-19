@@ -3129,7 +3129,7 @@ function Init_StimRoutineBegin(trials) {
       subset_pair_1 = [0,1,2,3]
       subset_pair_2 = [4,5,6,7]
       subset = [0, 1, 2, 3, 4, 5, 6, 7];
-      subset_dummie = subset;
+      subset_dummie = Object.assign({},subset);
     } else if (grp === 4) {
       //first randomly choose a subset
       subset_pair_rnd = Math.floor(rng3 * subset_pairs.length)
@@ -3142,7 +3142,7 @@ function Init_StimRoutineBegin(trials) {
 
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
-      subset_dummie = subset;
+      subset_dummie = Object.assign({},subset);
     }
 
     // now decide which pair will be swapped for group 4 and group 8
