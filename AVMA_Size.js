@@ -5952,12 +5952,16 @@ function Criterion_DetRoutineBegin(trials) {
         return true;
     }
 
+    console.log(remap)
     if (remap === 0) {
       if (CR_Crit(sum_corr)) {
         trials.finished =  true;
       }
     } else if (remap === 1) {
       console.log(sum_corr_subset)
+      console.log(subset)
+      console.log(subset[0])
+      console.log(sum_corr[subset[0]])
       // extract those used elements
       for (var i, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
         sum_corr_subset.push(sum_corr[subset[i]])
