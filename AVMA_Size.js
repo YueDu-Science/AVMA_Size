@@ -5958,8 +5958,10 @@ function Criterion_DetRoutineBegin(trials) {
       }
     } else if (remap === 1) {
       // extract those used elements
-      for (var i = 0, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
+      for (var i, _pj_a = subset.lengh; (i < _pj_a); i += 1) {
         sum_corr_subset.append(sum_corr[subset[i]])
+        console.log(i)
+        console.log(sum_corr)
         console.log(subset[i])
         console.log(sum_corr[subset[i]])
       }
