@@ -3114,14 +3114,6 @@ function Init_StimRoutineBegin(trials) {
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
-    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
-      symb_map.push(symb[symb_map_ind[i]]);
-      symb_remap.push(symb[symb_remap_ind[i]]);
-      //symb_g_map.push(symb_g[symb_map_ind[i]]);
-      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-      //symb_r_map.push(symb_r[symb_map_ind[i]]);
-      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
-    }
 
     // create subset symb_map_ind for both grp 4 and grp 8
     // for group 4, subsets are the same as remap_pairs with rng3
@@ -3161,6 +3153,14 @@ function Init_StimRoutineBegin(trials) {
       }
     }
     
+    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
+      symb_map.push(symb[symb_map_ind[i]]);
+      symb_remap.push(symb[symb_remap_ind[i]]);
+      //symb_g_map.push(symb_g[symb_map_ind[i]]);
+      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+      //symb_r_map.push(symb_r[symb_map_ind[i]]);
+      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+    }
     
     //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
     //symb_map_ind = symb_perm[symb_map_rnd];
