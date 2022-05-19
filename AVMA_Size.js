@@ -5961,8 +5961,8 @@ function Criterion_DetRoutineBegin(trials) {
     } else if (remap === 1) {
       console.log(sum_corr_subset)
       console.log(subset)
-      console.log(subset[0])
-      console.log(sum_corr[subset[0]])
+      console.log(subset.length)
+      
       // extract those used elements
       for (var i, _pj_a = subset.length; (i < _pj_a); i += 1) {
         sum_corr_subset.push(sum_corr[subset[i]])
