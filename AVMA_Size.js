@@ -298,6 +298,7 @@ var TR_Stim_Hand;
 var TR_Press_Hand;
 var TR_Feedback_HandClock;
 var TR_Feedback_Coin_Hand;
+var TR_Coin_Hand;
 var Tr_Rec_Frame_Feedback_Hand;
 var TR_Feedback_Text_Hand;
 var TR_Feedback_HandShape;
