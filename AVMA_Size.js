@@ -3073,6 +3073,7 @@ var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
 var subset;
+var subset_dummie;
 var subset_pair_rnd;
 var subset_pair_1 = [];
 var subset_pair_2 = [];
@@ -3128,6 +3129,7 @@ function Init_StimRoutineBegin(trials) {
       subset_pair_1 = [0,1,2,3]
       subset_pair_2 = [4,5,6,7]
       subset = [0, 1, 2, 3, 4, 5, 6, 7];
+      subset_dummie = subset;
     } else if (grp === 4) {
       //first randomly choose a subset
       subset_pair_rnd = Math.floor(rng3 * subset_pairs.length)
@@ -3140,9 +3142,7 @@ function Init_StimRoutineBegin(trials) {
 
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
-      console.log(subset_pair_1)
-      console.log(subset_pair_2)
-      console.log(subset)
+      subset_dummie = subset;
     }
 
     // now decide which pair will be swapped for group 4 and group 8
@@ -5962,14 +5962,13 @@ function Criterion_DetRoutineBegin(trials) {
         trials.finished =  true;
       }
     } else if (remap === 1) {
-      console.log(sum_corr_subset)
       
       // extract those used elements
       sum_corr_subset = []
-      for (var i = 0, _pj_a = subset.length; (i < _pj_a); i += 1) {
-        sum_corr_subset.push(sum_corr[subset[i]])
+      for (var i = 0, _pj_a = subset_dummie.length; (i < _pj_a); i += 1) {
+        sum_corr_subset.push(sum_corr[subset_dummie[i]])
       }
-        console.log(subset)
+        console.log(subset_dummie)
         console.log(sum_corr)
         console.log(sum_corr_subset)
 
