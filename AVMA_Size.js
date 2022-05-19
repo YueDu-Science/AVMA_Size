@@ -3143,7 +3143,7 @@ function Init_StimRoutineBegin(trials) {
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
       symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
       symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
-    } else if (grp === 8) {
+    } else if (grp === 4) {
       if (rng1 < 0.5) {
         symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
         symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
