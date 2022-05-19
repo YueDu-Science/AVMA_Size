@@ -5964,9 +5964,8 @@ function Criterion_DetRoutineBegin(trials) {
       console.log(subset.length)
       
       // extract those used elements
-      for (var i, _pj_a = subset.length; (i < _pj_a); i += 1) {
+      for (var i = 0, _pj_a = subset.length; (i < _pj_a); i += 1) {
         sum_corr_subset.push(sum_corr[subset[i]])
-        
       }
         
         console.log(sum_corr_subset)
