@@ -359,8 +359,12 @@ var TR_Press_Stop;
 var Instr_End_ExpClock;
 var Instr_End_Exp_Text;
 var Instr_End_Exp_Key;
+var Text_CountDown;
+var Number_CountDown;
+var penalty_countdown;
 var globalClock;
 var routineTimer;
+var CountDownClock;
 var sample_num;
 
 function experimentInit() {
