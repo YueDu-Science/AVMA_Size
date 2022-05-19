@@ -3140,6 +3140,9 @@ function Init_StimRoutineBegin(trials) {
 
       // concat two pairs
       subset = subset_pair_1.concat(subset_pair_2);
+      console.log(subset_pair_1)
+      console.log(subset_pair_2)
+      console.log(subset)
     }
 
     // now decide which pair will be swapped for group 4 and group 8
