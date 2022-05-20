@@ -181,24 +181,24 @@ var symb_r_map = [];
 var symb_r_remap = [];
 ////////////////////////////////////
 var tr_block_hand = 4;
-var num_trials_hand = 8;
-var num_trials_cr = 5000;
-var num_criterion = 2;
-var num_trials = 24;
-var rt_block = 3;
-var tr_block_old = 2;
+var num_trials_hand = 96;
+var num_trials_cr = 2000;
+var num_criterion = 5;
+var num_trials = 96;
+var rt_block = 7;
+var tr_block_old = 1;
 var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
 
-var tr_hand_yes = 0;
-var rt_hand_yes = 0;
-var cr_old_yes = 0;
+var tr_hand_yes = 1;
+var rt_hand_yes = 1;
+var cr_old_yes = 1;
 var cr_new_yes = 1;
-var rt_yes = 0;
+var rt_yes = 1;
 var tr_old_pre_yes = 0;
-var tr_old_post_yes = 0;
+var tr_old_post_yes = 1;
 var tr_new_yes = 1;
-var sound_check_yes = 0;
+var sound_check_yes = 1;
 var num_trials_sound_check = 20;
 
 
@@ -394,14 +394,14 @@ function experimentInit() {
   if (participant < 500 && participant > 400) {
       grp = 4;
       num_symb_grp = 4;
-      tr_block_old = 2;
-      tr_block_new_swap = 2;
+      tr_block_old = 8;
+      tr_block_new_swap = 8;
       
   } else if (participant < 900 && participant > 800) {
       grp = 8;
       num_symb_grp = 8;
-      tr_block_old = 2;
-      tr_block_new_swap = 2;
+      tr_block_old = 16;
+      tr_block_new_swap = 16;
   }
 
   // session # determines which blocks they do
