@@ -185,7 +185,7 @@ var num_trials_hand = 96;
 var num_trials_cr = 2000;
 var num_criterion = 5;
 var num_trials = 96;
-var rt_block = 7;
+var rt_block = 12;
 var tr_block_old = 1;
 var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
@@ -394,14 +394,14 @@ function experimentInit() {
   if (participant < 500 && participant > 400) {
       grp = 4;
       num_symb_grp = 4;
-      tr_block_old = 8;
-      tr_block_new_swap = 8;
+      tr_block_old = 3;
+      tr_block_new_swap = 5;
       
   } else if (participant < 900 && participant > 800) {
       grp = 8;
       num_symb_grp = 8;
-      tr_block_old = 16;
-      tr_block_new_swap = 16;
+      tr_block_old = 6;
+      tr_block_new_swap = 10;
   }
 
   // session # determines which blocks they do
@@ -3543,6 +3543,7 @@ var subset_pair_rnd;
 var subset_pair_1 = [];
 var subset_pair_2 = [];
 var Init_StimComponents;
+var pair_swap;
 function Init_StimRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Init_Stim'-------
@@ -3609,13 +3610,16 @@ function Init_StimRoutineBegin(trials) {
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
       symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
       symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+      pair_swap = 12;
     } else if (grp === 4) {
       if (rng1 < 0.5) {
         symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
         symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+        pair_swap = 1;
       } else if (rng1 >= 0.5) {
         symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
         symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+        pair_swap = 2;
       }
     }
     
@@ -3639,7 +3643,8 @@ function Init_StimRoutineBegin(trials) {
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
     psychoJS.experiment.addData("Remap_Pair_2", remap_pair_2);
-    
+    psychoJS.experiment.addData("Grp", grp);
+    psychoJS.experiment.addData("Pair_swap", pair_swap);
 
     
     // keep track of which components have finished
