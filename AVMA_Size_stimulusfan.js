@@ -24,13 +24,13 @@ psychoJS.openWindow({
 });
 
 // store info about the experiment session:
-let expName = 'Initiation_Initiation';  // from the Builder filename that created this script
+let expName = 'Letter';  // from the Builder filename that created this script
 // let expInfo = {'participant': '', 'session': ''};
 let expInfo = {'participant': ''};
 
 // schedule the experiment:
 psychoJS.schedule(psychoJS.gui.DlgFromDict({
-  text: "Welcome. Press 'Ok' to the instruction. Please read it carefully.",
+  text: "Welcome. Please click 'Ok' to continue.",
   dictionary: expInfo,
   title: expName
 }));
@@ -100,35 +100,11 @@ psychoJS.start({
   expName: expName,
   expInfo: expInfo,
   resources: [
-    {'name': 'media/dnnb.png', 'path': './media/dnnb.png'},
-    {'name': 'media/dnnb_g.png', 'path': './media/dnnb_g.png'},
-    {'name': 'media/dnnb_r.png', 'path': './media/dnnb_r.png'},
-    {'name': 'media/dinb.png', 'path': './media/dinb.png'},
-    {'name': 'media/dinb_g.png', 'path': './media/dinb_g.png'},
-    {'name': 'media/dinb_r.png', 'path': './media/dinb_r.png'},
     {'name': 'media/hand.png', 'path': './media/hand.png'},
-    {'name': 'media/dgnb.png', 'path': './media/dgnb.png'},
-    {'name': 'media/dgnb_g.png', 'path': './media/dgnb_g.png'},
-    {'name': 'media/dgnb_r.png', 'path': './media/dgnb_r.png'},
     {'name': 'conditions.xlsx', 'path': './conditions.xlsx'},
-    {'name': 'media/djnb.png', 'path': './media/djnb.png'},
-    {'name': 'media/djnb_g.png', 'path': './media/djnb_g.png'},
-    {'name': 'media/djnb_r.png', 'path': './media/djnb_r.png'},
-    {'name': 'media/ddnb.png', 'path': './media/ddnb.png'},
-    {'name': 'media/ddnb_g.png', 'path': './media/ddnb_g.png'},
-    {'name': 'media/ddnb_r.png', 'path': './media/ddnb_r.png'},
-    {'name': 'media/dfnb.png', 'path': './media/dfnb.png'},
-    {'name': 'media/dfnb_g.png', 'path': './media/dfnb_g.png'},
-    {'name': 'media/dfnb_r.png', 'path': './media/dfnb_r.png'},
-    {'name': 'media/dcnb.png', 'path': './media/dcnb.png'},
-    {'name': 'media/dcnb_g.png', 'path': './media/dcnb_g.png'},
-    {'name': 'media/dcnb_r.png', 'path': './media/dcnb_r.png'},
-    {'name': 'media/dmnb.png', 'path': './media/dmnb.png'},
-    {'name': 'media/dmnb_g.png', 'path': './media/dmnb_g.png'},
-    {'name': 'media/dmnb_r.png', 'path': './media/dmnb_r.png'},
-    {'name': 'media/coin.mp3', 'path': './media/coin.mp3'},
-    {'name': 'media/buzz.mp3', 'path': './media/buzz.mp3'},
-    {'name': 'media/beep.mp3', 'path': './media/beep.mp3'}
+    {'name': 'media/coin.wav', 'path': './media/coin.wav'},
+    {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
+    {'name': 'media/beep.wav', 'path': './media/beep.wav'}
   ]
   });
 
@@ -164,8 +140,8 @@ var Init_StimClock;
 var block_type;
 var participant;
 var session;
-var grp_stop = 1;
-var grp_swap = 0;
+var grp_stop = 0;
+var grp_swap = 1;
 var sound_quit_bool = 0;
 var sound_exit_bool = 0;
 
@@ -183,22 +159,17 @@ var time_limit = 1.5;
 var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["h", "u", "i", "l"];
-var key_list_C = ["H", "U", "I", "L"];
-var finger_list = ["INDEX", "MIDDLE", "RING", "LITTLE"];
 var x_symb = [0, 1, 2, 3, 4, 5, 6, 7];
-var x_symb_stop = [0,1,2,3];
-var x_symb_resp = [4,5,6,7];
-var x_letter = [8,9,10,11];
-var x_letter_3 = x_letter.concat(x_letter.concat(x_letter))
-var x_letter_2 = x_letter.concat(x_letter)
 var x_hand = [0,1,2,3,0,1,2,3];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
+var subset_pairs = remap_pairs;
 var num_pos = 4;
 var num_symb = 8;
-var num_letter = 4;
+var num_symb_grp;
 var symb_perm = permute(x_symb);
+var n_map = symb_perm.length;
 
 var symb_remap_ind;
 var symb_map_ind;
@@ -208,33 +179,32 @@ var symb_g_map = [];
 var symb_g_remap = [];
 var symb_r_map = [];
 var symb_r_remap = [];
-var stop_pair_1 = [];
-var stop_pair_2 = [];
 ////////////////////////////////////
 var tr_block_hand = 4;
-var num_trials_hand = 24;
+var num_trials_hand = 96;
 var num_trials_cr = 2000;
 var num_criterion = 5;
 var num_trials = 96;
-var num_trials_probe = 96;
 var rt_block = 12;
-var tr_block_old = 4;
-var tr_block_new_swap = 0;
-var tr_block_new_stop = 12;
+var tr_block_old = 1;
+var tr_block_new_swap = 1;
+var tr_block_new_stop = 0;
 
-var tr_hand_yes = 1;
+var tr_hand_yes = 0;
 var rt_hand_yes = 0;
-var cr_old_yes = 1;
-var cr_new_yes = 1;
-var rt_yes = 1;
-var tr_old_pre_yes = 1;
-var tr_old_post_yes = 1;
+var cr_old_yes = 0;
+var cr_new_yes = 0;
+var rt_yes = 0;
+var tr_old_pre_yes = 0;
+var tr_old_post_yes = 0;
 var tr_new_yes = 1;
-
-var sound_check_yes = 1;
+var sound_check_yes = 0;
 var num_trials_sound_check = 20;
 
 
+var sound_check_yes;
+var sound_quit_bool;
+var sound_exit_bool;
 var num_trials_sound_check;
 var Instr_Sound_CheckClock;
 var Instr_Sound_Check_Text;
@@ -267,10 +237,8 @@ var Sound_Score_Hint;
 var Sound_check_Creat_StimSeq_Text;
 var Sound_check_Creat_StimSeq_Text_Press;
 var Sound_Exit_Text_Press;
-var countdown;
-var key_rnd;
 //////////////////////////////////////
-
+var grp;
 var pre = 0;
 var post = 0;
 
@@ -293,7 +261,6 @@ var key = [];
 var rng1
 var rng2
 var rng3
-var rng4
 
 var prep_time_range = [0, 1.2];
 var prep_time_ind_tmp = [];
@@ -326,9 +293,6 @@ var Instr_HAND_TR_press;
 var Instr_Block_NumClock;
 var Instr_Block_Num_Text;
 var Instr_Block_Num_Press;
-var Instr_Round_NumClock;
-var Instr_Round_Num_Text;
-var Instr_Round_Num_Press;
 var TR_Enter_Trials_HandClock;
 var TR_Beep_Hand;
 var TR_Rec_Frame_Hand;
@@ -407,11 +371,7 @@ var penalty_countdown;
 var globalClock;
 var routineTimer;
 var CountDownClock;
-var penalty_countdown_text;
 var sample_num;
-var iter;
-var Finger_Hint_Text;
-var finger_hint_text;
 
 function experimentInit() {
   document.body.style.cursor='none';
@@ -430,21 +390,25 @@ function experimentInit() {
   rng2 = myrng()
   rng3 = myrng()
   
-
   //determine which group participants are in
-  /* if ((rng1 < 0.5)) {
-      grp_stop = 1;
-      tr_block_new_stop = 1;
-  } else {
-      grp_swap = 1;
-      tr_block_new_swap = 1;
-  } */
-  
+  if (participant < 500 && participant > 400) {
+      grp = 4;
+      num_symb_grp = 4;
+      tr_block_old = 4;
+      tr_block_new_swap = 5;
+      
+  } else if (participant < 900 && participant > 800) {
+      grp = 8;
+      num_symb_grp = 8;
+      tr_block_old = 8;
+      tr_block_new_swap = 10;
+  }
+
   // session # determines which blocks they do
   //if ((session === 1)) {
   //    rt_block = 1;
   //}
-  
+  if (grp === 8) {
   // randomize prep-time so that prep-time for each symbol spread over a good range
   for (var i = 0, _pj_a = 12; (i < _pj_a); i += 1) {
       prep_time_ind_tmp.push(i);
@@ -455,8 +419,26 @@ function experimentInit() {
       prep_time_ind.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
   }
+  console.log(prep_time_ind)
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-  
+  } else if (grp === 4) {
+    sample_num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+    for (var i = 0; i<sample_num.length; ++i) {
+      let LEN = sample_num[i];
+      let tmp = new Array(LEN).fill(i);
+      prep_time_ind_tmp = prep_time_ind_tmp.concat(tmp);
+    }
+
+    count = 0;
+    while ((count < num_symb)) {
+        util.shuffle(prep_time_ind_tmp);
+        prep_time_ind.push(prep_time_ind_tmp.slice(0));
+        count = (count + 1);
+    }
+    console.log(prep_time_ind)
+    prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
+  }  
+
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
   Instr_Exp_Text = new visual.TextStim({
@@ -472,7 +454,7 @@ function experimentInit() {
   });
   
   Instr_Exp_Key = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+
   // Initialize components for Routine "Instr_Sound_Check"
   Instr_Sound_CheckClock = new util.Clock();
   Instr_Sound_Check_Text = new visual.TextStim({
@@ -653,9 +635,8 @@ function experimentInit() {
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
-
-
-    // Initialize components for Routine "Instr_RT_Hand"
+  
+  // Initialize components for Routine "Instr_RT_Hand"
   Instr_RT_HandClock = new util.Clock();
   Instr_RT_Hand_Rext = new visual.TextStim({
     win: psychoJS.window,
@@ -671,6 +652,8 @@ function experimentInit() {
   
   Instr_RT_Hand_Key = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
+  // Initialize components for Routine "Creat_StimSeq"
+  Creat_StimSeqClock = new util.Clock();
   // Initialize components for Routine "Pre_Trial_Hand"
   Pre_Trial_HandClock = new util.Clock();
   Pre_Trial_Rec_Frame_Hand = new visual.Rect ({
@@ -813,12 +796,12 @@ function experimentInit() {
   });
   // Initialize components for Routine "TR_Enter_Trials_Hand"
   TR_Enter_Trials_HandClock = new util.Clock();
-  /* TR_Beep_Hand = new sound.Sound({
+  TR_Beep_Hand = new sound.Sound({
     win: psychoJS.window,
     value: 'A',
     secs: (- 1),
     });
-  TR_Beep_Hand.setVolume(1); */
+  TR_Beep_Hand.setVolume(1);
   TR_Rec_Frame_Hand = new visual.Rect ({
     win: psychoJS.window, name: 'TR_Rec_Frame_Hand', units : 'height', 
     width: [0.3, 0.3][0], height: [0.3, 0.3][1],
@@ -1059,25 +1042,12 @@ function experimentInit() {
   
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
-  /* TR_Beep = new sound.Sound({
+  TR_Beep = new sound.Sound({
     win: psychoJS.window,
     value: 'A',
     secs: (- 1),
     });
-  TR_Beep.setVolume(1); */
-
-  TR_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'TR_Text',
-    alignText: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0.25], height: 0.08,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: -2.0 
-  });
-
+  TR_Beep.setVolume(1);
   TR_Rec_Frame = new visual.Rect ({
     win: psychoJS.window, name: 'TR_Rec_Frame', units : 'height', 
     width: [0.3, 0.3][0], height: [0.3, 0.3][1],
@@ -1160,9 +1130,7 @@ function experimentInit() {
   });
   
   TR_Penalty_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-
-
-  // Initialize components for countdown
+  
   CountDownClock = new util.Clock();
   Text_CountDown = new visual.TextStim({
     win: psychoJS.window,
@@ -1185,19 +1153,6 @@ function experimentInit() {
     color: new util.Color('white'),  opacity: 1,
     depth: -2.0 
   });
-
-  penalty_countdown = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'penalty_countdown',
-    text: '',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, -0.27], height: 0.1,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: -2.0 
-  });
-
-  
   // Initialize components for Routine "Instr_RT"
   Instr_RTClock = new util.Clock();
   Instr_RT_Text = new visual.TextStim({
@@ -1338,12 +1293,12 @@ function experimentInit() {
   
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
-  /* TR_Beep = new sound.Sound({
+  TR_Beep = new sound.Sound({
     win: psychoJS.window,
     value: 'A',
     secs: (- 1),
     });
-  TR_Beep.setVolume(1); */
+  TR_Beep.setVolume(1);
   TR_Rec_Frame = new visual.Rect ({
     win: psychoJS.window, name: 'TR_Rec_Frame', units : 'height', 
     width: [0.3, 0.3][0], height: [0.3, 0.3][1],
@@ -1600,22 +1555,6 @@ function experimentInit() {
   });
   
   Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-
-  // Initialize components for Routine "Instr_Round_Num"
-  Instr_Round_NumClock = new util.Clock();
-  Instr_Round_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Round_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Round_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Initialize components for Routine "Pre_Trial"
   Pre_TrialClock = new util.Clock();
@@ -1630,12 +1569,12 @@ function experimentInit() {
   
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
-  /* TR_Beep = new sound.Sound({
+  TR_Beep = new sound.Sound({
     win: psychoJS.window,
     value: 'A',
     secs: (- 1),
     });
-  TR_Beep.setVolume(1); */
+  TR_Beep.setVolume(1);
   TR_Rec_Frame = new visual.Rect ({
     win: psychoJS.window, name: 'TR_Rec_Frame', units : 'height', 
     width: [0.3, 0.3][0], height: [0.3, 0.3][1],
@@ -1858,20 +1797,6 @@ function experimentInit() {
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
   
-
-  Finger_Hint_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Finger_Hint_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [-0.48, 0.45], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-
-
   return Scheduler.Event.NEXT;
 }
 
@@ -1884,7 +1809,7 @@ function Import_StimLoopBegin(thisScheduler) {
     psychoJS: psychoJS,
     nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
-    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'conditions.xlsx', '0:12'),
+    trialList: TrialHandler.importConditions(psychoJS.serverManager, 'conditions.xlsx', '0:8'),
     seed: undefined, name: 'Import_Stim'
   });
   psychoJS.experiment.addLoop(Import_Stim); // add the loop to the experiment
@@ -2105,9 +2030,6 @@ function Sound_Check_BoolLoopEnd() {
 
   return Scheduler.Event.NEXT;
 }
-
-
-
 
 var RT_Hand_Bool;
 function RT_Hand_BoolLoopBegin(thisScheduler) {
@@ -2411,18 +2333,10 @@ function CR_Old_BoolLoopBegin(thisScheduler) {
     thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
     thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
     thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
-    const CR_Grp_Stop_BoolLoopScheduler = new Scheduler(psychoJS);
-    thisScheduler.add(CR_Grp_Stop_BoolLoopBegin, CR_Grp_Stop_BoolLoopScheduler);
-    thisScheduler.add(CR_Grp_Stop_BoolLoopScheduler);
-    thisScheduler.add(CR_Grp_Stop_BoolLoopEnd);
-    const CR_Grp_Swap_BoolLoopScheduler = new Scheduler(psychoJS);
-    thisScheduler.add(CR_Grp_Swap_BoolLoopBegin, CR_Grp_Swap_BoolLoopScheduler);
-    thisScheduler.add(CR_Grp_Swap_BoolLoopScheduler);
-    thisScheduler.add(CR_Grp_Swap_BoolLoopEnd);
-    //const CR_Old_IterLoopScheduler = new Scheduler(psychoJS);
-    //thisScheduler.add(CR_Old_IterLoopBegin, CR_Old_IterLoopScheduler);
-    //thisScheduler.add(CR_Old_IterLoopScheduler);
-    //thisScheduler.add(CR_Old_IterLoopEnd);
+    const CR_Old_IterLoopScheduler = new Scheduler(psychoJS);
+    thisScheduler.add(CR_Old_IterLoopBegin, CR_Old_IterLoopScheduler);
+    thisScheduler.add(CR_Old_IterLoopScheduler);
+    thisScheduler.add(CR_Old_IterLoopEnd);
     thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
   }
 
@@ -2567,9 +2481,9 @@ function TR_Iter_Old_PreLoopBegin(thisScheduler) {
     thisScheduler.add(Pre_TrialRoutineBegin(snapshot));
     thisScheduler.add(Pre_TrialRoutineEachFrame(snapshot));
     thisScheduler.add(Pre_TrialRoutineEnd(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineBegin(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineEachFrame(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineEnd(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineBegin(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineEachFrame(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineEnd(snapshot));
     const TR_Feedback_Old_Pre_BoolLoopScheduler = new Scheduler(psychoJS);
     thisScheduler.add(TR_Feedback_Old_Pre_BoolLoopBegin, TR_Feedback_Old_Pre_BoolLoopScheduler);
     thisScheduler.add(TR_Feedback_Old_Pre_BoolLoopScheduler);
@@ -2759,9 +2673,9 @@ function RT_IterLoopBegin(thisScheduler) {
     thisScheduler.add(Pre_TrialRoutineBegin(snapshot));
     thisScheduler.add(Pre_TrialRoutineEachFrame(snapshot));
     thisScheduler.add(Pre_TrialRoutineEnd(snapshot));
-    thisScheduler.add(RT_Enter_Trial_StopRoutineBegin(snapshot));
-    thisScheduler.add(RT_Enter_Trial_StopRoutineEachFrame(snapshot));
-    thisScheduler.add(RT_Enter_Trial_StopRoutineEnd(snapshot));
+    thisScheduler.add(RT_Enter_TrialRoutineBegin(snapshot));
+    thisScheduler.add(RT_Enter_TrialRoutineEachFrame(snapshot));
+    thisScheduler.add(RT_Enter_TrialRoutineEnd(snapshot));
     thisScheduler.add(RT_FeedbackRoutineBegin(snapshot));
     thisScheduler.add(RT_FeedbackRoutineEachFrame(snapshot));
     thisScheduler.add(RT_FeedbackRoutineEnd(snapshot));
@@ -2881,9 +2795,9 @@ function TR_Iter_Old_PostLoopBegin(thisScheduler) {
     thisScheduler.add(Pre_TrialRoutineBegin(snapshot));
     thisScheduler.add(Pre_TrialRoutineEachFrame(snapshot));
     thisScheduler.add(Pre_TrialRoutineEnd(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineBegin(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineEachFrame(snapshot));
-    thisScheduler.add(TR_Enter_Trials_StopRoutineEnd(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineBegin(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineEachFrame(snapshot));
+    thisScheduler.add(TR_Enter_TrialsRoutineEnd(snapshot));
     const TR_Feedback_Old_Post_BoolLoopScheduler = new Scheduler(psychoJS);
     thisScheduler.add(TR_Feedback_Old_Post_BoolLoopBegin, TR_Feedback_Old_Post_BoolLoopScheduler);
     thisScheduler.add(TR_Feedback_Old_Post_BoolLoopScheduler);
@@ -3404,9 +3318,6 @@ function TR_New_Block_StopLoopBegin(thisScheduler) {
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
-    thisScheduler.add(CountDownRoutineBegin(snapshot));
-    thisScheduler.add(CountDownRoutineEachFrame(snapshot));
-    thisScheduler.add(CountDownRoutineEnd(snapshot));
     const TR_Iter_New_StopLoopScheduler = new Scheduler(psychoJS);
     thisScheduler.add(TR_Iter_New_StopLoopBegin, TR_Iter_New_StopLoopScheduler);
     thisScheduler.add(TR_Iter_New_StopLoopScheduler);
@@ -3626,9 +3537,13 @@ var symb_map_rnd;
 var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
-var probe_pair_1 = [];
-var probe_pair_2 = [];
+var subset;
+var subset_dummie;
+var subset_pair_rnd;
+var subset_pair_1 = [];
+var subset_pair_2 = [];
 var Init_StimComponents;
+var pair_swap;
 function Init_StimRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Init_Stim'-------
@@ -3640,80 +3555,97 @@ function Init_StimRoutineBegin(trials) {
     StimList = Import_Stim.trialList;
     hand_shape = StimList[0]["Hand"];
     coin = StimList[0]["Sound_P"];
-    beep = StimList[0]["Beep"];
     buzz = StimList[0]["Sound_N"];
+    beep = StimList[0]["Beep"];
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
         stimnum.push(StimList[i]["StimNum"]);
         symb.push(StimList[i]["Symb"]);
-        symb_r.push(StimList[i]["Symb_R"]);
-        symb_g.push(StimList[i]["Symb_G"]);
+        //symb_r.push(StimList[i]["Symb_R"]);
+        //symb_g.push(StimList[i]["Symb_G"]);
         key.push(StimList[i]["Key"]);
         keynum.push(StimList[i]["KeyNum"]);
         x.push(StimList[i]["X_pos"]);
         y.push(StimList[i]["Y_pos"]);
     }
 
-    symb_map_rnd = Math.floor(rng1 * symb_perm.length) // random interger between 0 and num_symb - 1
-    symb_map_ind = symb_perm[symb_map_rnd]; // randomize which symbols corresponds to which index 0 to 7
 
-    remap_pair_rnd = Math.floor(rng2 * remap_pairs.length)
+    // Despite the gtoup, the original map involves all 8 elements
+    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
+
+    remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
     for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
-      if  (!(remap_pair_1.includes(i))) {
-          remap_pair_2.push((i));
-      }
-  }
-  
-  // remap_pair_1 is two random symbol 0 to 4
-     // generate a pair correponding to the same respones and it does not require responses during probe session
-    for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) { // probe_pair_1 require responses during practice but not during prob
-      if  (!(remap_pair_1.includes(i))) {
-          probe_pair_1.push((i + 4));
-      }
+        if  (!(remap_pair_1.includes(i))) {
+            remap_pair_2.push((i + 4));
+        }
     }
-
-    for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) { // probe_pair_1 require responses during practice but not during prob
-      if  (!(remap_pair_2.includes(i))) {
-          probe_pair_2.push((i + 4));
-      }
-    }
-
-
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
-    symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
-    symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-    symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-    symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
 
-     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
-         symb_map.push(symb[symb_map_ind[i]]);
-         symb_remap.push(symb[symb_remap_ind[i]]);
-         symb_g_map.push(symb_g[symb_map_ind[i]]);
-         symb_g_remap.push(symb_g[symb_remap_ind[i]]);
-         symb_r_map.push(symb_r[symb_map_ind[i]]);
-         symb_r_remap.push(symb_r[symb_remap_ind[i]]);
-     }
+    // create subset symb_map_ind for both grp 4 and grp 8
+    // for group 4, subsets are the same as remap_pairs with rng3
+    if (grp === 8) {
+      subset_pair_1 = [0,1,2,3]
+      subset_pair_2 = [4,5,6,7]
+      subset = [0, 1, 2, 3, 4, 5, 6, 7];
+      subset_dummie = Object.values(subset);
+    } else if (grp === 4) {
+      //first randomly choose a subset
+      subset_pair_rnd = Math.floor(rng3 * subset_pairs.length)
+      subset_pair_1 = subset_pairs[subset_pair_rnd];
+      for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
+        if  (!(subset_pair_1.includes(i))) {
+            subset_pair_2.push((i + 4));
+        }
+      }
 
-     for (var i = 0, _pj_a = num_letter; (i < _pj_a); i += 1) {
-      symb_map.push(symb[i+num_symb]);
-      symb_remap.push(symb[i+num_symb]);
-      symb_g_map.push(symb_g[i+num_symb]);
-      symb_g_remap.push(symb_g[i+num_symb]);
-      symb_r_map.push(symb_r[i+num_symb]);
-      symb_r_remap.push(symb_r[i+num_symb]);
-  }
+      // concat two pairs
+      subset = subset_pair_1.concat(subset_pair_2);
+      subset_dummie = Object.values(subset);
+    }
 
-
-
+    // now decide which pair will be swapped for group 4 and group 8
+    if (grp === 8) {
+      symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+      symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+      symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+      symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+      pair_swap = 12;
+    } else if (grp === 4) {
+      if (rng1 < 0.5) {
+        symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
+        symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
+        pair_swap = 1;
+      } else if (rng1 >= 0.5) {
+        symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
+        symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
+        pair_swap = 2;
+      }
+    }
+    
+    for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
+      symb_map.push(symb[symb_map_ind[i]]);
+      symb_remap.push(symb[symb_remap_ind[i]]);
+      //symb_g_map.push(symb_g[symb_map_ind[i]]);
+      //symb_g_remap.push(symb_g[symb_remap_ind[i]]);
+      //symb_r_map.push(symb_r[symb_map_ind[i]]);
+      //symb_r_remap.push(symb_r[symb_remap_ind[i]]);
+    }
+    
+    //symb_map_rnd = Math.floor(rng2 * symb_perm.length) // random interger between 0 and num_symb - 1
+    //symb_map_ind = symb_perm[symb_map_rnd];
+    //symb_map_ind = x_symb;
+    
+    psychoJS.experiment.addData("Subset_Pair_1", subset_pair_1);
+    psychoJS.experiment.addData("Subset_Pair_2", subset_pair_2);
+    psychoJS.experiment.addData("Subset", subset);
     psychoJS.experiment.addData("symb_map", symb_map_ind);
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
-    psychoJS.experiment.addData("stop_ind", x_symb_stop);
-    psychoJS.experiment.addData("resp_ind", x_symb_resp);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
     psychoJS.experiment.addData("Remap_Pair_2", remap_pair_2);
-    psychoJS.experiment.addData("Probe_Pair_1", probe_pair_1);
-    psychoJS.experiment.addData("Probe_Pair_2", probe_pair_2);
+    psychoJS.experiment.addData("Grp", grp);
+    psychoJS.experiment.addData("Pair_swap", pair_swap);
+
     
     // keep track of which components have finished
     Init_StimComponents = [];
@@ -3793,30 +3725,30 @@ function Init_StimRoutineEnd(trials) {
 
     instr_end_exp_text = `Great job! You have completed the task.
     
-Press (space bar) to proceed so that your data can be saved. The saving process may take up to 1 minute.
+Press (space) to proceed so that your data can be saved. The saving process may take up to 1 minute.
 
 After the data are saved, click 'OK' to exit and close the webpage.`
     ;
 
     instr_exp_text = `Thank you for participating in our study!
     
-This study will take about 1.5 hours. 
+This study will take about 1 hour and 20 minutes. 
 
 Once you start, you can take a break between rounds, Please DO NOT turn off your web browser until you complete the task, unless you decide to withdraw from this study.
     
 
 
-Press (space bar) to continue.`
+Press (space) to continue.`
     ;
     instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
     
-With your Right hand, place your Index, Middle, Ring, and Little fingers on (H, U, I, L) respectively. Your fingers will rest on these keys for the entirety of the experiment.
+With your Right hand, place your Index, Middle, Ring, and Pinky fingers on (H, U, I, L) respectively. Your fingers will rest on these keys for the entirety of the experiment.
     
 You will see a hand appear on the screen. One of the fingers on the screen will light up and your job is to press the corresponding finger as quickly and as accurately as possible.
     
 
 
-Press (H, U, I, or L) to start.`
+Press (H, U, I, or L) to continue.`
     ;
     instr_tr_text_hand = `Great Job!
     
@@ -3824,106 +3756,97 @@ In the following blocks, you will hear 4 beeps. You need to press the correspond
 
 
 Sometimes, the finger will light up at the very last second. You will not have enough time to know which finger to press. In this case, MAKE A GUESS. Always press one of your fingers ON the fourth beep.
-    
-    
+
+
 There will be at least 2 blocks, depending on how well you press ON the fourth beep.
-    
-    
-Press (H, U, I, or L) to proceed.`
+
+
+Press (H, U, I, or L) to continue.`
     ;
     instr_cr_old_text = `Good Job! You are now ready for the tasks!
     
-In the upcoming block, you will see eight novel symbols on the screen, one at a time. 
+In the upcoming block, you will see eight symbols (1, 2, 3, 4, a, b, c, d) on the screen, one at a time. 
 
-Some symbols correspond to one of (H, U, I, L). You will be informed which key to press on next page.
+Each symbol corresponds to one of (H, U, I, L). For example, press key (H) to symbols (1) and (a), press key (U) to symbols (2) and (b), and so on.
 
-Some symbols do NOT correspond with a key. DO NOT PRESS ANY KEY when they appear. Instead, simply wait for 2 seconds.
+ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
     
-Occasionally, you will also see four letters (1, 2, 3, 4) on the screen, one at a time. Each corresponds to one of (H, U, I, L). 
 
-For example, press key (H) to letter (1), press key (U) to letter (2), and so on.
-
-Use this block to learn how to do the task. You can go as slowly as you need to.
-    
 
 Ready? Press (H, U, I, or L) to continue.`
     ;
     if ((session === 1)) {
-      instr_rt_text = `Now you are going to practice the symbol-key map you learned. 
-
-Remember to keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
-      
-Your job is to press a key (shown on next page) as quickly and as accurately as possible if a symbol requires a response.
-
-For a symbol that does not correpond to a key, simply let it go. 
-
-  
-There will be ${rt_block} blocks with short breaks in between. It will be hard at the beginning, try you best to improve your performance through these blocks.
-  
-
-Whenever you are ready, press (space bar) to proceed.`
-  ;
-  } else {
-      if ((1 < session)) {
-          instr_rt_text = `Today, we first continue to practice the symbol-key maps for ${rt_block} blocks.
-  
-Remember, your job is to press the corresponding key as quickly and accurately as you can.
-  
-Whenever you are ready, press (H, U, I, or L) to start.`
-  ;
-      }
-  }
-  instr_tr_old_pre_text = `Good job so far.
+        instr_rt_text = `Now you are going to practice the symbol-key map you learned. 
+        
+Your job is to press the corresponding key as quickly and as accurately as possible.
     
-In the following ${tr_block_old} blocks, Keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
+There will be ${rt_block} blocks with short breaks in between.
+    
 
-You will hear four beeps. For each symbol or letter, press the corresponding key ON the fourth beep. 
-
-All symbols are associated with only one key, which will be shown on next page.
-
-Letters (1, 2, 3, 4) are assocaited with (H, U, I, L) respectively.
-
+Whenever you are ready, press (H, U, I, or L) to start.`
+    ;
+    } else {
+        if ((1 < session)) {
+            instr_rt_text = `Today, we first continue to practice the symbol-key maps for ${rt_block} blocks.
+    
+Remember, your job is to press the corresponding key as quickly and accurately as you can.
+    
+Whenever you are ready, press (H, U, I, or L) to start.`
+    ;
+        }
+    }
+    instr_tr_old_pre_text = `Good job so far.
+    
+In the following ${tr_block_old} blocks, use the symbol-key map you learned. Press the corresponding key ON the fourth beep. 
 
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
-      
-  
+    
+
 Press (H, U, I, or L) to start.`
-      ;
+    ;
+
+    if (grp === 4) {
+    instr_tr_old_post_text = `Great job.
+    
+In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
+
+Only ${num_symb_grp} symbols will be used in these blocks.
+
+Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
+    
+
+Press (H, U, I, or L) to start.`
+    ;
+    } else if (grp === 8) {
       instr_tr_old_post_text = `Great job.
-      
-In the following ${tr_block_old} blocks, Keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
+    
+In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
-You will hear four beeps. For each symbol or letter, press the corresponding key ON the fourth beep. 
-
-All symbols are associated with only one key, which will be shown on next page.
-
-Letters (1, 2, 3, 4) are assocaited with (H, U, I, L) respectively.
-  
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
-      
-  
+    
+
 Press (H, U, I, or L) to start.`
-      ;
-      if ((grp_stop === 1)) {
-        instr_cr_new_text = `Great job. Now we proceed to the next step. In the upcoming block:
- 
-Symbols that previously corresponded to (H, U, I, or L) may NOT require a response any more. 
- 
-Symbols that previously did not correspond with a key may become requiring a response.
- 
+    ;
+    }
+
+    if ((grp_stop === 1)) {
+        instr_cr_new_text = `Great job.
+    
+In next block, you will see the same eight symbols, but this time some of them may no longer correspond with a key (H, U, I, L).
+        
 Your job is to figure out which are those symbols and DO NOT PRESS ANY KEY when they appear. Instead, simply wait for 2 seconds.
         
         
 ACCURACY is the priority, so go as slowly as you need to. The more mistaks you make, the longer this block will take.
- 
-         
+        
+        
 Press (H, U, I, or L) to start.`
-     ;
+    ;
     } else {
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same eight symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same ${num_symb_grp} symbols, but this time they may correspond with a different key (H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
@@ -3950,12 +3873,9 @@ Press (H, U, I, or L) to start.`
     } else {
         if ((grp_stop === 1)) {
             instr_tr_new_text = `Great job. We are almost there!
-
-Remember to keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
             
 In the last ${tr_block_new_stop} blocks, use the NEW symbol-key map you just learned:
-
-If you see a symbol that requires a response, press the corresponding key (shown on next page) ON the fourth beep.             
+If you see a symbol that requires a response, press the corresponding key ON the fourth beep.             
 If you see a symbol that does NOT require a response, DO NOT PRESS ANYTHING.
 
 
@@ -3979,13 +3899,10 @@ After 2 second, press (H, U, I, or L) to continue.`
 2 second penalty.
 After 2 second, press (H, U, I, or L) to continue.`
     ;
-
-
     feedback_early_text = `little early`;
     feedback_late_text = `little late`;
     feedback_good_text = `good timing`;
-
-
+    
     instr_sound_quit_text = `It seems that your computer does not play the sound well. 
     
 Please press (Esc) to exit and check your spearker or headphone. 
@@ -4029,14 +3946,12 @@ Whenever you are ready, press (space bar) to start.`
     instr_sound_check_feedback_P_text = `Your choice is correct`;
     instr_sound_check_feedback_N_text = `Your choice is not correct`;
     instr_sound_check_feedback_NO_text = `Let's hear it again`;
-    
     // the Routine "Init_Stim" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
     return Scheduler.Event.NEXT;
   };
 }
-
 
 var _Instr_Exp_Key_allKeys;
 var Instr_ExpComponents;
@@ -4072,7 +3987,6 @@ function Instr_ExpRoutineBegin(trials) {
       value: coin,
       secs: -1,
       });
-
     // update component parameters for each repeat
     Instr_Exp_Text.setText(instr_exp_text);
     Instr_Exp_Key.keys = undefined;
@@ -4112,7 +4026,7 @@ function Instr_ExpRoutineEachFrame(trials) {
 
     
     // *Instr_Exp_Key* updates
-    if (t >= 2.0 && Instr_Exp_Key.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_Exp_Key.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_Exp_Key.tStart = t;  // (not accounting for frame time here)
       Instr_Exp_Key.frameNStart = frameN;  // exact frame index
@@ -5342,7 +5256,6 @@ function Sound_Exit_TextRoutineEnd(trials) {
   };
 }
 
-
 var stim_type;
 var remap;
 var block_count;
@@ -5354,7 +5267,6 @@ function Instr_RT_HandRoutineBegin(trials) {
     t = 0;
     Instr_RT_HandClock.reset(); // clock
     frameN = -1;
-    TR_Coin.setVolume(0);
     // update component parameters for each repeat
     block_type = "RT";
     stim_type = "Hand";
@@ -5369,7 +5281,7 @@ function Instr_RT_HandRoutineBegin(trials) {
     Instr_RT_HandComponents = [];
     Instr_RT_HandComponents.push(Instr_RT_Hand_Rext);
     Instr_RT_HandComponents.push(Instr_RT_Hand_Key);
-    Instr_RT_HandComponents.push(TR_Coin);
+    
     for (const thisComponent of Instr_RT_HandComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -5399,7 +5311,7 @@ function Instr_RT_HandRoutineEachFrame(trials) {
 
     
     // *Instr_RT_Hand_Key* updates
-    if (t >= 2.0 && Instr_RT_Hand_Key.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_RT_Hand_Key.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_RT_Hand_Key.tStart = t;  // (not accounting for frame time here)
       Instr_RT_Hand_Key.frameNStart = frameN;  // exact frame index
@@ -5421,24 +5333,6 @@ function Instr_RT_HandRoutineEachFrame(trials) {
       }
     }
     
-    if (t >= 0.0 && _Instr_RT_Hand_Key_allKeys.length > 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
-      
-     // psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
-    }
-    
-    frameRemains = TR_Coin.getDuration() - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains + TR_Coin.tStart && TR_Coin.status === PsychoJS.Status.STARTED) {
-    //  TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
-      continueRoutine = false;
-    }
-
-
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -5481,7 +5375,6 @@ function Instr_RT_HandRoutineEnd(trials) {
         }
     
     Instr_RT_Hand_Key.stop();
-    TR_Coin.stop();
     // the Routine "Instr_RT_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -5495,6 +5388,7 @@ var repeat_count;
 var trial_count_item;
 var tr_timing_good;
 var sum_corr;
+var sum_corr_subset = [];
 var seq_stimnum_hand;
 var seq_stimnum;
 var seq_keynum;
@@ -5507,7 +5401,7 @@ var seq_handy;
 var seq_key_hand;
 var seq_keynum_hand;
 var Creat_StimSeqComponents;
-var x16_new;
+var x_new;
 function Creat_StimSeqRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Creat_StimSeq'-------
@@ -5518,9 +5412,11 @@ function Creat_StimSeqRoutineBegin(trials) {
     trial_count = 0;
     repeat_count = 0;
     tr_timing_good = 0;
+    
     sum_corr = [0, 0, 0, 0, 0, 0, 0, 0];
     trial_count_item = [0, 0, 0, 0, 0, 0, 0, 0];
-    util.shuffle(x_letter_2);
+    
+    
 
     if ((stim_type === "Hand")) {
         seq_stimnum_hand = [];
@@ -5536,6 +5432,7 @@ function Creat_StimSeqRoutineBegin(trials) {
         seq_symb_r = [];
         seq_keynum = [];
     }
+
     if ((stim_type === "Hand")) {
         count = 0;
         while ((count < (num_trials_hand / 8))) {
@@ -5551,64 +5448,121 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
     }
-    if ((block_type === "CR")) {
-      count = 0;
-      while ((count < (num_trials_cr / 40))) {
-          util.shuffle(x16);
-          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              seq_symb_g.push(symb_g[i]);
-              seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          util.shuffle(x16);
-          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              seq_symb_g.push(symb_g[i]);
-              seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          util.shuffle(x8_new);
-          for (var i, _pj_c = 0, _pj_a = x8_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              seq_symb_g.push(symb_g[i]);
-              seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          count = (count + 1);
-      }
-  }
-    
-    if (((block_type !== "CR") && (stim_type === "Symb") && (remap === 0))) {
+    if (block_type === "CR" && remap === 0) {
         count = 0;
-        while ((count < (num_trials / 16))) {
-            // add letter catch trials
-            // for each count/iteration, need only 2 letters
+        while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
             for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_stimnum.push(stimnum[i]);
                 seq_key.push(key[i]);
                 seq_symb.push(symb[i]);
-                seq_symb_g.push(symb_g[i]);
-                seq_symb_r.push(symb_r[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
                 seq_keynum.push(keynum[i]);
             }
-            
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(x8_new);
+            for (var i, _pj_c = 0, _pj_a = x8_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
             count = (count + 1);
         }
     }
+    
 
-    if (((block_type === "TR") && (stim_type === "Symb") && (remap === 1))) {
+    if ((block_type === "CR" && remap === 1))  {
+      if (grp === 4) {
+        x_new = subset.concat(subset)
+        count = 0;
+        while ((count < (num_trials_cr / 20))) {
+            
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset);
+            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+      } else if (grp === 8) {
+        count = 0;
+        while ((count < (num_trials_cr / 40))) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            util.shuffle(subset);
+            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+      }
+    }
+
+  if (block_type === "RT" && stim_type === "Symb") {
       count = 0;
       while ((count < (num_trials / 16))) {
           util.shuffle(x16);
@@ -5617,12 +5571,50 @@ function Creat_StimSeqRoutineBegin(trials) {
               seq_stimnum.push(stimnum[i]);
               seq_key.push(key[i]);
               seq_symb.push(symb[i]);
-              seq_symb_g.push(symb_g[i]);
-              seq_symb_r.push(symb_r[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
               seq_keynum.push(keynum[i]);
           }
           count = (count + 1);
       }
+  }
+
+  if (block_type === "TR" && stim_type === "Symb") {
+      if (grp === 4) {
+        x_new = subset.concat(subset)
+        count = 0;
+        while ((count < (num_trials / 8))) {
+          
+          util.shuffle(x_new);
+          for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+              i = _pj_a[_pj_c];
+              seq_stimnum.push(stimnum[i]);
+              seq_key.push(key[i]);
+              seq_symb.push(symb[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
+              seq_keynum.push(keynum[i]);
+          }
+          count = (count + 1);
+        }
+      } else if (grp === 8) {
+        count = 0;
+        while ((count < (num_trials / 16))) {
+          util.shuffle(x16);
+          for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+              i = _pj_a[_pj_c];
+              seq_stimnum.push(stimnum[i]);
+              seq_key.push(key[i]);
+              seq_symb.push(symb[i]);
+              //seq_symb_g.push(symb_g[i]);
+              //seq_symb_r.push(symb_r[i]);
+              seq_keynum.push(keynum[i]);
+          }
+          count = (count + 1);
+        }
+      } 
+
+      console.log(seq_symb)
   }
     
     // keep track of which components have finished
@@ -5705,6 +5697,7 @@ function Pre_Trial_HandRoutineBegin(trials) {
     t = 0;
     Pre_Trial_HandClock.reset(); // clock
     frameN = -1;
+
     // update component parameters for each repeat
     Pre_Trial_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
     Pre_Trial_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
@@ -5830,6 +5823,7 @@ function Pre_Trial_HandRoutineEnd(trials) {
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
+    psychoJS.experiment.addData("grp", grp);
     
     // the Routine "Pre_Trial_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
@@ -6037,8 +6031,12 @@ function RT_Feedback_HandRoutineBegin(trials) {
     RT_Feedback_HandClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    
-    TR_Coin.setVolume(sound_vol);
+    RT_Feedback_Coin_Hand = new sound.Sound({
+    win: psychoJS.window,
+    value: coin,
+    secs: -1,
+    });
+    RT_Feedback_Coin_Hand.setVolume(sound_vol);
     RT_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
     RT_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
@@ -6048,7 +6046,7 @@ function RT_Feedback_HandRoutineBegin(trials) {
     RT_Stim_Feedback_Hand.setLineColor(new util.Color(feedback_col));
     // keep track of which components have finished
     RT_Feedback_HandComponents = [];
-    RT_Feedback_HandComponents.push(TR_Coin);
+    RT_Feedback_HandComponents.push(RT_Feedback_Coin_Hand);
     RT_Feedback_HandComponents.push(RT_Rec_Frame_Feedback_Hand);
     RT_Feedback_HandComponents.push(RT_Feedback_HandShape);
     RT_Feedback_HandComponents.push(RT_Stim_Feedback_Hand);
@@ -6071,19 +6069,19 @@ function RT_Feedback_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     // start/stop RT_Feedback_Coin_Hand
-    if (t >= 0.0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && RT_Feedback_Coin_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
+      RT_Feedback_Coin_Hand.tStart = t;  // (not accounting for frame time here)
+      RT_Feedback_Coin_Hand.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ RT_Feedback_Coin_Hand.play(); });  // screen flip
+      RT_Feedback_Coin_Hand.status = PsychoJS.Status.STARTED;
     }
     
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;
-    if (t >= frameRemains && TR_Coin.status === PsychoJS.Status.STARTED) {
-     // TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && RT_Feedback_Coin_Hand.status === PsychoJS.Status.STARTED) {
+    //  RT_Feedback_Coin_Hand.stop();  // stop the sound (if longer than duration)
+      RT_Feedback_Coin_Hand.status = PsychoJS.Status.FINISHED;
     }
     
     // *RT_Rec_Frame_Feedback_Hand* updates
@@ -6162,7 +6160,7 @@ function RT_Feedback_HandRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    //TR_Coin.stop();  // ensure sound has stopped at end of routine
+   // RT_Feedback_Coin_Hand.stop();  // ensure sound has stopped at end of routine
     // the Routine "RT_Feedback_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6179,7 +6177,6 @@ function Instr_TR_HandRoutineBegin(trials) {
     t = 0;
     Instr_TR_HandClock.reset(); // clock
     frameN = -1;
-    
     // update component parameters for each repeat
     instr_HAND_TR_text.setText(instr_tr_text_hand);
     Instr_HAND_TR_press.keys = undefined;
@@ -6194,8 +6191,7 @@ function Instr_TR_HandRoutineBegin(trials) {
     Instr_TR_HandComponents = [];
     Instr_TR_HandComponents.push(instr_HAND_TR_text);
     Instr_TR_HandComponents.push(Instr_HAND_TR_press);
-
-
+    
     for (const thisComponent of Instr_TR_HandComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -6225,7 +6221,7 @@ function Instr_TR_HandRoutineEachFrame(trials) {
 
     
     // *Instr_HAND_TR_press* updates
-    if (t >= 2.0 && Instr_HAND_TR_press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_HAND_TR_press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_HAND_TR_press.tStart = t;  // (not accounting for frame time here)
       Instr_HAND_TR_press.frameNStart = frameN;  // exact frame index
@@ -6243,10 +6239,10 @@ function Instr_TR_HandRoutineEachFrame(trials) {
         Instr_HAND_TR_press.keys = _Instr_HAND_TR_press_allKeys[0].name;  // just the first key pressed
         Instr_HAND_TR_press.rt = _Instr_HAND_TR_press_allKeys[0].rt;
         // a response ends the routine
-       continueRoutine = false;
+        continueRoutine = false;
       }
     }
-
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6299,121 +6295,14 @@ function Instr_TR_HandRoutineEnd(trials) {
 
 var _Instr_Block_Num_Press_allKeys;
 var Instr_Block_NumComponents;
-var key_item_c;
-var finger_item;
-var myrng = new Math.seedrandom(participant);
-var rng5;
-var letter_rnd;
-var letter_item_c;
-var finger_letter_item;
-var rt_stop_tol = [];
 function Instr_Block_NumRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Instr_Block_Num'-------
     t = 0;
     Instr_Block_NumClock.reset(); // clock
     frameN = -1;
-    TR_Coin.setVolume(0);
     // update component parameters for each repeat
-    if (block_type === "CR"){
-      // randomly select a key a response key
-      key_rnd = Math.floor(rng3 * key_list.length) 
-      // use this to set the key in pre_trial routine
-    } else if (block_type === "RT") {
-        iter = 0;
-        while (iter < 2000) {
-          rng4 = myrng()
-          if (Math.floor( rng4* key_list.length) !== Math.floor( rng3* key_list.length) ) {
-            break;
-          }
-          iter = iter + 1;
-        }
-        key_rnd = Math.floor(rng4 * key_list.length) 
-
-        iter = 0;
-        while (iter < 2000) {
-          rng5 = myrng()
-          if (Math.floor( rng5* key_list.length) !== Math.floor( rng4* key_list.length) ) {
-            break;
-          }
-          iter = iter + 1;
-        }
-        letter_rnd = Math.floor(rng5 * key_list.length)
-      } else if (block_type === "TR" && remap === 1) {
-        // randomly select a key a response key
-        key_rnd = Math.floor(rng3 * key_list.length) 
-        // use this to set the key in pre_trial routine
-      } else if (block_type === "TR" && remap === 0){
-          iter = 0;
-          while (iter < 2000) {
-            rng4 = myrng()
-            if (Math.floor( rng4* key_list.length) !== Math.floor( rng3* key_list.length) ) {
-              break;
-            }
-            iter = iter + 1;
-          }
-          key_rnd = Math.floor(rng4 * key_list.length) 
-      }
-
-    
-    /* if (block_type === "RT") {
-      if (block_count == 1) {
-        stop_tol = 1.2;
-      } else {
-        console.log(rt_stop_tol)
-        console.log(calcQuartile(rt_stop_tol,70))
-        if (rt_stop_tol.length >= (num_trials/2) *0.7) {
-          stop_tol = Math.round(calcQuartile(rt_stop_tol,70) *100)/100;
-        } else if (rt_stop_tol.length < (num_trials/2) *0.7) {
-          stop_tol = stop_tol;
-          }
-        }
-    } */
-    
-    if (block_type === "RT") {
-        stop_tol = 1;
-    }
-
-    key_item = key_list[key_rnd];
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-
-    letter_item_c = key_list_C[letter_rnd];
-    finger_letter_item = finger_list[letter_rnd];
-
-    /* if (block_type === "TR" && stim_type === "Symb") {
-      Instr_Block_Num_Text.setText((('Block ' + block_count) + ('\n\n\n\nPress (' + key_item_c + ') using the (' +  finger_item + ') finger if a symbol requires a response') + '\n\n\n\nPress (space) to start'));
-    } else if (block_type === "RT"){
-      Instr_Block_Num_Text.setText((('Block ' + block_count) +  ('\n\n\nKeep resting your Index, Middle, Ring, Little fingers on keys (H, U, I, L).') 
-      + ('\n\n\n\nPress (' + key_item_c + ') using the (' +  finger_item + ') finger if a symbol requires a response') 
-      + '\n\n\nSimple wait for ' + stop_tol + ' second(s) if a symbol does not require a response'
-      + '\n\n\nThus if a response is needed, you have to make it within '+ stop_tol + ' second(s)'
-      + '\n\n\n\nPress (space) to start'));
-    } else if (block_type === "CR"){
-      Instr_Block_Num_Text.setText((('Block ' + block_count) +  ('\n\n\nKeep resting your Index, Middle, Ring, Little fingers on keys (H, U, I, L).') 
-      + ('\n\n\n\nPress (' + key_item_c + ') using the (' +  finger_item + ') finger if a symbol requires a response') 
-      + '\n\n\n\nPress (space) to start'));
-    } else if (block_type === "TR" && stim_type === "Hand") {
-      Instr_Block_Num_Text.setText(('Block ' + block_count));
-    } */
-    if (block_type === "TR" && stim_type === "Symb") {
-      Instr_Block_Num_Text.setText((('Block ' + block_count) + ('\n\n\n\nPress the (' +  finger_item + ') finger on key (' + key_item_c + ') if a symbol requires a response') + '\n\n\n\nPress (space bar) to start'));
-    } else if (block_type === "RT"){
-      Instr_Block_Num_Text.setText((('Block ' + block_count) 
-      + ('\n\n\n\nPress the (' +  finger_item + ') finger on key (' + key_item_c + ') as quickly as you can if a symbol requires a response')
-      + '\n\n\n\nPress (space bar) to start'));
-    } else if (block_type === "CR"){
-      Instr_Block_Num_Text.setText((('Block ' + block_count) +  ('\n\n\nKeep resting your Index, Middle, Ring, Little fingers on keys (H, U, I, L).') 
-      + ('\n\n\n\nPress the (' +  finger_item + ') finger on key (' + key_item_c + ') if a symbol requires a response') 
-      + '\n\n\n\nPress (space bar) to start'));
-    } else if (block_type === "TR" && stim_type === "Hand") {
-      Instr_Block_Num_Text.setText(('Block ' + block_count)
-      + '\n\n\n\nPress (space bar) to start');
-    }
-    
-    finger_hint_text = `(${finger_item}) finger on (${key_item_c}).`
-    console.log(finger_hint_text)
-    
+    Instr_Block_Num_Text.setText((('Block ' + block_count) + '\nPress (H, U, I, or L) to start'));
     Instr_Block_Num_Press.keys = undefined;
     Instr_Block_Num_Press.rt = undefined;
     _Instr_Block_Num_Press_allKeys = [];
@@ -6421,8 +6310,7 @@ function Instr_Block_NumRoutineBegin(trials) {
     Instr_Block_NumComponents = [];
     Instr_Block_NumComponents.push(Instr_Block_Num_Text);
     Instr_Block_NumComponents.push(Instr_Block_Num_Press);
-    Instr_Block_NumComponents.push(TR_Coin);
-
+    
     for (const thisComponent of Instr_Block_NumComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -6440,7 +6328,7 @@ function Instr_Block_NumRoutineEachFrame(trials) {
     t = Instr_Block_NumClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-  
+    
     // *Instr_Block_Num_Text* updates
     if (t >= 0.0 && Instr_Block_Num_Text.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -6452,7 +6340,7 @@ function Instr_Block_NumRoutineEachFrame(trials) {
 
     
     // *Instr_Block_Num_Press* updates
-    if (t >= 0.0 && Instr_Block_Num_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && Instr_Block_Num_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_Block_Num_Press.tStart = t;  // (not accounting for frame time here)
       Instr_Block_Num_Press.frameNStart = frameN;  // exact frame index
@@ -6464,34 +6352,16 @@ function Instr_Block_NumRoutineEachFrame(trials) {
     }
 
     if (Instr_Block_Num_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_Block_Num_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_Block_Num_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_Block_Num_Press_allKeys = _Instr_Block_Num_Press_allKeys.concat(theseKeys);
       if (_Instr_Block_Num_Press_allKeys.length > 0) {
         Instr_Block_Num_Press.keys = _Instr_Block_Num_Press_allKeys[0].name;  // just the first key pressed
         Instr_Block_Num_Press.rt = _Instr_Block_Num_Press_allKeys[0].rt;
         // a response ends the routine
-         continueRoutine = false;
+        continueRoutine = false;
       }
     }
     
-    if (t >= 0.0 && _Instr_Block_Num_Press_allKeys.length > 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
-      
-     // psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
-    }
-    
-    frameRemains = TR_Coin.getDuration() - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains + TR_Coin.tStart && TR_Coin.status === PsychoJS.Status.STARTED) {
-     // TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
-      continueRoutine = false;
-    }
-
-    
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -6534,8 +6404,6 @@ function Instr_Block_NumRoutineEnd(trials) {
         }
     
     Instr_Block_Num_Press.stop();
-    TR_Coin.stop();
-    rt_stop_tol = []
     // the Routine "Instr_Block_Num" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6559,8 +6427,12 @@ function TR_Enter_Trials_HandRoutineBegin(trials) {
     TR_Enter_Trials_HandClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    
-    TR_Beep.setVolume(1);
+    TR_Beep_Hand = new sound.Sound({
+    win: psychoJS.window,
+    value: beep,
+    secs: -1,
+    });
+    TR_Beep_Hand.setVolume(1);
     routineTimer.reset(time_limit);
     tr_press_early = 0;
     tr_press_late = 0;
@@ -6579,7 +6451,7 @@ function TR_Enter_Trials_HandRoutineBegin(trials) {
     _TR_Press_Hand_allKeys = [];
     // keep track of which components have finished
     TR_Enter_Trials_HandComponents = [];
-    TR_Enter_Trials_HandComponents.push(TR_Beep);
+    TR_Enter_Trials_HandComponents.push(TR_Beep_Hand);
     TR_Enter_Trials_HandComponents.push(TR_Rec_Frame_Hand);
     TR_Enter_Trials_HandComponents.push(TR_HandShape);
     TR_Enter_Trials_HandComponents.push(TR_Stim_Hand);
@@ -6603,18 +6475,18 @@ function TR_Enter_Trials_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     // start/stop TR_Beep_Hand
-    if (t >= 0.0 && TR_Beep.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && TR_Beep_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Beep.tStart = t;  // (not accounting for frame time here)
-      TR_Beep.frameNStart = frameN;  // exact frame index
-      psychoJS.window.callOnFlip(function(){ TR_Beep.play(); });  // screen flip
-      TR_Beep.status = PsychoJS.Status.STARTED;
+      TR_Beep_Hand.tStart = t;  // (not accounting for frame time here)
+      TR_Beep_Hand.frameNStart = frameN;  // exact frame index
+      psychoJS.window.callOnFlip(function(){ TR_Beep_Hand.play(); });  // screen flip
+      TR_Beep_Hand.status = PsychoJS.Status.STARTED;
       
     }
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Beep.status === PsychoJS.Status.STARTED) {
-      TR_Beep.stop();  // stop the sound (if longer than duration)
-      TR_Beep.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && TR_Beep_Hand.status === PsychoJS.Status.STARTED) {
+      TR_Beep_Hand.stop();  // stop the sound (if longer than duration)
+      TR_Beep_Hand.status = PsychoJS.Status.FINISHED;
     }
     
     // *TR_Rec_Frame_Hand* updates
@@ -6815,7 +6687,6 @@ function TR_Enter_Trials_HandRoutineEnd(trials) {
         }
     
     TR_Press_Hand.stop();
-    TR_Beep.stop();
     // the Routine "TR_Enter_Trials_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6831,8 +6702,13 @@ function TR_Feedback_HandRoutineBegin(trials) {
     t = 0;
     TR_Feedback_HandClock.reset(); // clock
     frameN = -1;
-    
-    TR_Coin.setVolume(sound_vol);
+    // update component parameters for each repeat
+    TR_Feedback_Coin_Hand = new sound.Sound({
+    win: psychoJS.window,
+    value: coin,
+    secs: -1,
+    });
+    TR_Feedback_Coin_Hand.setVolume(sound_vol);
     Tr_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
     Tr_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
     Tr_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
@@ -6844,7 +6720,7 @@ function TR_Feedback_HandRoutineBegin(trials) {
     TR_Stim_Feedback_Hand.setLineColor(new util.Color(feedback_col));
     // keep track of which components have finished
     TR_Feedback_HandComponents = [];
-    TR_Feedback_HandComponents.push(TR_Coin);
+    TR_Feedback_HandComponents.push(TR_Feedback_Coin_Hand);
     TR_Feedback_HandComponents.push(Tr_Rec_Frame_Feedback_Hand);
     TR_Feedback_HandComponents.push(TR_Feedback_Text_Hand);
     TR_Feedback_HandComponents.push(TR_Feedback_HandShape);
@@ -6868,19 +6744,19 @@ function TR_Feedback_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     // start/stop TR_Feedback_Coin_Hand
-    if (t >= 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0 && TR_Feedback_Coin_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
+      TR_Feedback_Coin_Hand.tStart = t;  // (not accounting for frame time here)
+      TR_Feedback_Coin_Hand.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ TR_Feedback_Coin_Hand.play(); });  // screen flip
+      TR_Feedback_Coin_Hand.status = PsychoJS.Status.STARTED;
     }
     
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Coin.status === PsychoJS.Status.STARTED) {
-      //TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && TR_Feedback_Coin_Hand.status === PsychoJS.Status.STARTED) {
+      //TR_Feedback_Coin_Hand.stop();  // stop the sound (if longer than duration)
+      TR_Feedback_Coin_Hand.status = PsychoJS.Status.FINISHED;
     }
     
     // *Tr_Rec_Frame_Feedback_Hand* updates
@@ -6973,7 +6849,7 @@ function TR_Feedback_HandRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    //TR_Coin.stop();  // ensure sound has stopped at end of routine
+   // TR_Feedback_Coin_Hand.stop();  // ensure sound has stopped at end of routine
     // the Routine "TR_Feedback_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -6990,17 +6866,10 @@ function TR_PenaltyRoutineBegin(trials) {
     t = 0;
     TR_PenaltyClock.reset(); // clock
     frameN = -1;
-    // routineTimer.add(2.000000);
-    // // update component parameters for each repeat
-    // routineTimer.reset(2);
-    // countdown = 2;
-    //TR_Beep.setVolume(0);
     // update component parameters for each repeat
     TR_Rec_Frame_Penalty.setLineColor(new util.Color(rec_frame_color));
     TR_Rec_Frame_Penalty.setLineWidth(rec_wd);
     TR_Penalty_Text.setText(tr_penalty_text);
-    // penalty_countdown.setText(countdown);
-    // penalty_countdown.setHeight(0.1);
     TR_Penalty_Press.keys = undefined;
     TR_Penalty_Press.rt = undefined;
     _TR_Penalty_Press_allKeys = [];
@@ -7009,8 +6878,6 @@ function TR_PenaltyRoutineBegin(trials) {
     TR_PenaltyComponents.push(TR_Rec_Frame_Penalty);
     TR_PenaltyComponents.push(TR_Penalty_Text);
     TR_PenaltyComponents.push(TR_Penalty_Press);
-    // TR_PenaltyComponents.push(penalty_countdown);
-    //TR_PenaltyComponents.push(TR_Beep);
     
     for (const thisComponent of TR_PenaltyComponents)
       if ('status' in thisComponent)
@@ -7030,16 +6897,6 @@ function TR_PenaltyRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-
-    // if (t >= 0.0 && penalty_countdown.status === PsychoJS.Status.NOT_STARTED) {
-    //   // keep track of start time/frame for later
-    //   penalty_countdown.tStart = t;  // (not accounting for frame time here)
-    //   penalty_countdown.frameNStart = frameN;  // exact frame index
-      
-    //   penalty_countdown.setAutoDraw(true);
-    // }
-
-
     // *TR_Rec_Frame_Penalty* updates
     if (t >= 0.0 && TR_Rec_Frame_Penalty.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -7079,45 +6936,10 @@ function TR_PenaltyRoutineEachFrame(trials) {
         TR_Penalty_Press.keys = _TR_Penalty_Press_allKeys[0].name;  // just the first key pressed
         TR_Penalty_Press.rt = _TR_Penalty_Press_allKeys[0].rt;
         // a response ends the routine
-       continueRoutine = false;
+        continueRoutine = false;
       }
     }
     
-    // if (_TR_Penalty_Press_allKeys.length > 0 && penalty_countdown.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      
-    //   if (((0 <= t - TR_Penalty_Press.rt) && (t - TR_Penalty_Press.rt < 1))) {
-    //     countdown = 1;
-    //   } else {
-    //       if ((1 <= t - TR_Penalty_Press.rt) && (t - TR_Penalty_Press.rt < 2)) {
-    //           countdown = 0;
-    //       } 
-    //   }
-    //   penalty_countdown.setText(countdown);
-    // }
-
-    // if (t - TR_Penalty_Press.rt >= 2 && penalty_countdown.status === PsychoJS.Status.STARTED && _TR_Penalty_Press_allKeys.length > 0) {
-    //   penalty_countdown.setAutoDraw(false);
-    //   TR_Penalty_Text.setAutoDraw(false);
-    //   TR_Rec_Frame_Penalty.setAutoDraw(false);
-    //   TR_Penalty_Press.status = PsychoJS.Status.FINISHED;
-    // }
-
-    // // play sound for warm up
-    // if (t - TR_Penalty_Press.rt >= 0.0 && TR_Beep.status === PsychoJS.Status.NOT_STARTED && _TR_Penalty_Press_allKeys.length > 0) {
-    //   // keep track of start time/frame for later
-    //   TR_Beep.tStart = t;  // (not accounting for frame time here)
-    //   TR_Beep.frameNStart = frameN;  // exact frame index
-    //   psychoJS.window.callOnFlip(function(){ TR_Beep.play(); });  // screen flip
-    //   TR_Beep.status = PsychoJS.Status.STARTED;
-      
-    // }
-
-    // if (t - TR_Penalty_Press.rt >= 2 && TR_Beep.status === PsychoJS.Status.STARTED) {
-    //   TR_Beep.stop();  // stop the sound (if longer than duration)
-    //   TR_Beep.status = PsychoJS.Status.FINISHED;
-    // } 
-
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -7160,7 +6982,6 @@ function TR_PenaltyRoutineEnd(trials) {
         }
     
     TR_Penalty_Press.stop();
-    //penalty_countdown.setAutoDraw(false);
     // the Routine "TR_Penalty" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -7392,47 +7213,16 @@ function TR_Hand_Accuracy_BoolRoutineEnd(trials) {
   };
 }
 
-var instr_text;
+
 var _Instr_CR_Old_Press_allKeys;
 var Instr_CR_OldComponents;
-var ind_rnd;
-
 function Instr_CR_OldRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Instr_CR_Old'-------
     t = 0;
     Instr_CR_OldClock.reset(); // clock
     frameN = -1;
-    TR_Coin.setVolume(0);
-    stop_tol = 2;
     // update component parameters for each repeat
-    // randomly select a key a response key
-    key_rnd = Math.floor(rng3 * key_list.length) 
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-    // use this to set the key in pre_trial routine
-
-    instr_cr_old_text = `Good Job! You are now ready for the tasks!
-    
-In the upcoming block, rest your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
-
-You will see eight novel symbols on the screen, one at a time. 
-
-Some symbols require a response. Press the (${finger_item}) finger on key (${key_item_c}).
-
-Some symbols do NOT correspond with a key. DO NOT PRESS ANY KEY when they appear. Instead, simply wait for 2 seconds.
-    
-Your job is to figure out whether a symbol requires a response or not.
-
-
-ACCURACY is the priority, so go as slowly as you need to. The more mistaks you make, the longer this block will take.
-
-    
-Ready? Press (space bar) to continue.`
-    ;
-
-    finger_hint_text = `(${finger_item}) finger on (${key_item_c}).`
-
     Instr_CR_Old_Text.setText(instr_cr_old_text);
     Instr_CR_Old_Press.keys = undefined;
     Instr_CR_Old_Press.rt = undefined;
@@ -7442,17 +7232,14 @@ Ready? Press (space bar) to continue.`
     block_count = 0;
     remap = 0;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
-    stop_pair_1 = remap_pair_1;
-    stop_pair_2 = remap_pair_2;
- 
-
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
+    
     // keep track of which components have finished
     Instr_CR_OldComponents = [];
     Instr_CR_OldComponents.push(Instr_CR_Old_Text);
     Instr_CR_OldComponents.push(Instr_CR_Old_Press);
-    Instr_CR_OldComponents.push(TR_Coin);
+    
     for (const thisComponent of Instr_CR_OldComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -7482,7 +7269,7 @@ function Instr_CR_OldRoutineEachFrame(trials) {
 
     
     // *Instr_CR_Old_Press* updates
-    if (t >= 2.0 && Instr_CR_Old_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_CR_Old_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_CR_Old_Press.tStart = t;  // (not accounting for frame time here)
       Instr_CR_Old_Press.frameNStart = frameN;  // exact frame index
@@ -7494,32 +7281,16 @@ function Instr_CR_OldRoutineEachFrame(trials) {
     }
 
     if (Instr_CR_Old_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_CR_Old_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_CR_Old_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_CR_Old_Press_allKeys = _Instr_CR_Old_Press_allKeys.concat(theseKeys);
       if (_Instr_CR_Old_Press_allKeys.length > 0) {
         Instr_CR_Old_Press.keys = _Instr_CR_Old_Press_allKeys[0].name;  // just the first key pressed
         Instr_CR_Old_Press.rt = _Instr_CR_Old_Press_allKeys[0].rt;
         // a response ends the routine
-       continueRoutine = false;
+        continueRoutine = false;
       }
     }
-
-    if (t >= 0.0 && _Instr_CR_Old_Press_allKeys.length > 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
-      
-     // psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
-    }
     
-    frameRemains = TR_Coin.getDuration() - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains + TR_Coin.tStart && TR_Coin.status === PsychoJS.Status.STARTED) {
-     // TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
-      continueRoutine = false;
-    }
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -7562,7 +7333,6 @@ function Instr_CR_OldRoutineEnd(trials) {
         }
     
     Instr_CR_Old_Press.stop();
-    TR_Coin.stop();
     // the Routine "Instr_CR_Old" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -7576,7 +7346,6 @@ var symb_g_item;
 var symb_r_item;
 var interval_ind;
 var Pre_TrialComponents;
-var symb_type;
 function Pre_TrialRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Pre_Trial'-------
@@ -7584,43 +7353,24 @@ function Pre_TrialRoutineBegin(trials) {
     Pre_TrialClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    Finger_Hint_Text.setText(finger_hint_text);
     Pre_Trial_Rec_Frame.setOpacity(rec_frame_opacity);
     Pre_Trial_Rec_Frame.setLineColor(new util.Color(rec_frame_color));
     Pre_Trial_Rec_Frame.setLineWidth(rec_wd);
     stimnum_item = seq_stimnum[trial_count];
+    key_item = seq_key[trial_count];
     symb_item = seq_symb[trial_count];
-    // judge whether the stimnum_item is number or symbol
-    if ([1,2,3,4].includes(symb_item)){
-      key_item = key_list[letter_rnd];
-      symb_type = "number";
-    } else {
-      key_item = key_list[key_rnd];
-      symb_type = "symbol";
-    }
-
-    symb_g_item = seq_symb_g[trial_count];
-    symb_r_item = seq_symb_r[trial_count];
+    //symb_g_item = seq_symb_g[trial_count];
+    //symb_r_item = seq_symb_r[trial_count];
     keynum_item = seq_keynum[trial_count];
-    if ((block_type === "TR") && (remap === 1)) {
+    if ((block_type === "TR")) {
         interval_ind = prep_time_ind[stimnum_item][trial_count_item[stimnum_item]];
         prep_time = ((Math.random() * (prep_time_interval[interval_ind][1] - prep_time_interval[interval_ind][0])) + prep_time_interval[interval_ind][0]);
         stim_start_time = ((prep_time_range[1] - prep_time) + beep_lead_in);
         trial_count_item[stimnum_item] = (trial_count_item[stimnum_item] + 1);
-    } else if ((block_type === "TR") && (remap === 0)) {
-          if (symb_type === "symbol") {
-            interval_ind = prep_time_ind[stimnum_item][trial_count_item[stimnum_item]];
-            prep_time = ((Math.random() * (prep_time_interval[interval_ind][1] - prep_time_interval[interval_ind][0])) + prep_time_interval[interval_ind][0]);
-            stim_start_time = ((prep_time_range[1] - prep_time) + beep_lead_in);
-            trial_count_item[stimnum_item] = (trial_count_item[stimnum_item] + 1);
-          } else if (symb_type === "number"){
-            prep_time = Math.random() * (1.2 - 0.4) + 0.4;
-            stim_start_time = ((prep_time_range[1] - prep_time) + beep_lead_in);
-            }
-      } else {
+    } else {
         stim_start_time = 99;
         prep_time = 99;
-        }
+    }
     
     // keep track of which components have finished
     Pre_TrialComponents = [];
@@ -7643,15 +7393,6 @@ function Pre_TrialRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-
-    if (t >= 0.0 ) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
     // *Pre_Trial_Rec_Frame* updates
     if (t >= 0.0 && Pre_Trial_Rec_Frame.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -7665,12 +7406,6 @@ function Pre_TrialRoutineEachFrame(trials) {
     if (Pre_Trial_Rec_Frame.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       Pre_Trial_Rec_Frame.setAutoDraw(false);
     }
-
-    if (t >= frameRemains) {
-      Finger_Hint_Text.setAutoDraw(false);
-    }
-
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -7737,39 +7472,28 @@ function Pre_TrialRoutineEnd(trials) {
 
 var _RT_Press_allKeys;
 var RT_Enter_TrialComponents;
-var jitter;
 function RT_Enter_TrialRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'RT_Enter_Trial'-------
     t = 0;
     RT_Enter_TrialClock.reset(); // clock
     frameN = -1;
-
-    jitter = 0;
-
     // update component parameters for each repeat
-    Finger_Hint_Text.setText(finger_hint_text);
     RT_Rec_Frame.setOpacity(rec_frame_opacity);
     RT_Rec_Frame.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame.setLineWidth(rec_wd);
+    //RT_Stim_Image.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
 
-    RT_Enter_TrialComponents = [];
-    if (symb_type === "symbol"){
-      RT_Stim_Image.setImage(symb_item);
-      RT_Enter_TrialComponents.push(RT_Stim_Image);
-    } else if (symb_type === "number") {
-      Letter.setColor(new util.Color('white'));
-      Letter.setText(symb_item);
-      RT_Enter_TrialComponents.push(Letter)
-    }
-    
     RT_Press.keys = undefined;
     RT_Press.rt = undefined;
     _RT_Press_allKeys = [];
     // keep track of which components have finished
-    
+    RT_Enter_TrialComponents = [];
     RT_Enter_TrialComponents.push(RT_Rec_Frame);
     //RT_Enter_TrialComponents.push(RT_Stim_Image);
+    RT_Enter_TrialComponents.push(Letter)
     RT_Enter_TrialComponents.push(RT_Press);
     
     for (const thisComponent of RT_Enter_TrialComponents)
@@ -7790,15 +7514,6 @@ function RT_Enter_TrialRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
-
     // *RT_Rec_Frame* updates
     if (t >= 0.0 && RT_Rec_Frame.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -7808,28 +7523,19 @@ function RT_Enter_TrialRoutineEachFrame(trials) {
       RT_Rec_Frame.setAutoDraw(true);
     }
 
-    if (symb_type === "symbol"){
+    
     // *RT_Stim_Image* updates
-      if (t >= jitter && RT_Stim_Image.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        RT_Stim_Image.tStart = t;  // (not accounting for frame time here)
-        RT_Stim_Image.frameNStart = frameN;  // exact frame index
-        
-        RT_Stim_Image.setAutoDraw(true);
-      }
-    } else if (symb_type === "number") {
-      if (t >= jitter && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
+      
+      Letter.setAutoDraw(true);
     }
 
     
     // *RT_Press* updates
-    if (t >= jitter && RT_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && RT_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       RT_Press.tStart = t;  // (not accounting for frame time here)
       RT_Press.frameNStart = frameN;  // exact frame index
@@ -7884,8 +7590,7 @@ function RT_Enter_TrialRoutineEachFrame(trials) {
 }
 
 
-var feedback_image;
-var feedback_color;
+var feedback_col;
 function RT_Enter_TrialRoutineEnd(trials) {
   return function () {
     //------Ending Routine 'RT_Enter_Trial'-------
@@ -7897,13 +7602,11 @@ function RT_Enter_TrialRoutineEnd(trials) {
     sound_vol = 0;
     if (RT_Press.corr) {
         corr = 1;
-        feedback_image = symb_g_item;
         feedback_col = color_p;
         feedback_dur = 0.3;
         sound_vol = 1;
     } else {
         corr = 0;
-        feedback_image = symb_r_item;
         feedback_col = color_n;
         feedback_dur = 1;
     }
@@ -7917,10 +7620,6 @@ function RT_Enter_TrialRoutineEnd(trials) {
     if ((block_type === "RT")) {
         trial_count = (trial_count + 1);
     }
-
-    if ((block_type === "CR") && (remap === 0)) {
-      trial_count = (trial_count + 1);
-  }
     
     // was no response the correct answer?!
     if (RT_Press.keys === undefined) {
@@ -7955,28 +7654,25 @@ function RT_FeedbackRoutineBegin(trials) {
     RT_FeedbackClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    Finger_Hint_Text.setText(finger_hint_text);
-    TR_Coin.setVolume(sound_vol);
+    CR_Feedback_Coin_Old = new sound.Sound({
+    win: psychoJS.window,
+    value: coin,
+    secs: -1,
+    });
+    CR_Feedback_Coin_Old.setVolume(sound_vol);
     RT_Rec_Frame_Feedback.setOpacity(rec_frame_opacity);
     RT_Rec_Frame_Feedback.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame_Feedback.setLineWidth(rec_wd);
-
-    RT_FeedbackComponents = [];
-    if (symb_type === "symbol"){
-      RT_Feedback_Image.setImage(feedback_image);
-      RT_FeedbackComponents.push(RT_Feedback_Image);
-
-    } else if (symb_type === "number") {
-      Letter.setColor(new util.Color(feedback_col));
-      Letter.setText(symb_item);
-      RT_FeedbackComponents.push(Letter);
-    }
+    //RT_Feedback_Image.setImage(feedback_image);
+    Letter.setColor(new util.Color(feedback_col));
+    Letter.setText(symb_item);
     // keep track of which components have finished
-    
-    RT_FeedbackComponents.push(TR_Coin);
+    RT_FeedbackComponents = [];
+    RT_FeedbackComponents.push(CR_Feedback_Coin_Old);
     RT_FeedbackComponents.push(RT_Rec_Frame_Feedback);
-    
-    
+    //RT_FeedbackComponents.push(RT_Feedback_Image);
+    RT_FeedbackComponents.push(Letter);
+
     for (const thisComponent of RT_FeedbackComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -7994,29 +7690,19 @@ function RT_FeedbackRoutineEachFrame(trials) {
     t = RT_FeedbackClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
-
-
     // start/stop CR_Feedback_Coin_Old
-    if (t >= 0.0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && CR_Feedback_Coin_Old.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
+      CR_Feedback_Coin_Old.tStart = t;  // (not accounting for frame time here)
+      CR_Feedback_Coin_Old.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ CR_Feedback_Coin_Old.play(); });  // screen flip
+      CR_Feedback_Coin_Old.status = PsychoJS.Status.STARTED;
     }
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Coin.status === PsychoJS.Status.STARTED) {
-      //TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && CR_Feedback_Coin_Old.status === PsychoJS.Status.STARTED) {
+      //CR_Feedback_Coin_Old.stop();  // stop the sound (if longer than duration)
+      CR_Feedback_Coin_Old.status = PsychoJS.Status.FINISHED;
     }
     
     // *RT_Rec_Frame_Feedback* updates
@@ -8033,44 +7719,19 @@ function RT_FeedbackRoutineEachFrame(trials) {
       RT_Rec_Frame_Feedback.setAutoDraw(false);
     }
     
-    if (t >= frameRemains) {
+    // *RT_Feedback_Image* updates
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      Finger_Hint_Text.setAutoDraw(false);
+      Letter.setAutoDraw(true);
     }
 
-
-    if (symb_type === "symbol"){
-      // *RT_Feedback_Image* updates
-      if (t >= 0.0 && RT_Feedback_Image.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        RT_Feedback_Image.tStart = t;  // (not accounting for frame time here)
-        RT_Feedback_Image.frameNStart = frameN;  // exact frame index
-        
-        RT_Feedback_Image.setAutoDraw(true);
-      }
-
-      frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (RT_Feedback_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        RT_Feedback_Image.setAutoDraw(false);
-      }
-    } else if (symb_type === "number") {
-      if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
-  
-      frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        Letter.setAutoDraw(false);
-      }
+    frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -8106,7 +7767,7 @@ function RT_FeedbackRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    //TR_Coin.stop();  // ensure sound has stopped at end of routine
+    //CR_Feedback_Coin_Old.stop();  // ensure sound has stopped at end of routine
     // the Routine "RT_Feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -8145,8 +7806,26 @@ function Criterion_DetRoutineBegin(trials) {
         }
         return true;
     }
-    if (CR_Crit(sum_corr)) {
-      trials.finished =  true;
+
+    
+    if (remap === 0) {
+      if (CR_Crit(sum_corr)) {
+        trials.finished =  true;
+      }
+    } else if (remap === 1) {
+      
+      // extract those used elements
+      sum_corr_subset = []
+      for (var i = 0, _pj_a = subset_dummie.length; (i < _pj_a); i += 1) {
+        sum_corr_subset.push(sum_corr[subset_dummie[i]])
+      }
+        console.log(subset_dummie)
+        console.log(sum_corr)
+        console.log(sum_corr_subset)
+
+      if (CR_Crit(sum_corr_subset)) {
+        trials.finished =  true;
+      }
     }
     
     // keep track of which components have finished
@@ -8220,32 +7899,6 @@ function Instr_TR_Old_PreRoutineBegin(trials) {
     t = 0;
     Instr_TR_Old_PreClock.reset(); // clock
     frameN = -1;
-
-    key_item = key_list[key_rnd];
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-
-
-    instr_tr_old_pre_text = `In the following ${tr_block_old} blocks, keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
-
-You will hear 4 beeps and:
-    
-If you see a symbol that requires a response, press a key (shown on next page) ON the fourth beep.      
-    
-If you see a symbol that does NOT require a response, DO NOT PRESS ANYTHING.
-    
-    
-    
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. If you decide to press, remember to respond ON the fourth beep.
-    
-This task is designed to be difficult, so it is okay to make a guess.
-    
-    
-    
-Press (space bar) to start.`
-        ;
-
-
     // update component parameters for each repeat
     Instr_TR_Old_Pre_text.setText(instr_tr_old_pre_text);
     Instr_TR_Old_Pre_Press.keys = undefined;
@@ -8256,13 +7909,10 @@ Press (space bar) to start.`
     remap = 0;
     block_count = 0;
     pre = 1;
-    post = 0;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
-
-    // keep track of which components have finished
     // keep track of which components have finished
     Instr_TR_Old_PreComponents = [];
     Instr_TR_Old_PreComponents.push(Instr_TR_Old_Pre_text);
@@ -8309,7 +7959,7 @@ function Instr_TR_Old_PreRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Pre_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Pre_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_TR_Old_Pre_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_TR_Old_Pre_Press_allKeys = _Instr_TR_Old_Pre_Press_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Pre_Press_allKeys.length > 0) {
         Instr_TR_Old_Pre_Press.keys = _Instr_TR_Old_Pre_Press_allKeys[0].name;  // just the first key pressed
@@ -8378,8 +8028,12 @@ function TR_Enter_TrialsRoutineBegin(trials) {
     TR_Enter_TrialsClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    
-    TR_Beep.setVolume(1);
+    TR_Beep_Hand = new sound.Sound({
+    win: psychoJS.window,
+    value: beep,
+    secs: -1,
+    });
+    TR_Beep_Hand.setVolume(1);
     routineTimer.reset(time_limit);
     tr_press_early = 0;
     tr_press_late = 0;
@@ -8388,30 +8042,21 @@ function TR_Enter_TrialsRoutineBegin(trials) {
     tr_penalty = 0;
     tr_feedback = 0;
     
-    Finger_Hint_Text.setText(finger_hint_text);
     TR_Rec_Frame.setOpacity(rec_frame_opacity);
     TR_Rec_Frame.setLineColor(new util.Color(rec_frame_color));
     TR_Rec_Frame.setLineWidth(rec_wd);
-    
-
-    TR_Enter_TrialsComponents = [];
-    if (symb_type === "symbol"){
-      TR_Stim_Image.setImage(symb_item);
-      TR_Enter_TrialsComponents.push(TR_Stim_Image);
-    } else if (symb_type === "number") {
-      Letter.setColor(new util.Color('white'));
-      Letter.setText(symb_item);
-      TR_Enter_TrialsComponents.push(Letter);
-    }
-    
+    //TR_Stim_Image.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     TR_Press.keys = undefined;
     TR_Press.rt = undefined;
     _TR_Press_allKeys = [];
     // keep track of which components have finished
-    
-    TR_Enter_TrialsComponents.push(TR_Beep);
+    TR_Enter_TrialsComponents = [];
+    TR_Enter_TrialsComponents.push(TR_Beep_Hand);
     TR_Enter_TrialsComponents.push(TR_Rec_Frame);
-    
+    //TR_Enter_TrialsComponents.push(TR_Stim_Image);
+    TR_Enter_TrialsComponents.push(Letter);
     TR_Enter_TrialsComponents.push(TR_Press);
     
     for (const thisComponent of TR_Enter_TrialsComponents)
@@ -8431,29 +8076,19 @@ function TR_Enter_TrialsRoutineEachFrame(trials) {
     t = TR_Enter_TrialsClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
-
     // start/stop TR_Beep
-    if (t >= 0.0 && TR_Beep.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && TR_Beep_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Beep.tStart = t;  // (not accounting for frame time here)
-      TR_Beep.frameNStart = frameN;  // exact frame index
+      TR_Beep_Hand.tStart = t;  // (not accounting for frame time here)
+      TR_Beep_Hand.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Beep.play(); });  // screen flip
-      TR_Beep.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ TR_Beep_Hand.play(); });  // screen flip
+      TR_Beep_Hand.status = PsychoJS.Status.STARTED;
     }
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Beep.status === PsychoJS.Status.STARTED) {
-      TR_Beep.stop();  // stop the sound (if longer than duration)
-      TR_Beep.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && TR_Beep_Hand.status === PsychoJS.Status.STARTED) {
+      //TR_Beep.stop();  // stop the sound (if longer than duration)
+      TR_Beep_Hand.status = PsychoJS.Status.FINISHED;
     }
     
     // *TR_Rec_Frame* updates
@@ -8469,44 +8104,19 @@ function TR_Enter_TrialsRoutineEachFrame(trials) {
     if (TR_Rec_Frame.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       TR_Rec_Frame.setAutoDraw(false);
     }
-
-
-    if (t >= frameRemains) {
+    
+    // *TR_Stim_Image* updates
+    if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      Finger_Hint_Text.setAutoDraw(false);
+      Letter.setAutoDraw(true);
     }
 
-    
-    if (symb_type === "symbol"){
-      // *TR_Stim_Image* updates
-      if (t >= stim_start_time && TR_Stim_Image.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        TR_Stim_Image.tStart = t;  // (not accounting for frame time here)
-        TR_Stim_Image.frameNStart = frameN;  // exact frame index
-        
-        TR_Stim_Image.setAutoDraw(true);
-      }
-
-      frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (TR_Stim_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        TR_Stim_Image.setAutoDraw(false);
-      }
-    } else if (symb_type === "number") {
-      if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
-  
-      frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        Letter.setAutoDraw(false);
-      }
+    frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
     // *TR_Press* updates
@@ -8581,11 +8191,9 @@ function TR_Enter_TrialsRoutineEnd(trials) {
     if ((TR_Press.keys !== undefined)) {
         if (TR_Press.corr) {
             corr = 1;
-            feedback_image = symb_g_item;
             feedback_col = color_p;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
             feedback_col = color_n;
         }
         if ((TR_Press.rt < ((time_limit - 0.2) - 0.3))) {
@@ -8681,31 +8289,28 @@ function TR_FeedbackRoutineBegin(trials) {
     t = 0;
     TR_FeedbackClock.reset(); // clock
     frameN = -1;
-    
     // update component parameters for each repeat
-    Finger_Hint_Text.setText(finger_hint_text);
-    TR_Coin.setVolume(sound_vol);
+    TR_Feedback_Coin = new sound.Sound({
+    win: psychoJS.window,
+    value: coin,
+    secs: -1,
+    });
+    TR_Feedback_Coin.setVolume(sound_vol);
     Tr_Rec_Frame_Feedback.setOpacity(rec_frame_opacity);
     Tr_Rec_Frame_Feedback.setLineColor(new util.Color(rec_frame_color));
     Tr_Rec_Frame_Feedback.setLineWidth(rec_wd);
     TR_Feedback_Text.setColor(new util.Color(tr_feedback_text_color));
     TR_Feedback_Text.setText(tr_feedback_text);
-
-    TR_FeedbackComponents = [];
-    if (symb_type === "symbol"){
-      TR_Feedback_Image.setImage(feedback_image);
-      TR_FeedbackComponents.push(TR_Feedback_Image);
-    } else if (symb_type === "number") {
-      Letter.setText(symb_item);
-      Letter.setColor(new util.Color(feedback_col));
-      TR_FeedbackComponents.push(Letter);
-    }
+    //TR_Feedback_Image.setImage(feedback_image);
+    Letter.setText(symb_item);
+    Letter.setColor(new util.Color(feedback_col));
     // keep track of which components have finished
-    
-    TR_FeedbackComponents.push(TR_Coin);
+    TR_FeedbackComponents = [];
+    TR_FeedbackComponents.push(TR_Feedback_Coin);
     TR_FeedbackComponents.push(Tr_Rec_Frame_Feedback);
     TR_FeedbackComponents.push(TR_Feedback_Text);
-    
+    //TR_FeedbackComponents.push(TR_Feedback_Image);
+    TR_FeedbackComponents.push(Letter);
     
     for (const thisComponent of TR_FeedbackComponents)
       if ('status' in thisComponent)
@@ -8724,27 +8329,19 @@ function TR_FeedbackRoutineEachFrame(trials) {
     t = TR_FeedbackClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
     // start/stop TR_Feedback_Coin
-    if (t >= 0.0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && TR_Feedback_Coin.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
+      TR_Feedback_Coin.tStart = t;  // (not accounting for frame time here)
+      TR_Feedback_Coin.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ TR_Feedback_Coin.play(); });  // screen flip
+      TR_Feedback_Coin.status = PsychoJS.Status.STARTED;
     }
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Coin.status === PsychoJS.Status.STARTED) {
-      //TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
+    if (t >= frameRemains && TR_Feedback_Coin.status === PsychoJS.Status.STARTED) {
+      //TR_Feedback_Coin.stop();  // stop the sound (if longer than duration)
+      TR_Feedback_Coin.status = PsychoJS.Status.FINISHED;
     }
     
     // *Tr_Rec_Frame_Feedback* updates
@@ -8760,15 +8357,6 @@ function TR_FeedbackRoutineEachFrame(trials) {
     if (Tr_Rec_Frame_Feedback.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       Tr_Rec_Frame_Feedback.setAutoDraw(false);
     }
-
-    if (t >= frameRemains) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(false);
-    }
-
     
     // *TR_Feedback_Text* updates
     if (t >= 0.0 && TR_Feedback_Text.status === PsychoJS.Status.NOT_STARTED) {
@@ -8784,35 +8372,19 @@ function TR_FeedbackRoutineEachFrame(trials) {
       TR_Feedback_Text.setAutoDraw(false);
     }
     
-    if (symb_type === "symbol"){
-      // *TR_Feedback_Image* updates
-      if (t >= 0.0 && TR_Feedback_Image.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        TR_Feedback_Image.tStart = t;  // (not accounting for frame time here)
-        TR_Feedback_Image.frameNStart = frameN;  // exact frame index
-        
-        TR_Feedback_Image.setAutoDraw(true);
-      }
-
-      frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (TR_Feedback_Image.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        TR_Feedback_Image.setAutoDraw(false);
-      }
-    } else if (symb_type === "number") {
-      if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
-  
-      frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        Letter.setAutoDraw(false);
-      }
+    // *TR_Feedback_Image* updates
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
+      
+      Letter.setAutoDraw(true);
     }
 
+    frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
+    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -8848,7 +8420,7 @@ function TR_FeedbackRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    //TR_Coin.stop();  // ensure sound has stopped at end of routine
+    //TR_Feedback_Coin.stop();  // ensure sound has stopped at end of routine
     // the Routine "TR_Feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -8865,8 +8437,6 @@ function Instr_RTRoutineBegin(trials) {
     t = 0;
     Instr_RTClock.reset(); // clock
     frameN = -1;
-    TR_Coin.setVolume(1);
-    stop_tol = 0.5;
     // update component parameters for each repeat
     Instr_RT_Text.setText(instr_rt_text);
     Instr_RT_Press.keys = undefined;
@@ -8876,23 +8446,21 @@ function Instr_RTRoutineBegin(trials) {
     stim_type = "Symb";
     remap = 0;
     if ((session === 1)) {
-      block_count = 0;
-  } else {
-      if ((session === 2)) {
-          block_count = 5;
-      }
-  }
-  symb = symb_map;
-  symb_g = symb_g_map;
-  symb_r = symb_r_map;
-  
-  
+        block_count = 0;
+    } else {
+        if ((session === 2)) {
+            block_count = 5;
+        }
+    }
+    symb = symb_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
+    
     // keep track of which components have finished
     Instr_RTComponents = [];
     Instr_RTComponents.push(Instr_RT_Text);
     Instr_RTComponents.push(Instr_RT_Press);
-    Instr_RTComponents.push(TR_Coin)
-
+    
     for (const thisComponent of Instr_RTComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -8922,7 +8490,7 @@ function Instr_RTRoutineEachFrame(trials) {
 
     
     // *Instr_RT_Press* updates
-    if (t >= 2.0 && Instr_RT_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_RT_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_RT_Press.tStart = t;  // (not accounting for frame time here)
       Instr_RT_Press.frameNStart = frameN;  // exact frame index
@@ -8934,32 +8502,16 @@ function Instr_RTRoutineEachFrame(trials) {
     }
 
     if (Instr_RT_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_RT_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_RT_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_RT_Press_allKeys = _Instr_RT_Press_allKeys.concat(theseKeys);
       if (_Instr_RT_Press_allKeys.length > 0) {
         Instr_RT_Press.keys = _Instr_RT_Press_allKeys[0].name;  // just the first key pressed
         Instr_RT_Press.rt = _Instr_RT_Press_allKeys[0].rt;
         // a response ends the routine
-       continueRoutine = false;
+        continueRoutine = false;
       }
     }
     
-    if (t >= 0.0 && _Instr_RT_Press_allKeys.length > 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
-      
-     // psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
-    }
-    
-    frameRemains = TR_Coin.getDuration() - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains + TR_Coin.tStart && TR_Coin.status === PsychoJS.Status.STARTED) {
-     // TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
-      continueRoutine = false;
-    }
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -9002,7 +8554,6 @@ function Instr_RTRoutineEnd(trials) {
         }
     
     Instr_RT_Press.stop();
-    TR_Coin.stop();
     // the Routine "Instr_RT" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -9019,33 +8570,6 @@ function Instr_TR_Old_PostRoutineBegin(trials) {
     t = 0;
     Instr_TR_Old_PostClock.reset(); // clock
     frameN = -1;
-
-    key_item = key_list[key_rnd];
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-
-
-    instr_tr_old_post_text = `In the following ${tr_block_old} blocks, we will do the 4-beep task.
-    
-Remember to keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
-
-
-If you see a symbol that requires a response, press a key (shown on next page) ON the fourth beep.      
-
-If you see a symbol that does NOT require a response, DO NOT PRESS ANYTHING.
-
-
-
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. If you decide to press, remember to respond ON the fourth beep.
-
-This task is designed to be difficult, so it is okay to make a guess.
-
-
-
-
-Press (space bar) to start.`
-    ;
-
     // update component parameters for each repeat
     Instr_TR_Old_Post_text.setText(instr_tr_old_post_text);
     Instr_TR_Old_Post_Press.keys = undefined;
@@ -9055,14 +8579,11 @@ Press (space bar) to start.`
     stim_type = "Symb";
     remap = 0;
     block_count = 0;
-    pre = 0;
     post = 1;
     symb = symb_map;
-    symb_g = symb_g_map;
-    symb_r = symb_r_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
     
-
-
     // keep track of which components have finished
     Instr_TR_Old_PostComponents = [];
     Instr_TR_Old_PostComponents.push(Instr_TR_Old_Post_text);
@@ -9109,7 +8630,7 @@ function Instr_TR_Old_PostRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Post_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_TR_Old_Post_Press_allKeys = _Instr_TR_Old_Post_Press_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Post_Press_allKeys.length > 0) {
         Instr_TR_Old_Post_Press.keys = _Instr_TR_Old_Post_Press_allKeys[0].name;  // just the first key pressed
@@ -9177,43 +8698,7 @@ function Instr_CR_NewRoutineBegin(trials) {
     t = 0;
     Instr_CR_NewClock.reset(); // clock
     frameN = -1;
-    TR_Coin.setVolume(0);
-    stop_tol = 2;
-
-    rt_stop_tol = [];
     // update component parameters for each repeat
-    // randomly select a key a response key
-    key_rnd = Math.floor(rng3 * key_list.length) 
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-    // use this to set the key in pre_trial routine
-
-
-    instr_cr_new_text = `Great job.
-    
-In next block, keep resting your Index, Middle, Ring, Little fingers on keys (H, U, I, L).
-
-You will see the same eight symbols, but whether each symbol requires a response or not may become different.
-
-If a symbol requires a response, press the (${finger_item}) finger on key (${key_item_c}) . 
-
-For symbols that do not require a response, DO NOT PRESS ANY KEY when they appear. Instead, simply wait for 2 seconds.    
-
-Your job is to figure out whether a symbol requires a response.
-
-
-  
-ACCURACY is the priority, so go as slowly as you need to. The more mistaks you make, the longer this block will take.
-        
-        
-Press (space bar) to start.`
-    ;
-
-
-    finger_hint_text = `(${finger_item}) finger on (${key_item_c}).`
-
-    stop_pair_1 = probe_pair_1;
-    stop_pair_2 = remap_pair_1;
     Instr_CR_New_Text.setText(instr_cr_new_text);
     Instr_CR_New_Press.keys = undefined;
     Instr_CR_New_Press.rt = undefined;
@@ -9225,13 +8710,13 @@ Press (space bar) to start.`
     
     if (grp_stop === 1) {
         symb = symb_map;
-        symb_g = symb_g_map;
-        symb_r = symb_r_map;
+        //symb_g = symb_g_map;
+        //symb_r = symb_r_map;
     } else {
         if (grp_swap === 1) {
             symb = symb_remap;
-            symb_g = symb_g_remap;
-            symb_r = symb_r_remap;
+            //symb_g = symb_g_remap;
+            //symb_r = symb_r_remap;
         }
     }
     
@@ -9239,7 +8724,7 @@ Press (space bar) to start.`
     Instr_CR_NewComponents = [];
     Instr_CR_NewComponents.push(Instr_CR_New_Text);
     Instr_CR_NewComponents.push(Instr_CR_New_Press);
-    Instr_CR_NewComponents.push(TR_Coin);
+    
     for (const thisComponent of Instr_CR_NewComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -9269,7 +8754,7 @@ function Instr_CR_NewRoutineEachFrame(trials) {
 
     
     // *Instr_CR_New_Press* updates
-    if (t >= 2.0 && Instr_CR_New_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_CR_New_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_CR_New_Press.tStart = t;  // (not accounting for frame time here)
       Instr_CR_New_Press.frameNStart = frameN;  // exact frame index
@@ -9281,32 +8766,16 @@ function Instr_CR_NewRoutineEachFrame(trials) {
     }
 
     if (Instr_CR_New_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_CR_New_Press.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_CR_New_Press.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_CR_New_Press_allKeys = _Instr_CR_New_Press_allKeys.concat(theseKeys);
       if (_Instr_CR_New_Press_allKeys.length > 0) {
         Instr_CR_New_Press.keys = _Instr_CR_New_Press_allKeys[0].name;  // just the first key pressed
         Instr_CR_New_Press.rt = _Instr_CR_New_Press_allKeys[0].rt;
         // a response ends the routine
-         continueRoutine = false;
+        continueRoutine = false;
       }
     }
     
-    if (t >= 0.0 && _Instr_CR_New_Press_allKeys.length > 0 && TR_Coin.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Coin.tStart = t;  // (not accounting for frame time here)
-      TR_Coin.frameNStart = frameN;  // exact frame index
-      
-    //  psychoJS.window.callOnFlip(function(){ TR_Coin.play(); });  // screen flip
-      TR_Coin.status = PsychoJS.Status.STARTED;
-    }
-    
-    frameRemains = TR_Coin.getDuration() - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains + TR_Coin.tStart && TR_Coin.status === PsychoJS.Status.STARTED) {
-     // TR_Coin.stop();  // stop the sound (if longer than duration)
-      TR_Coin.status = PsychoJS.Status.FINISHED;
-      continueRoutine = false;
-    }
-
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -9349,7 +8818,6 @@ function Instr_CR_NewRoutineEnd(trials) {
         }
     
     Instr_CR_New_Press.stop();
-    TR_Coin.stop();
     // the Routine "Instr_CR_New" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -9360,39 +8828,27 @@ function Instr_CR_NewRoutineEnd(trials) {
 
 var _RT_Press_Stop_allKeys;
 var RT_Enter_Trial_StopComponents;
-
 function RT_Enter_Trial_StopRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'RT_Enter_Trial_Stop'-------
     t = 0;
     RT_Enter_Trial_StopClock.reset(); // clock
     frameN = -1;
-
-    jitter = 0;
-
     // update component parameters for each repeat
-    Finger_Hint_Text.setText(finger_hint_text);
     RT_Rec_Frame_Stop.setOpacity(rec_frame_opacity);
     RT_Rec_Frame_Stop.setLineColor(new util.Color(rec_frame_color));
     RT_Rec_Frame_Stop.setLineWidth(rec_wd);
-
-    RT_Enter_Trial_StopComponents = [];
-    if (symb_type === "symbol"){
-      RT_Stim_Image_Stop.setImage(symb_item);
-      RT_Enter_Trial_StopComponents.push(RT_Stim_Image_Stop);
-    } else if (symb_type === "number") {
-      Letter.setColor(new util.Color('white'));
-      Letter.setText(symb_item);
-      RT_Enter_Trial_StopComponents.push(Letter);
-    }
-
+    //RT_Stim_Image_Stop.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     RT_Press_Stop.keys = undefined;
     RT_Press_Stop.rt = undefined;
     _RT_Press_Stop_allKeys = [];
     // keep track of which components have finished
-    
+    RT_Enter_Trial_StopComponents = [];
     RT_Enter_Trial_StopComponents.push(RT_Rec_Frame_Stop);
-    
+    //RT_Enter_Trial_StopComponents.push(RT_Stim_Image_Stop);
+    RT_Enter_Trial_StopComponents.push(Letter);
     RT_Enter_Trial_StopComponents.push(RT_Press_Stop);
     
     for (const thisComponent of RT_Enter_Trial_StopComponents)
@@ -9412,14 +8868,7 @@ function RT_Enter_Trial_StopRoutineEachFrame(trials) {
     t = RT_Enter_Trial_StopClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
+    
     // *RT_Rec_Frame_Stop* updates
     if (t >= 0.0 && RT_Rec_Frame_Stop.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -9429,51 +8878,25 @@ function RT_Enter_Trial_StopRoutineEachFrame(trials) {
       RT_Rec_Frame_Stop.setAutoDraw(true);
     }
 
-    frameRemains = stop_tol + jitter  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = stop_tol  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (RT_Rec_Frame_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       RT_Rec_Frame_Stop.setAutoDraw(false);
     }
-
-    if (t >= frameRemains) {
+    
+    // *RT_Stim_Image_Stop* updates
+    if (t >= 0.0 && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      Finger_Hint_Text.setAutoDraw(false);
+      Letter.setAutoDraw(true);
     }
 
-    
-    if (symb_type === "symbol"){
-      // *RT_Stim_Image_Stop* updates
-      if (t >= jitter && RT_Stim_Image_Stop.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        RT_Stim_Image_Stop.tStart = t;  // (not accounting for frame time here)
-        RT_Stim_Image_Stop.frameNStart = frameN;  // exact frame index
-        
-        RT_Stim_Image_Stop.setAutoDraw(true);
-      }
-
-      frameRemains = jitter + stop_tol - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (RT_Stim_Image_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        RT_Stim_Image_Stop.setAutoDraw(false);
-      }
-    } else if (symb_type === "number") {
-      if (t >= jitter && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
-  
-      frameRemains = jitter + stop_tol - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        Letter.setAutoDraw(false);
-      }
+    frameRemains = 0.0 + stop_tol - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
-
-
     // *RT_Press_Stop* updates
     if (t >= 0.0 && RT_Press_Stop.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -9486,7 +8909,7 @@ function RT_Enter_Trial_StopRoutineEachFrame(trials) {
       psychoJS.window.callOnFlip(function() { RT_Press_Stop.clearEvents(); });
     }
 
-    frameRemains = 0.0 + stop_tol + jitter - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + stop_tol - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (RT_Press_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       RT_Press_Stop.status = PsychoJS.Status.FINISHED;
   }
@@ -9544,39 +8967,31 @@ function RT_Enter_Trial_StopRoutineEnd(trials) {
       }
     }
     sound_vol = 0;
-    if ((stop_pair_1.includes(stimnum_item)) || (stop_pair_2.includes(stimnum_item))) {
+    if ((remap_pair_1.includes(stimnum_item)) || (remap_pair_2.includes(stimnum_item))) {
         if ((RT_Press_Stop.keys === undefined)) {
             corr = 1;
-            feedback_image = symb_g_item;
             feedback_col = color_p;
             feedback_dur = 0.3;
             sound_vol = 1;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
             feedback_col = color_n;
             feedback_dur = 1;
         }
-    } else {
+      } else {
         if ((RT_Press_Stop.keys !== undefined)) {
-          
           if (RT_Press_Stop.corr) {
-              rt_stop_tol.push(RT_Press_Stop.rt);
-              console.log(rt_stop_tol)
               corr = 1;
-              feedback_image = symb_g_item;
               feedback_col = color_p;
               feedback_dur = 0.3;
               sound_vol = 1;
           } else {
               corr = 0;
-              feedback_image = symb_r_item;
               feedback_col = color_n;
               feedback_dur = 1;
           }
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
             feedback_col = color_n;
             feedback_dur = 1;
         }
@@ -9632,35 +9047,6 @@ function Instr_TR_NewRoutineBegin(trials) {
     Instr_TR_NewClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    key_item = key_list[key_rnd];
-    key_item_c = key_list_C[key_rnd];
-    finger_item = finger_list[key_rnd];
-
-
-    instr_tr_new_text = `Great job. We are almost there!
-
-Remember to keep resting your Index, Middle, Ring, and Little fingers on keys (H, U, I, L).
-            
-In the last ${tr_block_new_stop} blocks, use the NEW symbol-key map you just learned to do the 4-beep task:
-
-
-If you see a symbol that requires a response, press the (${finger_item}) finger on key (${key_item_c}) ON the fourth beep.      
-
-If you see a symbol that does NOT require a response, DO NOT PRESS ANYTHING.
-
-
-
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. If you decide to press, remember to respond ON the fourth beep.
-
-This task is designed to be difficult, so it is okay to make a guess.
-
-
-
-
-Press (space bar) to start.`
-    ;
-
-
     Instr_TR_Old_Post_text_3.setText(instr_tr_new_text);
     Instr_TR_Old_Post_Press_3.keys = undefined;
     Instr_TR_Old_Post_Press_3.rt = undefined;
@@ -9670,22 +9056,22 @@ Press (space bar) to start.`
     remap = 1;
     block_count = 0;
     if (grp_stop === 1) {
-      symb = symb_map;
-      symb_g = symb_g_map;
-      symb_r = symb_r_map;
-  } else {
-      if (grp_swap === 1) {
-          symb = symb_remap;
-          symb_g = symb_g_remap;
-          symb_r = symb_r_remap;
-      }
-  }
+        symb = symb_map;
+        //symb_g = symb_g_map;
+        //symb_r = symb_r_map;
+    } else {
+        if (grp_swap === 1) {
+            symb = symb_remap;
+            //symb_g = symb_g_remap;
+            //symb_r = symb_r_remap;
+        }
+    }
     
     // keep track of which components have finished
     Instr_TR_NewComponents = [];
     Instr_TR_NewComponents.push(Instr_TR_Old_Post_text_3);
     Instr_TR_NewComponents.push(Instr_TR_Old_Post_Press_3);
-
+    
     for (const thisComponent of Instr_TR_NewComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
@@ -9715,7 +9101,7 @@ function Instr_TR_NewRoutineEachFrame(trials) {
 
     
     // *Instr_TR_Old_Post_Press_3* updates
-    if (t >= 2.0 && Instr_TR_Old_Post_Press_3.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_TR_Old_Post_Press_3.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Instr_TR_Old_Post_Press_3.tStart = t;  // (not accounting for frame time here)
       Instr_TR_Old_Post_Press_3.frameNStart = frameN;  // exact frame index
@@ -9727,16 +9113,16 @@ function Instr_TR_NewRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Post_Press_3.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Post_Press_3.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = Instr_TR_Old_Post_Press_3.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
       _Instr_TR_Old_Post_Press_3_allKeys = _Instr_TR_Old_Post_Press_3_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Post_Press_3_allKeys.length > 0) {
         Instr_TR_Old_Post_Press_3.keys = _Instr_TR_Old_Post_Press_3_allKeys[0].name;  // just the first key pressed
         Instr_TR_Old_Post_Press_3.rt = _Instr_TR_Old_Post_Press_3_allKeys[0].rt;
         // a response ends the routine
-       continueRoutine = false;
+        continueRoutine = false;
       }
     }
-
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -9798,7 +9184,13 @@ function TR_Enter_Trials_StopRoutineBegin(trials) {
     t = 0;
     TR_Enter_Trials_StopClock.reset(); // clock
     frameN = -1;
-    TR_Beep.setVolume(1);
+    // update component parameters for each repeat
+    TR_Beep_Hand = new sound.Sound({
+    win: psychoJS.window,
+    value: beep,
+    secs: -1,
+    });
+    TR_Beep_Hand.setVolume(1);
     routineTimer.reset(time_limit);
     tr_text = 0;
     tr_sound = 0;
@@ -9810,29 +9202,21 @@ function TR_Enter_Trials_StopRoutineBegin(trials) {
     tr_penalty = 0;
     tr_feedback = 0;
     
-    Finger_Hint_Text.setText(finger_hint_text);
     TR_Rec_Frame_Stop.setOpacity(rec_frame_opacity);
     TR_Rec_Frame_Stop.setLineColor(new util.Color(rec_frame_color));
     TR_Rec_Frame_Stop.setLineWidth(rec_wd);
-
-    TR_Enter_Trials_StopComponents = [];
-    if (symb_type === "symbol"){
-      TR_Stim_Image_Stop.setImage(symb_item);
-      TR_Enter_Trials_StopComponents.push(TR_Stim_Image_Stop);
-    } else if (symb_type === "number") {
-      Letter.setColor(new util.Color('white'));
-      Letter.setText(symb_item);
-      TR_Enter_Trials_StopComponents.push(Letter);
-    }
-
+    //TR_Stim_Image_Stop.setImage(symb_item);
+    Letter.setColor(new util.Color('white'));
+    Letter.setText(symb_item);
     TR_Press_Stop.keys = undefined;
     TR_Press_Stop.rt = undefined;
     _TR_Press_Stop_allKeys = [];
     // keep track of which components have finished
-    
-    TR_Enter_Trials_StopComponents.push(TR_Beep);
+    TR_Enter_Trials_StopComponents = [];
+    TR_Enter_Trials_StopComponents.push(TR_Beep_Hand);
     TR_Enter_Trials_StopComponents.push(TR_Rec_Frame_Stop);
-    
+    //TR_Enter_Trials_StopComponents.push(TR_Stim_Image_Stop);
+    TR_Enter_Trials_StopComponents.push(Letter);
     TR_Enter_Trials_StopComponents.push(TR_Press_Stop);
     
     for (const thisComponent of TR_Enter_Trials_StopComponents)
@@ -9852,28 +9236,20 @@ function TR_Enter_Trials_StopRoutineEachFrame(trials) {
     t = TR_Enter_Trials_StopClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    if (t >= 0.0) {
-      // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
-      
-      Finger_Hint_Text.setAutoDraw(true);
-    }
-
     // start/stop TR_Beep_Stop
-    if (t >= 0.0 && TR_Beep.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && TR_Beep_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      TR_Beep.tStart = t;  // (not accounting for frame time here)
-      TR_Beep.frameNStart = frameN;  // exact frame index
+      TR_Beep_Hand.tStart = t;  // (not accounting for frame time here)
+      TR_Beep_Hand.frameNStart = frameN;  // exact frame index
       
-      psychoJS.window.callOnFlip(function(){ TR_Beep.play(); });  // screen flip
-      TR_Beep.status = PsychoJS.Status.STARTED;
+      psychoJS.window.callOnFlip(function(){ TR_Beep_Hand.play(); });  // screen flip
+      TR_Beep_Hand.status = PsychoJS.Status.STARTED;
     }
     
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (t >= frameRemains && TR_Beep.status === PsychoJS.Status.STARTED) {
+    if (t >= frameRemains && TR_Beep_Hand.status === PsychoJS.Status.STARTED) {
       //TR_Beep_Stop.stop();  // stop the sound (if longer than duration)
-      TR_Beep.status = PsychoJS.Status.FINISHED;
+      TR_Beep_Hand.status = PsychoJS.Status.FINISHED;
     }
     
     // *TR_Rec_Frame_Stop* updates
@@ -9889,43 +9265,19 @@ function TR_Enter_Trials_StopRoutineEachFrame(trials) {
     if (TR_Rec_Frame_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       TR_Rec_Frame_Stop.setAutoDraw(false);
     }
-
-    if (t >= frameRemains) {
+    
+    // *TR_Stim_Image_Stop* updates
+    if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Finger_Hint_Text.tStart = t;  // (not accounting for frame time here)
-      Finger_Hint_Text.frameNStart = frameN;  // exact frame index
+      Letter.tStart = t;  // (not accounting for frame time here)
+      Letter.frameNStart = frameN;  // exact frame index
       
-      Finger_Hint_Text.setAutoDraw(false);
+      Letter.setAutoDraw(true);
     }
 
-    
-    if (symb_type === "symbol"){
-      // *TR_Stim_Image_Stop* updates
-      if (t >= stim_start_time && TR_Stim_Image_Stop.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        TR_Stim_Image_Stop.tStart = t;  // (not accounting for frame time here)
-        TR_Stim_Image_Stop.frameNStart = frameN;  // exact frame index
-        
-        TR_Stim_Image_Stop.setAutoDraw(true);
-      }
-
-      frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (TR_Stim_Image_Stop.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        TR_Stim_Image_Stop.setAutoDraw(false);
-      }
-    } else if (symb_type === "number") {
-      if (t >= stim_start_time && Letter.status === PsychoJS.Status.NOT_STARTED) {
-        // keep track of start time/frame for later
-        Letter.tStart = t;  // (not accounting for frame time here)
-        Letter.frameNStart = frameN;  // exact frame index
-        
-        Letter.setAutoDraw(true);
-      }
-  
-      frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-      if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-        Letter.setAutoDraw(false);
-      }
+    frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (Letter.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      Letter.setAutoDraw(false);
     }
     
     // *TR_Press_Stop* updates
@@ -9996,17 +9348,15 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
     }
     //TR_Beep_Stop.stop();  // ensure sound has stopped at end of routine
     sound_vol = 0;
-    if ((stop_pair_1.includes(stimnum_item)) || (stop_pair_2.includes(stimnum_item))) {
+    if ((remap_pair_1.includes(stimnum_item)) || (remap_pair_2.includes(stimnum_item))) {
         if ((TR_Press_Stop.keys === undefined)) {
             corr = 1;
-            feedback_image = symb_g_item;
             feedback_col = color_p;
             tr_feedback = 1;
             sound_vol = 1;
             tr_text = 0;
         } else {
             corr = 0;
-            feedback_image = symb_r_item;
             feedback_col = color_n;
             if ((TR_Press_Stop.rt < ((time_limit - 0.2) - 0.3))) {
                 tr_press_tooearly = 1;
@@ -10033,12 +9383,10 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
         if ((TR_Press_Stop.keys !== undefined)) {
             if (TR_Press_Stop.corr) {
                 corr = 1;
-                feedback_image = symb_g_item;
                 feedback_col = color_p;
                 feedback_dur = 0.3;
             } else {
                 corr = 0;
-                feedback_image = symb_r_item;
                 feedback_col = color_n;
                 feedback_dur = 1;
             }
@@ -10063,7 +9411,6 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
             corr = 0;
             tr_press_late = 1;
             tr_feedback = 1;
-            feedback_image = symb_r_item;
             feedback_col = color_n;
         }
     }
@@ -10127,7 +9474,6 @@ function TR_Enter_Trials_StopRoutineEnd(trials) {
         }
     
     TR_Press_Stop.stop();
-    TR_Beep.stop();
     // the Routine "TR_Enter_Trials_Stop" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -10353,47 +9699,4 @@ function permute(permutation) {
     }
   }
   return result;
-}
-
-//JavaScript function that returns the average / mean
-//value for all numbers in an array.
-function arrayAverage(arr){
-  //Find the sum
-  var sum = 0;
-  for(var i in arr) {
-      sum += arr[i];
-  }
-  //Get the length of the array
-  var numbersCnt = arr.length;
-  //Return the average / mean.
-  return (sum / numbersCnt);
-}
-
-function calcQuartile(arr,q){
-  var a = arr.slice();
-  // Turn q into a decimal (e.g. 95 becomes 0.95)
-  q = q/100;
-
-  // Sort the array into ascending order
-  var data = sortArr(a);
-
-  // Work out the position in the array of the percentile point
-  var p = ((data.length) - 1) * q;
-  var b = Math.floor(p);
-
-  // Work out what we rounded off (if anything)
-  var remainder = p - b;
-
-  // See whether that data exists directly
-  if (data[b+1]!==undefined){
-      return parseFloat(data[b]) + remainder * (parseFloat(data[b+1]) - parseFloat(data[b]));
-  }else{
-      return parseFloat(data[b]);
-  }
-}
-
-function sortArr(arr){
-  var ary = arr.slice();
-  ary.sort(function(a,b){ return parseFloat(a) - parseFloat(b);});
-  return ary;
 }
