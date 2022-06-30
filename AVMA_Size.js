@@ -181,23 +181,23 @@ var tr_block_hand = 4;
 var num_trials_hand = 10;
 var num_trials_cr = 2000;
 var num_criterion = 5;
-var num_trials = 24;
-var rt_block = 12;
-var tr_block_old = 1;
+var num_trials = 8;
+var rt_block = 3;
+var tr_block_old = 9;
 var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
-var rt_pre_block = 1;
+var rt_pre_block = 12;
 
 
 var tr_hand_yes = 0;
 var rt_hand_yes = 0;
 var cr_old_yes = 0;
 var rt_pre_yes = 1;
-var cr_new_yes = 1;
+var cr_new_yes = 0;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
-var tr_new_yes = 1;
+var tr_new_yes = 0;
 var sound_check_yes = 0;
 var num_trials_sound_check = 20;
 
@@ -6115,26 +6115,21 @@ function Instr_Block_NumRoutineBegin(trials) {
     block_count = (block_count + 1);
 
     if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
-      if (block_count < 5) {
+      if (block_count <= 3) {
         set_size = 4;
       } else {
         set_size = 8;
       } 
     } else if (block_type === "RT" && stim_type === "Symb" && pre_rt === 0) {
-      if (block_count < 5) {
+      if (block_count <= 1) {
         set_size = 4;
       } else {
         set_size = 8;
       } 
     }
     // update component parameters for each repeat
-    if (block_type === "TR" && stim_type === "Hand") {
-      Instr_Block_Num_Text.setText((('Block ' + block_count) + 
-      '\n\n\nPress (H, U, I, or L) to start'));
-    } else if (block_type === "TR" && stim_type === "Symb" && remap === 1) {
-      Instr_Block_Num_Text.setText((('Block ' + block_count) + 
-      '\n\n\nPress (H, U, I, or L) to start'));
-    } else if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
+    
+    if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
         if (set_size === 4) {
           Instr_Block_Num_Text.setText((('Block ' + block_count) + 
           '\n\nOnly (' + subset_pair + ') will appear' +
@@ -6154,7 +6149,10 @@ function Instr_Block_NumRoutineBegin(trials) {
         '\n\nAll 8 symbols will appear' +
         '\n\n\nPress (H, U, I, or L) to start'));
       } 
-  }
+    } else {
+        Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+          '\n\n\nPress (H, U, I, or L) to start'));
+    }
     
     Instr_Block_Num_Press.keys = undefined;
     Instr_Block_Num_Press.rt = undefined;
