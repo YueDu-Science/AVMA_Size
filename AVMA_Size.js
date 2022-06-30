@@ -100,7 +100,7 @@ psychoJS.start({
   expName: expName,
   expInfo: expInfo,
   resources: [
-    {'name': 'media/hand.png', 'path': './media/hand.png'},
+    {'name': 'media/hand2.png', 'path': './media/hand2.png'},
     {'name': 'conditions.xlsx', 'path': './conditions.xlsx'},
     {'name': 'media/coin.wav', 'path': './media/coin.wav'},
     {'name': 'media/buzz.wav', 'path': './media/buzz.wav'},
@@ -191,14 +191,14 @@ var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
 
 var tr_hand_yes = 0;
-var rt_hand_yes = 0;
-var cr_old_yes = 1;
-var cr_new_yes = 1;
-var rt_yes = 1;
+var rt_hand_yes = 1;
+var cr_old_yes = 0;
+var cr_new_yes = 0;
+var rt_yes = 0;
 var tr_old_pre_yes = 0;
-var tr_old_post_yes = 1;
-var tr_new_yes = 1;
-var sound_check_yes = 1;
+var tr_old_post_yes = 0;
+var tr_new_yes = 0;
+var sound_check_yes = 0;
 var num_trials_sound_check = 20;
 
 
@@ -3573,7 +3573,7 @@ function Init_StimRoutineBegin(trials) {
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
     for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
-        if  (!(remap_pair_1.includes(i))) {
+        if  ((remap_pair_1.includes(i))) {
             remap_pair_2.push((i + 4));
         }
     }
