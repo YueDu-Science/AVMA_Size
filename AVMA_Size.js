@@ -160,24 +160,17 @@ var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["a", "w", "e", "f", "h", "u", "i", "l"];
 var x_symb = [0, 1, 2, 3, 4, 5, 6, 7];
-var x_hand = [0, 1, 2, 3, 4, 5, 6, 7];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
-var num_pos = 4;
 var num_symb = 8;
 var num_symb_grp;
 var symb_perm = permute(x_symb);
-var n_map = symb_perm.length;
-
 var symb_remap_ind;
 var symb_map_ind;
 var symb_map = [];
 var symb_remap = [];
-var symb_g_map = [];
-var symb_g_remap = [];
-var symb_r_map = [];
-var symb_r_remap = [];
+
 ////////////////////////////////////
 var tr_block_hand = 4;
 var num_trials_hand = 96;
@@ -3675,7 +3668,7 @@ Press (space) to proceed so that your data can be saved. The saving process may 
 After the data are saved, click 'OK' to exit and close the webpage.`
     ;
 
-    if (grp === 8) {
+    
       instr_exp_text = `Thank you for participating in our study!
       
 This study will take about 1 hour and 50 minutes to 2 hours. 
@@ -3686,18 +3679,7 @@ Once you start, you can take a break between rounds, Please DO NOT turn off your
 
 Press (space) to continue.`
     ; 
-    } else if (grp === 4) {
-      instr_exp_text = `Thank you for participating in our study!
-      
-This study will take about 1 hour and 20 minutes. 
 
-Once you start, you can take a break between rounds, Please DO NOT turn off your web browser until you complete the task, unless you decide to withdraw from this study.
-      
-
-
-Press (space) to continue.`
-    ; 
-    }
     instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
     
 With your Right hand, place your Index, Middle, Ring, and Pinky fingers on (H, U, I, L) respectively. Your fingers will rest on these keys for the entirety of the experiment.
