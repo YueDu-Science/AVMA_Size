@@ -667,7 +667,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'Pre_Trial_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.35, 0.35],
+    ori : 0, pos : [0, 0], size : [0.57, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -1.0 
@@ -689,7 +689,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'RT_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.35, 0.35],
+    ori : 0, pos : [0, 0], size : [0.57, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
@@ -724,7 +724,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'RT_Feedback_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.35, 0.35],
+    ori : 0, pos : [0, 0], size : [0.57, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -2.0 
@@ -794,7 +794,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'TR_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.35, 0.35],
+    ori : 0, pos : [0, 0], size : [0.57, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
@@ -843,7 +843,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'TR_Feedback_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.35, 0.35],
+    ori : 0, pos : [0, 0], size : [0.57, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
