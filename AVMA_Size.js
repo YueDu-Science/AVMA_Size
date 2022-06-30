@@ -68,6 +68,10 @@ const CR_Old_BoolLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(CR_Old_BoolLoopBegin, CR_Old_BoolLoopScheduler);
 flowScheduler.add(CR_Old_BoolLoopScheduler);
 flowScheduler.add(CR_Old_BoolLoopEnd);
+const RT_PreBoolLoopScheduler = new Scheduler(psychoJS);
+flowScheduler.add(RT_PreBoolLoopBegin, RT_PreBoolLoopScheduler);
+flowScheduler.add(RT_PreBoolLoopScheduler);
+flowScheduler.add(RT_PreBoolLoopEnd);
 const TR_Old_Pre_BoolLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(TR_Old_Pre_BoolLoopBegin, TR_Old_Pre_BoolLoopScheduler);
 flowScheduler.add(TR_Old_Pre_BoolLoopScheduler);
@@ -165,6 +169,7 @@ var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
 var num_symb = 8;
 var num_symb_grp;
+var set_size = 8;
 var symb_perm = permute(x_symb);
 var symb_remap_ind;
 var symb_map_ind;
@@ -173,7 +178,7 @@ var symb_remap = [];
 
 ////////////////////////////////////
 var tr_block_hand = 4;
-var num_trials_hand = 96;
+var num_trials_hand = 10;
 var num_trials_cr = 2000;
 var num_criterion = 5;
 var num_trials = 96;
@@ -181,15 +186,17 @@ var rt_block = 12;
 var tr_block_old = 1;
 var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
+var rt_pre_block = 1;
 
-var tr_hand_yes = 0;
+var rt_pre_yes = 1;
+var tr_hand_yes = 1;
 var rt_hand_yes = 1;
-var cr_old_yes = 0;
-var cr_new_yes = 0;
-var rt_yes = 0;
+var cr_old_yes = 1;
+var cr_new_yes = 1;
+var rt_yes = 1;
 var tr_old_pre_yes = 0;
-var tr_old_post_yes = 0;
-var tr_new_yes = 0;
+var tr_old_post_yes = 1;
+var tr_new_yes = 1;
 var sound_check_yes = 0;
 var num_trials_sound_check = 20;
 
@@ -233,6 +240,7 @@ var Sound_Exit_Text_Press;
 var grp;
 var pre = 0;
 var post = 0;
+var pre_rt = 0;
 
 var timing_tol_early = 0.1;
 var timing_tol_late = 0.075;
@@ -259,6 +267,7 @@ var prep_time_range = [0, 1.2];
 var prep_time_ind_tmp = [];
 var prep_time_ind = [];
 var prep_time_ind_4 = [];
+var prep_time_ind_8 = [];
 var count;
 var prep_time_interval;
 var Instr_ExpClock;
@@ -385,25 +394,23 @@ function experimentInit() {
   rng3 = myrng()
   rng4 = myrng()
   //determine which group participants are in
-  if (rng4 < 0.25) {
+  /* if (rng4 < 0.25) {
       grp = 1;
       tr_old_post_yes = 1;
-      num_symb_grp = 4;
+      
   } else if (rng4 >= 0.25 && rng4 < 0.5) {
       grp = 2;
       tr_old_post_yes = 1;
-      num_symb_grp = 8;
+      
   } else if (rng4 >= 0.5 && rng4 < 0.75) {
     grp = 3;
     tr_old_pre_yes = 1;
-    num_symb_grp = 8;
+    
     tr_block_old = 8;
   } else if (rng4 < 1) {
     grp = 4;
     tr_old_pre_yes = 1;
-    num_symb_grp = 8;
-    tr_block_old = 8;
-  } 
+  }  */
   // session # determines which blocks they do
   //if ((session === 1)) {
   //    rt_block = 1;
@@ -416,7 +423,7 @@ function experimentInit() {
   count = 0;
   while ((count < num_symb)) {
       util.shuffle(prep_time_ind_tmp);
-      prep_time_ind.push(prep_time_ind_tmp.slice(0));
+      prep_time_ind_8.push(prep_time_ind_tmp.slice(0));
       count = (count + 1);
   }
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
@@ -2599,6 +2606,36 @@ function RT_BoolLoopBegin(thisScheduler) {
 }
 
 
+var RT_Bool;
+function RT_PreBoolLoopBegin(thisScheduler) {
+  // set up handler to look after randomisation of conditions etc
+  RT_PreBool = new TrialHandler({
+    psychoJS: psychoJS,
+    nReps: rt_pre_yes, method: TrialHandler.Method.SEQUENTIAL,
+    extraInfo: expInfo, originPath: undefined,
+    trialList: undefined,
+    seed: undefined, name: 'RT_PreBool'
+  });
+  psychoJS.experiment.addLoop(RT_PreBool); // add the loop to the experiment
+  currentLoop = RT_PreBool;  // we're now the current loop
+
+  // Schedule all the trials in the trialList:
+  for (const thisRT_Bool of RT_PreBool) {
+    const snapshot = RT_PreBool.getSnapshot();
+    thisScheduler.add(importConditions(snapshot));
+    thisScheduler.add(Instr_RT_PreRoutineBegin(snapshot));
+    thisScheduler.add(Instr_RT_PreRoutineEachFrame(snapshot));
+    thisScheduler.add(Instr_RT_PreRoutineEnd(snapshot));
+    const RT_PreBlockLoopScheduler = new Scheduler(psychoJS);
+    thisScheduler.add(RT_PreBlockLoopBegin, RT_BlockLoopScheduler);
+    thisScheduler.add(RT_PreBlockLoopScheduler);
+    thisScheduler.add(RT_PreBlockLoopEnd);
+    thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
+  }
+
+  return Scheduler.Event.NEXT;
+}
+
 var RT_Block;
 function RT_BlockLoopBegin(thisScheduler) {
   // set up handler to look after randomisation of conditions etc
@@ -2615,6 +2652,39 @@ function RT_BlockLoopBegin(thisScheduler) {
   // Schedule all the trials in the trialList:
   for (const thisRT_Block of RT_Block) {
     const snapshot = RT_Block.getSnapshot();
+    thisScheduler.add(importConditions(snapshot));
+    thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
+    thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
+    thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
+    const RT_IterLoopScheduler = new Scheduler(psychoJS);
+    thisScheduler.add(RT_IterLoopBegin, RT_IterLoopScheduler);
+    thisScheduler.add(RT_IterLoopScheduler);
+    thisScheduler.add(RT_IterLoopEnd);
+    thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
+  }
+
+  return Scheduler.Event.NEXT;
+}
+
+var RT_PreBlock;
+function RT_PreBlockLoopBegin(thisScheduler) {
+  // set up handler to look after randomisation of conditions etc
+  RT_PreBlock = new TrialHandler({
+    psychoJS: psychoJS,
+    nReps: rt_pre_block, method: TrialHandler.Method.SEQUENTIAL,
+    extraInfo: expInfo, originPath: undefined,
+    trialList: undefined,
+    seed: undefined, name: 'RT_PreBlock'
+  });
+  psychoJS.experiment.addLoop(RT_PreBlock); // add the loop to the experiment
+  currentLoop = RT_PreBlock;  // we're now the current loop
+
+  // Schedule all the trials in the trialList:
+  for (const thisRT_Block of RT_PreBlock) {
+    const snapshot = RT_PreBlock.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
@@ -3517,6 +3587,7 @@ var symb_map_rnd;
 var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
+var subset_pair = [];
 var Init_StimComponents;
 var pair_swap;
 function Init_StimRoutineBegin(trials) {
@@ -3556,6 +3627,8 @@ function Init_StimRoutineBegin(trials) {
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
+    subset_pair = remap_pair_1.concat(remap_pair_2);
+    subset_key = key_list(subset_pair)
 
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
@@ -3581,7 +3654,7 @@ function Init_StimRoutineBegin(trials) {
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
     psychoJS.experiment.addData("Remap_Pair_2", remap_pair_2);
-    psychoJS.experiment.addData("Grp", grp);
+    //psychoJS.experiment.addData("Grp", grp);
     psychoJS.experiment.addData("Pair_swap", pair_swap);
 
     
@@ -3635,6 +3708,7 @@ var instr_exp_text;
 var instr_rt_text_hand;
 var instr_tr_text_hand;
 var instr_cr_old_text;
+var instr_rt_pre_text;
 var instr_rt_text;
 var instr_tr_old_pre_text;
 var instr_tr_old_post_text;
@@ -3719,26 +3793,41 @@ ACCURACY is the priority, so go as slowly as you need to. The more mistakes you 
 
 Ready? Press (H, U, I, or L) to continue.`
     ;
-    if ((session === 1)) {
-        instr_rt_text = `Now you are going to practice the symbol-key map you learned. 
+    
+        instr_rt_text = `Now we are going to see how fast and accurately you can do the task. 
         
 Your job is to press the corresponding key as quickly and as accurately as possible.
     
 There will be ${rt_block} blocks with short breaks in between.
+
+In first few blocks, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
+
+Keep resting all 8 fingers on all keys.
     
 
 Whenever you are ready, press (H, U, I, or L) to start.`
     ;
-    } else {
-        if ((1 < session)) {
-            instr_rt_text = `Today, we first continue to practice the symbol-key maps for ${rt_block} blocks.
-    
-Remember, your job is to press the corresponding key as quickly and accurately as you can.
-    
+
+    if ((session === 1)) {
+      instr_rt_pre_text = `Now you are going to practice the symbol-key map you learned. 
+      
+Your job is to press the corresponding key as quickly and as accurately as possible.
+  
+There will be ${rt_block} blocks with short breaks in between.
+  
+
 Whenever you are ready, press (H, U, I, or L) to start.`
-    ;
-        }
-    }
+  ;
+  } else {
+      if ((1 < session)) {
+          instr_rt_pre_text = `Today, we first continue to practice the symbol-key maps for ${rt_block} blocks.
+  
+Remember, your job is to press the corresponding key as quickly and accurately as you can.
+  
+Whenever you are ready, press (H, U, I, or L) to start.`
+  ;
+      }
+  }
     instr_tr_old_pre_text = `Good job so far.
     
 In the following ${tr_block_old} blocks, use the symbol-key map you learned. Press the corresponding key ON the fourth beep. 
@@ -3777,7 +3866,7 @@ Press (H, U, I, or L) to start.`
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same ${num_symb_grp} symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same symbols, but this time they may correspond with a different key (H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
@@ -5415,7 +5504,7 @@ function Creat_StimSeqRoutineBegin(trials) {
         }
     }
     
-  if (block_type === "RT" && stim_type === "Symb") {
+  if (block_type === "RT" && stim_type === "Symb" && set_size === 8) {
       count = 0;
       while ((count < (num_trials / 16))) {
           util.shuffle(x16);
@@ -5430,9 +5519,25 @@ function Creat_StimSeqRoutineBegin(trials) {
           }
           count = (count + 1);
       }
-  }
+  } else if (block_type === "RT" && stim_type === "Symb" && set_size === 4) {
+        x_new = subset_pair;
+        count = 0;
+        while ((count < (num_trials / 8))) {
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+}
 
-  if (block_type === "TR" && stim_type === "Symb") {
+  if (block_type === "TR" && stim_type === "Symb" && set_size === 8) {
         count = 0;
         while ((count < (num_trials / 16))) {
           util.shuffle(x16);
@@ -5447,7 +5552,23 @@ function Creat_StimSeqRoutineBegin(trials) {
           }
           count = (count + 1);
         }
-      } 
+  } else if (block_type === "TR" && stim_type === "Symb" && set_size === 4) {
+        x_new = subset_pair;
+        count = 0;
+        while ((count < (num_trials / 8))) {
+            util.shuffle(x_new);
+            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+                i = _pj_a[_pj_c];
+                seq_stimnum.push(stimnum[i]);
+                seq_key.push(key[i]);
+                seq_symb.push(symb[i]);
+                //seq_symb_g.push(symb_g[i]);
+                //seq_symb_r.push(symb_r[i]);
+                seq_keynum.push(keynum[i]);
+            }
+            count = (count + 1);
+        }
+  }
   
     
     // keep track of which components have finished
@@ -5656,7 +5777,7 @@ function Pre_Trial_HandRoutineEnd(trials) {
     psychoJS.experiment.addData("block_num", block_count);
     psychoJS.experiment.addData("prep_time", prep_time);
     psychoJS.experiment.addData("session", session);
-    psychoJS.experiment.addData("grp", grp);
+    //psychoJS.experiment.addData("grp", grp);
     
     // the Routine "Pre_Trial_Hand" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
@@ -6134,8 +6255,49 @@ function Instr_Block_NumRoutineBegin(trials) {
     t = 0;
     Instr_Block_NumClock.reset(); // clock
     frameN = -1;
+
+    if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
+      if (block_count < 5) {
+        set_size = 4;
+      } else {
+        set_size = 8;
+      } 
+    } else if (block_type === "RT" && stim_type === "Symb" && pre_rt === 0) {
+      if (block_count < 5) {
+        set_size = 4;
+      } else {
+        set_size = 8;
+      } 
+    }
     // update component parameters for each repeat
-    Instr_Block_Num_Text.setText((('Block ' + block_count) + '\nPress (H, U, I, or L) to start'));
+    if (block_type === "TR" && stim_type === "Hand") {
+      Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+      '\n\n\nPress (H, U, I, or L) to start'));
+    } else if (block_type === "TR" && stim_type === "Symb" && remap === 1) {
+      Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+      '\n\n\nPress (H, U, I, or L) to start'));
+    } else if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
+        if (set_size === 4) {
+          Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+          '\n\nOnly (' + subset_pair + ') will appear' +
+          '\n\n\nPress (H, U, I, or L) to start'));
+        } else {
+          Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+          '\n\nAll 8 symbols will appear' +
+          '\n\n\nPress (H, U, I, or L) to start'));
+        } 
+    } else if (block_type === "RT" && stim_type === "Symb" && pre_rt === 0) {
+      if (set_size === 4) {
+        Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+        '\n\nOnly (' + subset_pair + ') will appear' +
+        '\n\n\nPress (H, U, I, or L) to start'));
+      } else {
+        Instr_Block_Num_Text.setText((('Block ' + block_count) + 
+        '\n\nAll 8 symbols will appear' +
+        '\n\n\nPress (H, U, I, or L) to start'));
+      } 
+  }
+    
     Instr_Block_Num_Press.keys = undefined;
     Instr_Block_Num_Press.rt = undefined;
     _Instr_Block_Num_Press_allKeys = [];
@@ -7195,6 +7357,13 @@ function Pre_TrialRoutineBegin(trials) {
     //symb_g_item = seq_symb_g[trial_count];
     //symb_r_item = seq_symb_r[trial_count];
     keynum_item = seq_keynum[trial_count];
+
+    if (set_size === 8) {
+      prep_time_ind = prep_time_ind_8;
+    } else if (set_size === 4) {
+      prep_time_ind = prep_time_ind_4;
+    } 
+
     if ((block_type === "TR")) {
         interval_ind = prep_time_ind[stimnum_item][trial_count_item[stimnum_item]];
         prep_time = ((Math.random() * (prep_time_interval[interval_ind][1] - prep_time_interval[interval_ind][0])) + prep_time_interval[interval_ind][0]);
@@ -8245,6 +8414,138 @@ function TR_FeedbackRoutineEnd(trials) {
   };
 }
 
+var _Instr_RT_Press_allKeys;
+var Instr_RTComponents;
+function Instr_RT_PreRoutineBegin(trials) {
+  return function () {
+    //------Prepare to start Routine 'Instr_RT'-------
+    t = 0;
+    Instr_RTClock.reset(); // clock
+    frameN = -1;
+    // update component parameters for each repeat
+    Instr_RT_Text.setText(instr_rt_pre_text);
+    Instr_RT_Press.keys = undefined;
+    Instr_RT_Press.rt = undefined;
+    _Instr_RT_Press_allKeys = [];
+    block_type = "RT";
+    stim_type = "Symb";
+    remap = 0;
+    pre_rt = 1;
+    if ((session === 1)) {
+        block_count = 0;
+    } else {
+        if ((session === 2)) {
+            block_count = 5;
+        }
+    }
+    symb = symb_map;
+    //symb_g = symb_g_map;
+    //symb_r = symb_r_map;
+    
+    // keep track of which components have finished
+    Instr_RTComponents = [];
+    Instr_RTComponents.push(Instr_RT_Text);
+    Instr_RTComponents.push(Instr_RT_Press);
+    
+    for (const thisComponent of Instr_RTComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    
+    return Scheduler.Event.NEXT;
+  };
+}
+
+
+function Instr_RT_PreRoutineEachFrame(trials) {
+  return function () {
+    //------Loop for each frame of Routine 'Instr_RT'-------
+    let continueRoutine = true; // until we're told otherwise
+    // get current time
+    t = Instr_RTClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *Instr_RT_Text* updates
+    if (t >= 0.0 && Instr_RT_Text.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      Instr_RT_Text.tStart = t;  // (not accounting for frame time here)
+      Instr_RT_Text.frameNStart = frameN;  // exact frame index
+      
+      Instr_RT_Text.setAutoDraw(true);
+    }
+
+    
+    // *Instr_RT_Press* updates
+    if (t >= 0.0 && Instr_RT_Press.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      Instr_RT_Press.tStart = t;  // (not accounting for frame time here)
+      Instr_RT_Press.frameNStart = frameN;  // exact frame index
+      
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { Instr_RT_Press.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { Instr_RT_Press.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { Instr_RT_Press.clearEvents(); });
+    }
+
+    if (Instr_RT_Press.status === PsychoJS.Status.STARTED) {
+      let theseKeys = Instr_RT_Press.getKeys({keyList: key_list, waitRelease: false});
+      _Instr_RT_Press_allKeys = _Instr_RT_Press_allKeys.concat(theseKeys);
+      if (_Instr_RT_Press_allKeys.length > 0) {
+        Instr_RT_Press.keys = _Instr_RT_Press_allKeys[0].name;  // just the first key pressed
+        Instr_RT_Press.rt = _Instr_RT_Press_allKeys[0].rt;
+        // a response ends the routine
+        continueRoutine = false;
+      }
+    }
+    
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of Instr_RTComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function Instr_RT_PreRoutineEnd(trials) {
+  return function () {
+    //------Ending Routine 'Instr_RT'-------
+    for (const thisComponent of Instr_RTComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    psychoJS.experiment.addData('Instr_RT_Press.keys', Instr_RT_Press.keys);
+    if (typeof Instr_RT_Press.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('Instr_RT_Press.rt', Instr_RT_Press.rt);
+        routineTimer.reset();
+        }
+    
+    Instr_RT_Press.stop();
+    // the Routine "Instr_RT" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    return Scheduler.Event.NEXT;
+  };
+}
 
 var _Instr_RT_Press_allKeys;
 var Instr_RTComponents;
@@ -8262,13 +8563,14 @@ function Instr_RTRoutineBegin(trials) {
     block_type = "RT";
     stim_type = "Symb";
     remap = 0;
-    if ((session === 1)) {
+    pre_rt = 0;
+    /* if ((session === 1)) {
         block_count = 0;
     } else {
         if ((session === 2)) {
             block_count = 5;
         }
-    }
+    } */
     symb = symb_map;
     //symb_g = symb_g_map;
     //symb_r = symb_r_map;
