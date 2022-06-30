@@ -2465,7 +2465,7 @@ function RT_PreBoolLoopBegin(thisScheduler) {
     thisScheduler.add(Instr_RT_PreRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_RT_PreRoutineEnd(snapshot));
     const RT_PreBlockLoopScheduler = new Scheduler(psychoJS);
-    thisScheduler.add(RT_PreBlockLoopBegin, RT_BlockLoopScheduler);
+    thisScheduler.add(RT_PreBlockLoopBegin, RT_PreBlockLoopScheduler);
     thisScheduler.add(RT_PreBlockLoopScheduler);
     thisScheduler.add(RT_PreBlockLoopEnd);
     thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
@@ -2582,6 +2582,12 @@ function RT_IterLoopEnd() {
 
 
 function RT_BlockLoopEnd() {
+  psychoJS.experiment.removeLoop(RT_Block);
+
+  return Scheduler.Event.NEXT;
+}
+
+function RT_PreBlockLoopEnd() {
   psychoJS.experiment.removeLoop(RT_Block);
 
   return Scheduler.Event.NEXT;
