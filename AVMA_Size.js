@@ -164,7 +164,6 @@ var x_hand = [0, 1, 2, 3, 4, 5, 6, 7];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
-var subset_pairs = remap_pairs;
 var num_pos = 4;
 var num_symb = 8;
 var num_symb_grp;
@@ -3525,11 +3524,6 @@ var symb_map_rnd;
 var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
-var subset;
-var subset_dummie;
-var subset_pair_rnd;
-var subset_pair_1 = [];
-var subset_pair_2 = [];
 var Init_StimComponents;
 var pair_swap;
 function Init_StimRoutineBegin(trials) {
@@ -3570,46 +3564,12 @@ function Init_StimRoutineBegin(trials) {
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
 
-    // create subset symb_map_ind for both grp 4 and grp 8
-    // for group 4, subsets are the same as remap_pairs with rng3
-    if (grp === 8) {
-      subset_pair_1 = [0,1,2,3]
-      subset_pair_2 = [4,5,6,7]
-      subset = [0, 1, 2, 3, 4, 5, 6, 7];
-      subset_dummie = Object.values(subset);
-    } else if (grp === 4) {
-      //first randomly choose a subset
-      subset_pair_rnd = Math.floor(rng3 * subset_pairs.length)
-      subset_pair_1 = subset_pairs[subset_pair_rnd];
-      for (i = 0, _pj_a = 4; (i < _pj_a); i += 1) {
-        if  (!(subset_pair_1.includes(i))) {
-            subset_pair_2.push((i + 4));
-        }
-      }
-
-      // concat two pairs
-      subset = subset_pair_1.concat(subset_pair_2);
-      subset_dummie = Object.values(subset);
-    }
-
-    // now decide which pair will be swapped for group 4 and group 8
-    if (grp === 8) {
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
       symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
       symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
       pair_swap = 12;
-    } else if (grp === 4) {
-      if (rng1 < 0.5) {
-        symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
-        symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
-        pair_swap = 1;
-      } else if (rng1 >= 0.5) {
-        symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
-        symb_remap_ind[remap_pair_2[1]] = symb_map_ind[remap_pair_2[0]];
-        pair_swap = 2;
-      }
-    }
+    
     
     for (var i = 0, _pj_a = num_symb; (i < _pj_a); i += 1) {
       symb_map.push(symb[symb_map_ind[i]]);
@@ -3624,9 +3584,6 @@ function Init_StimRoutineBegin(trials) {
     //symb_map_ind = symb_perm[symb_map_rnd];
     //symb_map_ind = x_symb;
     
-    psychoJS.experiment.addData("Subset_Pair_1", subset_pair_1);
-    psychoJS.experiment.addData("Subset_Pair_2", subset_pair_2);
-    psychoJS.experiment.addData("Subset", subset);
     psychoJS.experiment.addData("symb_map", symb_map_ind);
     psychoJS.experiment.addData("symb_remap", symb_remap_ind);
     psychoJS.experiment.addData("Remap_Pair_1", remap_pair_1);
@@ -5389,7 +5346,6 @@ var repeat_count;
 var trial_count_item;
 var tr_timing_good;
 var sum_corr;
-var sum_corr_subset = [];
 var seq_stimnum_hand;
 var seq_stimnum;
 var seq_keynum;
@@ -5449,7 +5405,7 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
     }
-    if (block_type === "CR" && remap === 0) {
+    if (block_type === "CR") {
         count = 0;
         while ((count < (num_trials_cr / 40))) {
             util.shuffle(x16);
@@ -5486,83 +5442,6 @@ function Creat_StimSeqRoutineBegin(trials) {
         }
     }
     
-
-    if ((block_type === "CR" && remap === 1))  {
-      if (grp === 4) {
-        x_new = subset.concat(subset)
-        count = 0;
-        while ((count < (num_trials_cr / 20))) {
-            
-            util.shuffle(x_new);
-            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(x_new);
-            for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset);
-            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-        }
-      } else if (grp === 8) {
-        count = 0;
-        while ((count < (num_trials_cr / 40))) {
-            util.shuffle(x16);
-            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(x16);
-            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            util.shuffle(subset);
-            for (var i, _pj_c = 0, _pj_a = subset, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-                i = _pj_a[_pj_c];
-                seq_stimnum.push(stimnum[i]);
-                seq_key.push(key[i]);
-                seq_symb.push(symb[i]);
-                //seq_symb_g.push(symb_g[i]);
-                //seq_symb_r.push(symb_r[i]);
-                seq_keynum.push(keynum[i]);
-            }
-            count = (count + 1);
-        }
-      }
-    }
-
   if (block_type === "RT" && stim_type === "Symb") {
       count = 0;
       while ((count < (num_trials / 16))) {
@@ -5581,24 +5460,6 @@ function Creat_StimSeqRoutineBegin(trials) {
   }
 
   if (block_type === "TR" && stim_type === "Symb") {
-      if (grp === 4) {
-        x_new = subset.concat(subset)
-        count = 0;
-        while ((count < (num_trials / 8))) {
-          
-          util.shuffle(x_new);
-          for (var i, _pj_c = 0, _pj_a = x_new, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
-              i = _pj_a[_pj_c];
-              seq_stimnum.push(stimnum[i]);
-              seq_key.push(key[i]);
-              seq_symb.push(symb[i]);
-              //seq_symb_g.push(symb_g[i]);
-              //seq_symb_r.push(symb_r[i]);
-              seq_keynum.push(keynum[i]);
-          }
-          count = (count + 1);
-        }
-      } else if (grp === 8) {
         count = 0;
         while ((count < (num_trials / 16))) {
           util.shuffle(x16);
@@ -5614,7 +5475,7 @@ function Creat_StimSeqRoutineBegin(trials) {
           count = (count + 1);
         }
       } 
-  }
+  
     
     // keep track of which components have finished
     Creat_StimSeqComponents = [];
@@ -7806,23 +7667,10 @@ function Criterion_DetRoutineBegin(trials) {
         return true;
     }
 
-    
-    if (remap === 0) {
       if (CR_Crit(sum_corr)) {
         trials.finished =  true;
       }
-    } else if (remap === 1) {
-      
-      // extract those used elements
-      sum_corr_subset = []
-      for (var i = 0, _pj_a = subset_dummie.length; (i < _pj_a); i += 1) {
-        sum_corr_subset.push(sum_corr[subset_dummie[i]])
-      }
-
-      if (CR_Crit(sum_corr_subset)) {
-        trials.finished =  true;
-      }
-    }
+    
     
     // keep track of which components have finished
     Criterion_DetComponents = [];
