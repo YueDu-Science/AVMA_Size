@@ -2443,7 +2443,7 @@ function RT_BoolLoopBegin(thisScheduler) {
 }
 
 
-var RT_Bool;
+var RT_PreBool;
 function RT_PreBoolLoopBegin(thisScheduler) {
   // set up handler to look after randomisation of conditions etc
   RT_PreBool = new TrialHandler({
@@ -3631,13 +3631,13 @@ Press (H, U, I, or L) to continue.`
     ;
     instr_cr_old_text = `Good Job! You are now ready for the tasks!
     
-In the upcoming block, you will see eight symbols (1, 2, 3, 4, a, b, c, d) on the screen, one at a time. 
+In the upcoming block, you will see eight symbols (1, 2, 3, 4) and  (a, b, c, d) on the screen, one at a time. 
 
-Each symbol corresponds to one of (A, W, E, F, H, U, I, L) or ( H, U, I, L, A, W, E, F) in rank order. You job is to learn this symbol-key association.
+Each symbol corresponds to one of (A, W, E, F, H, U, I, L). You job is to learn this symbol-key association.
 
 ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
     
-
+The block will end when your performance reach a criterion of accuracy.
 
 Ready? Press (H, U, I, or L) to continue.`
     ;
@@ -3707,6 +3707,7 @@ Your job is to figure out which are those symbols and DO NOT PRESS ANY KEY when 
         
 ACCURACY is the priority, so go as slowly as you need to. The more mistaks you make, the longer this block will take.
         
+The block will end when your performance reach a criterion of accuracy.
         
 Press (H, U, I, or L) to start.`
     ;
@@ -3721,6 +3722,7 @@ Your job is to figure out the new association between the symbols and the keys.
 
 ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
 
+The block will end when your performance reach a criterion of accuracy.
 
 Press (H, U, I, or L) to start.`
     ;
