@@ -454,7 +454,7 @@ function experimentInit() {
     alignText: 'center',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: 1.5, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
@@ -651,7 +651,7 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: 1.5, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: -1.0 
   });
@@ -755,15 +755,14 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_HAND_TR_press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
+  
   // Initialize components for Routine "Instr_Block_Num"
   Instr_Block_NumClock = new util.Clock();
   Instr_Block_Num_Text = new visual.TextStim({
@@ -773,7 +772,7 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
@@ -901,15 +900,14 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_CR_Old_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
+  
   // Initialize components for Routine "Pre_Trial"
   Pre_TrialClock = new util.Clock();
   Pre_Trial_Rec_Frame = new visual.Rect ({
@@ -991,42 +989,14 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_TR_Old_Pre_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Instr_Block_Num"
-  Instr_Block_NumClock = new util.Clock();
-  Instr_Block_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Block_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
-  
+
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
   TR_Beep = new sound.Sound({
@@ -1149,41 +1119,13 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_RT_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Instr_Block_Num"
-  Instr_Block_NumClock = new util.Clock();
-  Instr_Block_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Block_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
   // Initialize components for Routine "RT_Enter_Trial"
   RT_Enter_TrialClock = new util.Clock();
@@ -1242,41 +1184,13 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_TR_Old_Post_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Instr_Block_Num"
-  Instr_Block_NumClock = new util.Clock();
-  Instr_Block_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Block_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
@@ -1378,25 +1292,13 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_CR_New_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
   // Initialize components for Routine "RT_Enter_Trial_Stop"
   RT_Enter_Trial_StopClock = new util.Clock();
@@ -1448,16 +1350,7 @@ function experimentInit() {
   });
   // Initialize components for Routine "Criterion_Det"
   Criterion_DetClock = new util.Clock();
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
+  
   
   // Initialize components for Routine "RT_Enter_Trial"
   RT_Enter_TrialClock = new util.Clock();
@@ -1518,41 +1411,13 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
   Instr_TR_Old_Post_Press_3 = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Instr_Block_Num"
-  Instr_Block_NumClock = new util.Clock();
-  Instr_Block_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Block_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
   // Initialize components for Routine "TR_Enter_Trials"
   TR_Enter_TrialsClock = new util.Clock();
@@ -1638,41 +1503,13 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.05,  wrapWidth: 1, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: -1.0 
   });
   
   TR_Penalty_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Creat_StimSeq"
-  Creat_StimSeqClock = new util.Clock();
-  // Initialize components for Routine "Instr_Block_Num"
-  Instr_Block_NumClock = new util.Clock();
-  Instr_Block_Num_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'Instr_Block_Num_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: 0.0 
-  });
-  
-  Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
-  // Initialize components for Routine "Pre_Trial"
-  Pre_TrialClock = new util.Clock();
-  Pre_Trial_Rec_Frame = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
   // Initialize components for Routine "TR_Enter_Trials_Stop"
   TR_Enter_Trials_StopClock = new util.Clock();
@@ -1774,7 +1611,7 @@ function experimentInit() {
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 1.4, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
