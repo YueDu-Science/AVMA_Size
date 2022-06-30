@@ -2140,12 +2140,12 @@ function TR_Block_HandLoopBegin(thisScheduler) {
   for (const thisTR_Block_Hand of TR_Block_Hand) {
     const snapshot = TR_Block_Hand.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(CountDownRoutineBegin(snapshot));
     thisScheduler.add(CountDownRoutineEachFrame(snapshot));
     thisScheduler.add(CountDownRoutineEnd(snapshot)); 
@@ -2421,12 +2421,12 @@ function TR_Old_Block_PreLoopBegin(thisScheduler) {
   for (const thisTR_Old_Block_Pre of TR_Old_Block_Pre) {
     const snapshot = TR_Old_Block_Pre.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(CountDownRoutineBegin(snapshot));
     thisScheduler.add(CountDownRoutineEachFrame(snapshot));
     thisScheduler.add(CountDownRoutineEnd(snapshot));
@@ -2616,12 +2616,12 @@ function RT_BlockLoopBegin(thisScheduler) {
   for (const thisRT_Block of RT_Block) {
     const snapshot = RT_Block.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     const RT_IterLoopScheduler = new Scheduler(psychoJS);
     thisScheduler.add(RT_IterLoopBegin, RT_IterLoopScheduler);
     thisScheduler.add(RT_IterLoopScheduler);
@@ -2735,12 +2735,12 @@ function TR_Old_Block_PostLoopBegin(thisScheduler) {
   for (const thisTR_Old_Block_Post of TR_Old_Block_Post) {
     const snapshot = TR_Old_Block_Post.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(CountDownRoutineBegin(snapshot));
     thisScheduler.add(CountDownRoutineEachFrame(snapshot));
     thisScheduler.add(CountDownRoutineEnd(snapshot));
@@ -3135,12 +3135,12 @@ function TR_New_Block_SwapLoopBegin(thisScheduler) {
   for (const thisTR_New_Block_Swap of TR_New_Block_Swap) {
     const snapshot = TR_New_Block_Swap.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(CountDownRoutineBegin(snapshot));
     thisScheduler.add(CountDownRoutineEachFrame(snapshot));
     thisScheduler.add(CountDownRoutineEnd(snapshot));
@@ -3292,12 +3292,12 @@ function TR_New_Block_StopLoopBegin(thisScheduler) {
   for (const thisTR_New_Block_Stop of TR_New_Block_Stop) {
     const snapshot = TR_New_Block_Stop.getSnapshot();
     thisScheduler.add(importConditions(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
-    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineBegin(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEachFrame(snapshot));
     thisScheduler.add(Instr_Block_NumRoutineEnd(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineBegin(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEachFrame(snapshot));
+    thisScheduler.add(Creat_StimSeqRoutineEnd(snapshot));
     const TR_Iter_New_StopLoopScheduler = new Scheduler(psychoJS);
     thisScheduler.add(TR_Iter_New_StopLoopBegin, TR_Iter_New_StopLoopScheduler);
     thisScheduler.add(TR_Iter_New_StopLoopScheduler);
