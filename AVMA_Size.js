@@ -5832,9 +5832,9 @@ function RT_Enter_Trial_HandRoutineBegin(trials) {
     RT_Enter_Trial_HandClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    RT_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
-    RT_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
-    RT_Rec_Frame_Hand.setLineWidth(rec_wd);
+   // RT_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
+   // RT_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
+   // RT_Rec_Frame_Hand.setLineWidth(rec_wd);
     RT_Press_Hand.keys = undefined;
     RT_Press_Hand.rt = undefined;
     _RT_Press_Hand_allKeys = [];
@@ -5842,7 +5842,7 @@ function RT_Enter_Trial_HandRoutineBegin(trials) {
     RT_Stim_Hand.setPos(position_item);
     // keep track of which components have finished
     RT_Enter_Trial_HandComponents = [];
-    RT_Enter_Trial_HandComponents.push(RT_Rec_Frame_Hand);
+   // RT_Enter_Trial_HandComponents.push(RT_Rec_Frame_Hand);
     RT_Enter_Trial_HandComponents.push(RT_Press_Hand);
     RT_Enter_Trial_HandComponents.push(RT_HandShape);
     RT_Enter_Trial_HandComponents.push(RT_Stim_Hand);
