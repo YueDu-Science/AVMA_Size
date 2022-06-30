@@ -5689,9 +5689,9 @@ function Pre_Trial_HandRoutineBegin(trials) {
     frameN = -1;
 
     // update component parameters for each repeat
-    Pre_Trial_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
-    Pre_Trial_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
-    Pre_Trial_Rec_Frame_Hand.setLineWidth(rec_wd);
+    //Pre_Trial_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
+   // Pre_Trial_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
+   // Pre_Trial_Rec_Frame_Hand.setLineWidth(rec_wd);
     Pre_Trial_HandShape.setImage(hand_shape);
     x_item = seq_handx[trial_count];
     key_item = seq_key_hand[trial_count];
@@ -5709,7 +5709,7 @@ function Pre_Trial_HandRoutineBegin(trials) {
     
     // keep track of which components have finished
     Pre_Trial_HandComponents = [];
-    Pre_Trial_HandComponents.push(Pre_Trial_Rec_Frame_Hand);
+   // Pre_Trial_HandComponents.push(Pre_Trial_Rec_Frame_Hand);
     Pre_Trial_HandComponents.push(Pre_Trial_HandShape);
     
     for (const thisComponent of Pre_Trial_HandComponents)
