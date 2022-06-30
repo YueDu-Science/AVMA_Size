@@ -3682,7 +3682,11 @@ Press (space) to continue.`
 
     instr_rt_text_hand = `The upcoming 3 blocks are used to help you get familiar with the task.
     
-With your Right hand, place your Index, Middle, Ring, and Pinky fingers on (H, U, I, L) respectively. Your fingers will rest on these keys for the entirety of the experiment.
+Place the Index, Middle, Ring, and Pinky fingers of your RIGHT hand on (H, U, I, L) respectively. 
+
+Place the Index, Middle, Ring, and Pinky fingers of your LEFT hand on (A, W, E, F) respectively. 
+
+Your fingers will rest on these keys for the entirety of the experiment.
     
 You will see a hand appear on the screen. One of the fingers on the screen will light up and your job is to press the corresponding finger as quickly and as accurately as possible.
     
@@ -3707,7 +3711,7 @@ Press (H, U, I, or L) to continue.`
     
 In the upcoming block, you will see eight symbols (1, 2, 3, 4, a, b, c, d) on the screen, one at a time. 
 
-Each symbol corresponds to one of (H, U, I, L). For example, press key (H) to symbols (1) and (a), press key (U) to symbols (2) and (b), and so on.
+Each symbol corresponds to one of (A, W, E, F, H, U, I, L) or ( H, U, I, L, A, W, E, F) in rank order. You job is to learn this symbol-key association.
 
 ACCURACY is the priority, so go as slowly as you need to. The more mistakes you make, the longer this block will take.
     
@@ -3745,29 +3749,16 @@ Remember, the symbol may show up very late. In this case, MAKE A GUESS. This tas
 Press (H, U, I, or L) to start.`
     ;
 
-    if (grp === 4) {
+    
     instr_tr_old_post_text = `Great job.
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
-Only ${num_symb_grp} symbols will be used in these blocks.
-
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
     
 
 Press (H, U, I, or L) to start.`
     ;
-    } else if (grp === 8) {
-      instr_tr_old_post_text = `Great job.
-    
-In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
-
-Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
-    
-
-Press (H, U, I, or L) to start.`
-    ;
-    }
 
     if ((grp_stop === 1)) {
         instr_cr_new_text = `Great job.
