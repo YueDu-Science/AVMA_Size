@@ -667,7 +667,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'Pre_Trial_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
+    ori : 0, pos : [0, 0], size : [0.35, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -1.0 
@@ -689,7 +689,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'RT_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
+    ori : 0, pos : [0, 0], size : [0.35, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
@@ -724,7 +724,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'RT_Feedback_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
+    ori : 0, pos : [0, 0], size : [0.35, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -2.0 
@@ -772,26 +772,7 @@ function experimentInit() {
   
   Instr_Block_Num_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Initialize components for Routine "Pre_Trial_Hand"
-  Pre_Trial_HandClock = new util.Clock();
-  Pre_Trial_Rec_Frame_Hand = new visual.Rect ({
-    win: psychoJS.window, name: 'Pre_Trial_Rec_Frame_Hand', units : 'height', 
-    width: [0.3, 0.3][0], height: [0.3, 0.3][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1.0, lineColor: new util.Color(1.0),
-    fillColor: new util.Color([(- 1), (- 1), (- 1)]),
-    opacity: 1.0, depth: 0, interpolate: true,
-  });
   
-  Pre_Trial_HandShape = new visual.ImageStim({
-    win : psychoJS.window,
-    name : 'Pre_Trial_HandShape', units : 'height', 
-    image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
-    color : new util.Color([1, 1, 1]), opacity : 1,
-    flipHoriz : false, flipVert : false,
-    texRes : 128, interpolate : true, depth : -1.0 
-  });
   // Initialize components for Routine "TR_Enter_Trials_Hand"
   TR_Enter_Trials_HandClock = new util.Clock();
   TR_Beep_Hand = new sound.Sound({
@@ -813,7 +794,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'TR_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
+    ori : 0, pos : [0, 0], size : [0.35, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
@@ -862,7 +843,7 @@ function experimentInit() {
     win : psychoJS.window,
     name : 'TR_Feedback_HandShape', units : 'height', 
     image : undefined, mask : undefined,
-    ori : 0, pos : [0, 0], size : [0.25, 0.25],
+    ori : 0, pos : [0, 0], size : [0.35, 0.35],
     color : new util.Color([1, 1, 1]), opacity : 1,
     flipHoriz : false, flipVert : false,
     texRes : 128, interpolate : true, depth : -3.0 
@@ -5750,19 +5731,19 @@ function Pre_Trial_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *Pre_Trial_Rec_Frame_Hand* updates
-    if (t >= 0.0 && Pre_Trial_Rec_Frame_Hand.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      Pre_Trial_Rec_Frame_Hand.tStart = t;  // (not accounting for frame time here)
-      Pre_Trial_Rec_Frame_Hand.frameNStart = frameN;  // exact frame index
+    // // *Pre_Trial_Rec_Frame_Hand* updates
+    // if (t >= 0.0 && Pre_Trial_Rec_Frame_Hand.status === PsychoJS.Status.NOT_STARTED) {
+    //   // keep track of start time/frame for later
+    //   Pre_Trial_Rec_Frame_Hand.tStart = t;  // (not accounting for frame time here)
+    //   Pre_Trial_Rec_Frame_Hand.frameNStart = frameN;  // exact frame index
       
-      Pre_Trial_Rec_Frame_Hand.setAutoDraw(true);
-    }
+    //   Pre_Trial_Rec_Frame_Hand.setAutoDraw(true);
+    // }
 
-    frameRemains = 0.0 + pre_trial_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    /* frameRemains = 0.0 + pre_trial_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (Pre_Trial_Rec_Frame_Hand.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       Pre_Trial_Rec_Frame_Hand.setAutoDraw(false);
-    }
+    } */
     
     // *Pre_Trial_HandShape* updates
     if (t >= 0.0 && Pre_Trial_HandShape.status === PsychoJS.Status.NOT_STARTED) {
@@ -5884,14 +5865,14 @@ function RT_Enter_Trial_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *RT_Rec_Frame_Hand* updates
-    if (t >= 0.0 && RT_Rec_Frame_Hand.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      RT_Rec_Frame_Hand.tStart = t;  // (not accounting for frame time here)
-      RT_Rec_Frame_Hand.frameNStart = frameN;  // exact frame index
+    // // *RT_Rec_Frame_Hand* updates
+    // if (t >= 0.0 && RT_Rec_Frame_Hand.status === PsychoJS.Status.NOT_STARTED) {
+    //   // keep track of start time/frame for later
+    //   RT_Rec_Frame_Hand.tStart = t;  // (not accounting for frame time here)
+    //   RT_Rec_Frame_Hand.frameNStart = frameN;  // exact frame index
       
-      RT_Rec_Frame_Hand.setAutoDraw(true);
-    }
+    //   RT_Rec_Frame_Hand.setAutoDraw(true);
+    // }
 
     
     // *RT_Press_Hand* updates
@@ -6093,19 +6074,19 @@ function RT_Feedback_HandRoutineEachFrame(trials) {
       RT_Feedback_Coin_Hand.status = PsychoJS.Status.FINISHED;
     }
     
-    // *RT_Rec_Frame_Feedback_Hand* updates
-    if (t >= 0.0 && RT_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      RT_Rec_Frame_Feedback_Hand.tStart = t;  // (not accounting for frame time here)
-      RT_Rec_Frame_Feedback_Hand.frameNStart = frameN;  // exact frame index
+    // // *RT_Rec_Frame_Feedback_Hand* updates
+    // if (t >= 0.0 && RT_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.NOT_STARTED) {
+    //   // keep track of start time/frame for later
+    //   RT_Rec_Frame_Feedback_Hand.tStart = t;  // (not accounting for frame time here)
+    //   RT_Rec_Frame_Feedback_Hand.frameNStart = frameN;  // exact frame index
       
-      RT_Rec_Frame_Feedback_Hand.setAutoDraw(true);
-    }
+    //   RT_Rec_Frame_Feedback_Hand.setAutoDraw(true);
+    // }
 
-    frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (RT_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      RT_Rec_Frame_Feedback_Hand.setAutoDraw(false);
-    }
+    // frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    // if (RT_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+    //   RT_Rec_Frame_Feedback_Hand.setAutoDraw(false);
+    // }
     
     // *RT_Feedback_HandShape* updates
     if (t >= 0.0 && RT_Feedback_HandShape.status === PsychoJS.Status.NOT_STARTED) {
@@ -6498,7 +6479,7 @@ function TR_Enter_Trials_HandRoutineEachFrame(trials) {
       TR_Beep_Hand.status = PsychoJS.Status.FINISHED;
     }
     
-    // *TR_Rec_Frame_Hand* updates
+    /* // *TR_Rec_Frame_Hand* updates
     if (t >= 0.0 && TR_Rec_Frame_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       TR_Rec_Frame_Hand.tStart = t;  // (not accounting for frame time here)
@@ -6510,7 +6491,7 @@ function TR_Enter_Trials_HandRoutineEachFrame(trials) {
     frameRemains = time_limit  - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (TR_Rec_Frame_Hand.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       TR_Rec_Frame_Hand.setAutoDraw(false);
-    }
+    } */
     
     // *TR_HandShape* updates
     if (t >= 0.0 && TR_HandShape.status === PsychoJS.Status.NOT_STARTED) {
@@ -6768,7 +6749,7 @@ function TR_Feedback_HandRoutineEachFrame(trials) {
       TR_Feedback_Coin_Hand.status = PsychoJS.Status.FINISHED;
     }
     
-    // *Tr_Rec_Frame_Feedback_Hand* updates
+    /* // *Tr_Rec_Frame_Feedback_Hand* updates
     if (t >= 0.0 && Tr_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       Tr_Rec_Frame_Feedback_Hand.tStart = t;  // (not accounting for frame time here)
@@ -6780,7 +6761,7 @@ function TR_Feedback_HandRoutineEachFrame(trials) {
     frameRemains = 0.0 + feedback_dur - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (Tr_Rec_Frame_Feedback_Hand.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       Tr_Rec_Frame_Feedback_Hand.setAutoDraw(false);
-    }
+    } */
     
     // *TR_Feedback_Text_Hand* updates
     if (t >= 0.0 && TR_Feedback_Text_Hand.status === PsychoJS.Status.NOT_STARTED) {
@@ -6907,13 +6888,13 @@ function TR_PenaltyRoutineEachFrame(trials) {
     // update/draw components on each frame
     
     // *TR_Rec_Frame_Penalty* updates
-    if (t >= 0.0 && TR_Rec_Frame_Penalty.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      TR_Rec_Frame_Penalty.tStart = t;  // (not accounting for frame time here)
-      TR_Rec_Frame_Penalty.frameNStart = frameN;  // exact frame index
+    // if (t >= 0.0 && TR_Rec_Frame_Penalty.status === PsychoJS.Status.NOT_STARTED) {
+    //   // keep track of start time/frame for later
+    //   TR_Rec_Frame_Penalty.tStart = t;  // (not accounting for frame time here)
+    //   TR_Rec_Frame_Penalty.frameNStart = frameN;  // exact frame index
       
-      TR_Rec_Frame_Penalty.setAutoDraw(true);
-    }
+    //   TR_Rec_Frame_Penalty.setAutoDraw(true);
+    // }
 
     
     // *TR_Penalty_Text* updates
