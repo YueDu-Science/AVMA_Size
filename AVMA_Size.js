@@ -6027,9 +6027,9 @@ function RT_Feedback_HandRoutineBegin(trials) {
     secs: -1,
     });
     RT_Feedback_Coin_Hand.setVolume(sound_vol);
-    RT_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
-    RT_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
-    RT_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
+    //RT_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
+    //RT_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
+    //RT_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
     RT_Feedback_HandShape.setImage(hand_shape);
     RT_Stim_Feedback_Hand.setPos(position_item);
     RT_Stim_Feedback_Hand.setFillColor(new util.Color(feedback_col));
@@ -6037,7 +6037,7 @@ function RT_Feedback_HandRoutineBegin(trials) {
     // keep track of which components have finished
     RT_Feedback_HandComponents = [];
     RT_Feedback_HandComponents.push(RT_Feedback_Coin_Hand);
-    RT_Feedback_HandComponents.push(RT_Rec_Frame_Feedback_Hand);
+    //RT_Feedback_HandComponents.push(RT_Rec_Frame_Feedback_Hand);
     RT_Feedback_HandComponents.push(RT_Feedback_HandShape);
     RT_Feedback_HandComponents.push(RT_Stim_Feedback_Hand);
     
@@ -6431,9 +6431,9 @@ function TR_Enter_Trials_HandRoutineBegin(trials) {
     tr_penalty = 0;
     tr_feedback = 0;
     
-    TR_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
-    TR_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
-    TR_Rec_Frame_Hand.setLineWidth(rec_wd);
+   // TR_Rec_Frame_Hand.setOpacity(rec_frame_opacity);
+  //  TR_Rec_Frame_Hand.setLineColor(new util.Color(rec_frame_color));
+   // TR_Rec_Frame_Hand.setLineWidth(rec_wd);
     TR_HandShape.setImage(hand_shape);
     TR_Stim_Hand.setPos(position_item);
     TR_Press_Hand.keys = undefined;
@@ -6442,7 +6442,7 @@ function TR_Enter_Trials_HandRoutineBegin(trials) {
     // keep track of which components have finished
     TR_Enter_Trials_HandComponents = [];
     TR_Enter_Trials_HandComponents.push(TR_Beep_Hand);
-    TR_Enter_Trials_HandComponents.push(TR_Rec_Frame_Hand);
+   // TR_Enter_Trials_HandComponents.push(TR_Rec_Frame_Hand);
     TR_Enter_Trials_HandComponents.push(TR_HandShape);
     TR_Enter_Trials_HandComponents.push(TR_Stim_Hand);
     TR_Enter_Trials_HandComponents.push(TR_Press_Hand);
@@ -6699,9 +6699,9 @@ function TR_Feedback_HandRoutineBegin(trials) {
     secs: -1,
     });
     TR_Feedback_Coin_Hand.setVolume(sound_vol);
-    Tr_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
-    Tr_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
-    Tr_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
+   // Tr_Rec_Frame_Feedback_Hand.setOpacity(rec_frame_opacity);
+   // Tr_Rec_Frame_Feedback_Hand.setLineColor(new util.Color(rec_frame_color));
+   // Tr_Rec_Frame_Feedback_Hand.setLineWidth(rec_wd);
     TR_Feedback_Text_Hand.setColor(new util.Color(tr_feedback_text_color));
     TR_Feedback_Text_Hand.setText(tr_feedback_text);
     TR_Feedback_HandShape.setImage(hand_shape);
@@ -6711,7 +6711,7 @@ function TR_Feedback_HandRoutineBegin(trials) {
     // keep track of which components have finished
     TR_Feedback_HandComponents = [];
     TR_Feedback_HandComponents.push(TR_Feedback_Coin_Hand);
-    TR_Feedback_HandComponents.push(Tr_Rec_Frame_Feedback_Hand);
+   // TR_Feedback_HandComponents.push(Tr_Rec_Frame_Feedback_Hand);
     TR_Feedback_HandComponents.push(TR_Feedback_Text_Hand);
     TR_Feedback_HandComponents.push(TR_Feedback_HandShape);
     TR_Feedback_HandComponents.push(TR_Stim_Feedback_Hand);
@@ -6857,15 +6857,15 @@ function TR_PenaltyRoutineBegin(trials) {
     TR_PenaltyClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    TR_Rec_Frame_Penalty.setLineColor(new util.Color(rec_frame_color));
-    TR_Rec_Frame_Penalty.setLineWidth(rec_wd);
+  //  TR_Rec_Frame_Penalty.setLineColor(new util.Color(rec_frame_color));
+  //  TR_Rec_Frame_Penalty.setLineWidth(rec_wd);
     TR_Penalty_Text.setText(tr_penalty_text);
     TR_Penalty_Press.keys = undefined;
     TR_Penalty_Press.rt = undefined;
     _TR_Penalty_Press_allKeys = [];
     // keep track of which components have finished
     TR_PenaltyComponents = [];
-    TR_PenaltyComponents.push(TR_Rec_Frame_Penalty);
+  //  TR_PenaltyComponents.push(TR_Rec_Frame_Penalty);
     TR_PenaltyComponents.push(TR_Penalty_Text);
     TR_PenaltyComponents.push(TR_Penalty_Press);
     
