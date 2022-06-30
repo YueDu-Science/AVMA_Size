@@ -3655,12 +3655,14 @@ Your job is to press the corresponding key as quickly and as accurately as possi
     
 There will be ${rt_block} blocks with short breaks in between.
 
-In first few blocks, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
+In first block, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
 
-Keep resting all 8 fingers on all keys.
+In the last two blocks, all symbols will appear, and all keys are required. You will see a reminder before each block.
+
+No matter which case, keep resting all 8 fingers on all keys.
     
 
-Whenever you are ready, press (H, U, I, or L) to start.`
+Whenever you are ready, press (${subset_key}) to start.`
     ;
 
     if ((session === 1)) {
@@ -3694,14 +3696,21 @@ Press (H, U, I, or L) to start.`
     ;
 
     
-    instr_tr_old_post_text = `Great job.
+    instr_tr_old_post_text = `Great job. 
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
+
+In first few block, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
+
+In the rest blocks, all symbols will appear, and all keys are required. You will see a reminder before each block.
+
+No matter which case, keep resting all 8 fingers on all keys.
+
 
 Remember, the symbol may show up very late. In this case, MAKE A GUESS. This task is designed to be difficult, so it is okay to make a guess.
     
 
-Press (H, U, I, or L) to start.`
+Press (${subset_key}) to start.`
     ;
 
     if ((grp_stop === 1)) {
@@ -3722,7 +3731,7 @@ Press (H, U, I, or L) to start.`
         if ((grp_swap === 1)) {
             instr_cr_new_text = `Great job.
     
-In the next block, you will see the same symbols, but this time they may correspond with a different key (H, U, I, L).
+In the next block, you will see the same 8 symbols, but this time they may correspond with a different key (A, W, E, F, H, U, I, L).
 
 Your job is to figure out the new association between the symbols and the keys.
 
