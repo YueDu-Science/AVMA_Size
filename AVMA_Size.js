@@ -454,7 +454,7 @@ function experimentInit() {
     alignText: 'center',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 0.8, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
@@ -5637,7 +5637,6 @@ function Creat_StimSeqRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    block_count = (block_count + 1);
     
     // the Routine "Creat_StimSeq" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
@@ -6266,6 +6265,8 @@ function Instr_Block_NumRoutineBegin(trials) {
     t = 0;
     Instr_Block_NumClock.reset(); // clock
     frameN = -1;
+
+    block_count = (block_count + 1);
 
     if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
       if (block_count < 5) {
