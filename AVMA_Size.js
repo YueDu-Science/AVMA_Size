@@ -160,7 +160,7 @@ var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["a", "w", "e", "f", "h", "u", "i", "l"];
 var x_symb = [0, 1, 2, 3, 4, 5, 6, 7];
-var x_hand = [0,1,2,3,0,1,2,3];
+var x_hand = [0, 1, 2, 3, 4, 5, 6, 7];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
 var remap_pairs = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
@@ -5427,9 +5427,9 @@ function Creat_StimSeqRoutineBegin(trials) {
 
     if ((stim_type === "Hand")) {
         count = 0;
-        while ((count < (num_trials_hand / 8))) {
-            util.shuffle(x_hand);
-            for (var i, _pj_c = 0, _pj_a = x_hand, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
+        while ((count < (num_trials_hand / 16))) {
+            util.shuffle(x16);
+            for (var i, _pj_c = 0, _pj_a = x16, _pj_b = _pj_a.length; (_pj_c < _pj_b); _pj_c += 1) {
                 i = _pj_a[_pj_c];
                 seq_handx.push(x[i]);
                 seq_handy.push(y[i]);
