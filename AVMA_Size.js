@@ -3633,7 +3633,7 @@ function Init_StimRoutineBegin(trials) {
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
     subset_pair = remap_pair_1.concat(remap_pair_2);
-    subset_key = key_list(subset_pair)
+    subset_key = key_list[subset_pair];
 
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
