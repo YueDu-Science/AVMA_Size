@@ -3593,6 +3593,7 @@ var remap_pair_rnd;
 var remap_pair_1 = [];
 var remap_pair_2 = [];
 var subset_pair = [];
+var subset_key;
 var Init_StimComponents;
 var pair_swap;
 function Init_StimRoutineBegin(trials) {
@@ -3621,7 +3622,12 @@ function Init_StimRoutineBegin(trials) {
 
 
     // Despite the gtoup, the original map involves all 8 elements
-    symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
+    if (rng1 < 0.5) {
+      symb_map_ind = [0, 1, 2, 3, 4, 5, 6, 7];
+    } else {
+      symb_map_ind = [4, 5, 6, 7, 0, 1, 2, 3];
+    }
+    
 
     remap_pair_rnd = Math.floor(rng3 * remap_pairs.length)
     remap_pair_1 = remap_pairs[remap_pair_rnd];
