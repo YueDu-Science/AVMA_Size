@@ -274,7 +274,7 @@ var Instr_ExpClock;
 var Instr_Exp_Text;
 var Instr_Exp_Key;
 var Instr_RT_HandClock;
-var Instr_RT_Hand_Rext;
+var Instr_RT_Hand_Text;
 var Instr_RT_Hand_Key;
 var Creat_StimSeqClock;
 var Pre_Trial_HandClock;
@@ -644,14 +644,14 @@ function experimentInit() {
   
   // Initialize components for Routine "Instr_RT_Hand"
   Instr_RT_HandClock = new util.Clock();
-  Instr_RT_Hand_Rext = new visual.TextStim({
+  Instr_RT_Hand_Text = new visual.TextStim({
     win: psychoJS.window,
-    name: 'Instr_RT_Hand_Rext',
+    name: 'Instr_RT_Hand_Text',
     alignText: 'center',
     text: 'default text',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.03,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.03,  wrapWidth: 0.8, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: -1.0 
   });
@@ -5304,13 +5304,13 @@ function Instr_RT_HandRoutineBegin(trials) {
     remap = 0;
     block_count = 0;
     
-    Instr_RT_Hand_Rext.setText(instr_rt_text_hand);
+    Instr_RT_Hand_Text.setText(instr_rt_text_hand);
     Instr_RT_Hand_Key.keys = undefined;
     Instr_RT_Hand_Key.rt = undefined;
     _Instr_RT_Hand_Key_allKeys = [];
     // keep track of which components have finished
     Instr_RT_HandComponents = [];
-    Instr_RT_HandComponents.push(Instr_RT_Hand_Rext);
+    Instr_RT_HandComponents.push(Instr_RT_Hand_Text);
     Instr_RT_HandComponents.push(Instr_RT_Hand_Key);
     
     for (const thisComponent of Instr_RT_HandComponents)
@@ -5331,13 +5331,13 @@ function Instr_RT_HandRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *Instr_RT_Hand_Rext* updates
-    if (t >= 0.0 && Instr_RT_Hand_Rext.status === PsychoJS.Status.NOT_STARTED) {
+    // *Instr_RT_Hand_Text* updates
+    if (t >= 0.0 && Instr_RT_Hand_Text.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Instr_RT_Hand_Rext.tStart = t;  // (not accounting for frame time here)
-      Instr_RT_Hand_Rext.frameNStart = frameN;  // exact frame index
+      Instr_RT_Hand_Text.tStart = t;  // (not accounting for frame time here)
+      Instr_RT_Hand_Text.frameNStart = frameN;  // exact frame index
       
-      Instr_RT_Hand_Rext.setAutoDraw(true);
+      Instr_RT_Hand_Text.setAutoDraw(true);
     }
 
     
