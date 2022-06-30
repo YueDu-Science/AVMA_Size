@@ -2749,6 +2749,11 @@ function RT_BlockLoopEnd() {
   return Scheduler.Event.NEXT;
 }
 
+function RT_PreBoolLoopEnd() {
+  psychoJS.experiment.removeLoop(RT_PreBool);
+
+  return Scheduler.Event.NEXT;
+}
 
 function RT_BoolLoopEnd() {
   psychoJS.experiment.removeLoop(RT_Bool);
