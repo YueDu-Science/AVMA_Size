@@ -261,10 +261,12 @@ var key = [];
 var rng1
 var rng2
 var rng3
+var rng4
 
 var prep_time_range = [0, 1.2];
 var prep_time_ind_tmp = [];
 var prep_time_ind = [];
+var prep_time_ind_4 = [];
 var count;
 var prep_time_interval;
 var Instr_ExpClock;
@@ -389,26 +391,32 @@ function experimentInit() {
   rng1 = myrng()
   rng2 = myrng()
   rng3 = myrng()
-  
+  rng4 = myrng()
   //determine which group participants are in
-  if (participant < 500 && participant > 400) {
-      grp = 4;
+  if (rng4 < 0.25) {
+      grp = 1;
+      tr_old_post_yes = 1;
       num_symb_grp = 4;
-      tr_block_old = 4;
-      tr_block_new_swap = 5;
-      
-  } else if (participant < 900 && participant > 800) {
-      grp = 8;
+  } else if (rng4 >= 0.25 && rng4 < 0.5) {
+      grp = 2;
+      tr_old_post_yes = 1;
       num_symb_grp = 8;
-      tr_block_old = 8;
-      tr_block_new_swap = 10;
-  }
-
+  } else if (rng4 >= 0.5 && rng4 < 0.75) {
+    grp = 3;
+    tr_old_pre_yes = 1;
+    num_symb_grp = 8;
+    tr_block_old = 8;
+  } else if (rng4 < 1) {
+    grp = 4;
+    tr_old_pre_yes = 1;
+    num_symb_grp = 8;
+    tr_block_old = 8;
+  } 
   // session # determines which blocks they do
   //if ((session === 1)) {
   //    rt_block = 1;
   //}
-  if (grp === 8) {
+  
   // randomize prep-time so that prep-time for each symbol spread over a good range
   for (var i = 0, _pj_a = 12; (i < _pj_a); i += 1) {
       prep_time_ind_tmp.push(i);
@@ -420,7 +428,8 @@ function experimentInit() {
       count = (count + 1);
   }
   prep_time_interval = [[prep_time_range[0], 0.1], [0.1, 0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-  } else if (grp === 4) {
+  
+
     sample_num = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
     for (var i = 0; i<sample_num.length; ++i) {
       let LEN = sample_num[i];
@@ -431,11 +440,11 @@ function experimentInit() {
     count = 0;
     while ((count < num_symb)) {
         util.shuffle(prep_time_ind_tmp);
-        prep_time_ind.push(prep_time_ind_tmp.slice(0));
+        prep_time_ind_4.push(prep_time_ind_tmp.slice(0));
         count = (count + 1);
     }
     prep_time_interval = [[prep_time_range[0], 0.1], [0.1,0.2], [0.2, 0.3], [0.3, 0.4], [0.4, 0.5], [0.5, 0.6], [0.6, 0.7], [0.7, 0.8], [0.8, 0.9], [0.9, 1], [1, 1.1], [1.1, prep_time_range[1]]];
-  }  
+  
 
   // Initialize components for Routine "Instr_Exp"
   Instr_ExpClock = new util.Clock();
