@@ -6414,7 +6414,7 @@ function TR_Enter_Trials_HandRoutineEachFrame(trials) {
   }
 
     if (TR_Press_Hand.status === PsychoJS.Status.STARTED) {
-      let theseKeys = TR_Press_Hand.getKeys({keyList: ['h', 'u', 'i', 'l'], waitRelease: false});
+      let theseKeys = TR_Press_Hand.getKeys({keyList: key_list, waitRelease: false});
       _TR_Press_Hand_allKeys = _TR_Press_Hand_allKeys.concat(theseKeys);
       if (_TR_Press_Hand_allKeys.length > 0) {
         TR_Press_Hand.keys = _TR_Press_Hand_allKeys[0].name;  // just the first key pressed
