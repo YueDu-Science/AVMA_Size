@@ -5395,7 +5395,7 @@ function Creat_StimSeqRoutineBegin(trials) {
           count = (count + 1);
       }
   } else if (block_type === "RT" && stim_type === "Symb" && set_size === 4) {
-        x_new = subset_pair;
+        x_new = subset_pair.concat(subset_pair);
         count = 0;
         while ((count < (num_trials / 8))) {
             util.shuffle(x_new);
@@ -5429,7 +5429,7 @@ function Creat_StimSeqRoutineBegin(trials) {
           count = (count + 1);
         }
   } else if (block_type === "TR" && stim_type === "Symb" && set_size === 4) {
-        x_new = subset_pair;
+        x_new = subset_pair.concat(subset_pair);
         count = 0;
         while ((count < (num_trials / 8))) {
             util.shuffle(x_new);
