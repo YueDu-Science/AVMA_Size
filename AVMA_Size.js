@@ -3660,7 +3660,7 @@ Your job is to press the corresponding key as quickly and as accurately as possi
     
 There will be ${rt_block} blocks with short breaks in between.
 
-In first block, only (${subset_key}) will appear, and that means only keys (${subset_key}) are required. 
+In first block, only (${subset_symb}) will appear, and that means only keys (${subset_key}) are required. 
 
 In the last two blocks, all symbols will appear, and all keys are required. You will see a reminder before each block.
 
@@ -3705,7 +3705,7 @@ Press (H, U, I, or L) to start.`
     
 In the following ${tr_block_old} blocks, use the symbol-key map you practices. Press the corresponding key ON the fourth beep. 
 
-In first few block, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
+In first few block, only (${subset_symb}) will appear, and that means only keys (${subset_key}) are required. 
 
 In the rest blocks, all symbols will appear, and all keys are required. You will see a reminder before each block.
 
