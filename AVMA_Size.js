@@ -6182,7 +6182,7 @@ function Instr_Block_NumRoutineBegin(trials) {
     if (set_size === 8) {
       key_list_1 = key_list
     } else if (set_size === 4){ 
-      key_list_1 = subset_list
+      key_list_1 = subset_key
     }
 
     Instr_Block_Num_Press.keys = undefined;
