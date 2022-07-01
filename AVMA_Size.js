@@ -181,7 +181,7 @@ var symb_remap = [];
 var tr_block_hand = 4;
 var num_trials_hand = 10;
 var num_trials_cr = 2000;
-var num_criterion = 5;
+var num_criterion = 2;
 var num_trials = 8;
 var rt_block = 3;
 var tr_block_old = 9;
@@ -189,11 +189,11 @@ var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
 var rt_pre_block = 3;
 
-var rt_hand_yes = 0;
-var tr_hand_yes = 0;
+var rt_hand_yes = 1;
+var tr_hand_yes = 1;
 
-var cr_old_yes = 0;
-var rt_pre_yes = 0;
+var cr_old_yes = 1;
+var rt_pre_yes = 1;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
@@ -8405,7 +8405,7 @@ function Instr_RT_PreRoutineEachFrame(trials) {
     }
 
     if (Instr_RT_Pre_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_RT_Pre_Press.getKeys({keyList: subset_key_1, waitRelease: false});
+      let theseKeys = Instr_RT_Pre_Press.getKeys({keyList: ['h','u','i','l'], waitRelease: false});
       _Instr_RT_Pre_Press_allKeys = _Instr_RT_Pre_Press_allKeys.concat(theseKeys);
       if (_Instr_RT_Pre_Press_allKeys.length > 0) {
         Instr_RT_Pre_Press.keys = _Instr_RT_Pre_Press_allKeys[0].name;  // just the first key pressed
@@ -8539,7 +8539,7 @@ function Instr_RTRoutineEachFrame(trials) {
     }
     
     if (Instr_RT_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_RT_Press.getKeys({keyList: ['h','u','i','l'], waitRelease: false});
+      let theseKeys = Instr_RT_Press.getKeys({keyList: subset_key_1, waitRelease: false});
       _Instr_RT_Press_allKeys = _Instr_RT_Press_allKeys.concat(theseKeys);
       if (_Instr_RT_Press_allKeys.length > 0) {
         Instr_RT_Press.keys = _Instr_RT_Press_allKeys[0].name;  // just the first key pressed
