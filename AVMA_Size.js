@@ -350,6 +350,7 @@ var TR_Feedback_Image;
 var Instr_RTClock;
 var Instr_RT_Text;
 var Instr_RT_Press;
+var Instr_RT_Pre_Press;
 var Instr_TR_Old_PostClock;
 var Instr_TR_Old_Post_text;
 var Instr_TR_Old_Post_Press;
@@ -1128,7 +1129,7 @@ function experimentInit() {
   });
   
   Instr_RT_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+  Instr_RT_Pre_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Initialize components for Routine "RT_Enter_Trial"
   RT_Enter_TrialClock = new util.Clock();
@@ -5415,7 +5416,7 @@ function Creat_StimSeqRoutineBegin(trials) {
             count = (count + 1);
         }
   }
-  console.log(seq_symb)
+  
 
   if (block_type === "TR" && stim_type === "Symb" && set_size === 8) {
         count = 0;
@@ -6137,7 +6138,6 @@ function Instr_Block_NumRoutineBegin(trials) {
     frameN = -1;
 
     block_count = (block_count + 1);
-    console.log(block_count);
 
     if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
       if (block_count <= 3) {
@@ -6180,7 +6180,7 @@ function Instr_Block_NumRoutineBegin(trials) {
     }
     
     if (set_size === 8) {
-      key_list_1 = key_list;
+      key_list_1 = ['h','u','i','l'];
     } else if (set_size === 4){ 
       key_list_1 = subset_key_1;
     }
@@ -8302,7 +8302,7 @@ function TR_FeedbackRoutineEnd(trials) {
   };
 }
 
-var _Instr_RT_Press_allKeys;
+var _Instr_RT_Pre_Press_allKeys;
 var Instr_RTComponents;
 function Instr_RT_PreRoutineBegin(trials) {
   return function () {
@@ -8312,9 +8312,9 @@ function Instr_RT_PreRoutineBegin(trials) {
     frameN = -1;
     // update component parameters for each repeat
     Instr_RT_Text.setText(instr_rt_pre_text);
-    Instr_RT_Press.keys = undefined;
-    Instr_RT_Press.rt = undefined;
-    _Instr_RT_Press_allKeys = [];
+    Instr_RT_Pre_Press.keys = undefined;
+    Instr_RT_Pre_Press.rt = undefined;
+    _Instr_RT_Pre_Press_allKeys = [];
     block_type = "RT";
     stim_type = "Symb";
     remap = 0;
@@ -8334,7 +8334,7 @@ function Instr_RT_PreRoutineBegin(trials) {
     // keep track of which components have finished
     Instr_RTComponents = [];
     Instr_RTComponents.push(Instr_RT_Text);
-    Instr_RTComponents.push(Instr_RT_Press);
+    Instr_RTComponents.push(Instr_RT_Pre_Press);
     
     for (const thisComponent of Instr_RTComponents)
       if ('status' in thisComponent)
@@ -8365,23 +8365,23 @@ function Instr_RT_PreRoutineEachFrame(trials) {
 
     
     // *Instr_RT_Press* updates
-    if (t >= 0.0 && Instr_RT_Press.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.0 && Instr_RT_Pre_Press.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      Instr_RT_Press.tStart = t;  // (not accounting for frame time here)
-      Instr_RT_Press.frameNStart = frameN;  // exact frame index
+      Instr_RT_Pre_Press.tStart = t;  // (not accounting for frame time here)
+      Instr_RT_Pre_Press.frameNStart = frameN;  // exact frame index
       
       // keyboard checking is just starting
-      psychoJS.window.callOnFlip(function() { Instr_RT_Press.clock.reset(); });  // t=0 on next screen flip
-      psychoJS.window.callOnFlip(function() { Instr_RT_Press.start(); }); // start on screen flip
-      psychoJS.window.callOnFlip(function() { Instr_RT_Press.clearEvents(); });
+      psychoJS.window.callOnFlip(function() { Instr_RT_Pre_Press.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { Instr_RT_Pre_Press.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { Instr_RT_Pre_Press.clearEvents(); });
     }
 
-    if (Instr_RT_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_RT_Press.getKeys({keyList: subset_key_1, waitRelease: false});
-      _Instr_RT_Press_allKeys = _Instr_RT_Press_allKeys.concat(theseKeys);
-      if (_Instr_RT_Press_allKeys.length > 0) {
-        Instr_RT_Press.keys = _Instr_RT_Press_allKeys[0].name;  // just the first key pressed
-        Instr_RT_Press.rt = _Instr_RT_Press_allKeys[0].rt;
+    if (Instr_RT_Pre_Press.status === PsychoJS.Status.STARTED) {
+      let theseKeys = Instr_RT_Pre_Press.getKeys({keyList: subset_key_1, waitRelease: false});
+      _Instr_RT_Pre_Press_allKeys = _Instr_RT_Pre_Press_allKeys.concat(theseKeys);
+      if (_Instr_RT_Pre_Press_allKeys.length > 0) {
+        Instr_RT_Pre_Press.keys = _Instr_RT_Pre_Press_allKeys[0].name;  // just the first key pressed
+        Instr_RT_Pre_Press.rt = _Instr_RT_Pre_Press_allKeys[0].rt;
         // a response ends the routine
         continueRoutine = false;
       }
