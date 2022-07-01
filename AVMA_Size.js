@@ -3485,8 +3485,12 @@ function Init_StimRoutineBegin(trials) {
     }
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
-    subset_pair = remap_pair_1.concat(remap_pair_2);
-  
+    if (rng1 < 0.5) {
+      subset_pair = remap_pair_1.concat(remap_pair_2);
+    } else {
+      subset_pair = remap_pair_2.concat(remap_pair_1);
+    }
+    
     subset_key = key_list_C.filter((x,i) => subset_pair.includes(i))
     subset_symb = symb.filter((x,i) => subset_pair.includes(i))
 
