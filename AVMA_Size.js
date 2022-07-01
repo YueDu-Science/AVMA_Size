@@ -5410,7 +5410,8 @@ function Creat_StimSeqRoutineBegin(trials) {
             }
             count = (count + 1);
         }
-}
+  }
+  console.log(seq_symb)
 
   if (block_type === "TR" && stim_type === "Symb" && set_size === 8) {
         count = 0;
