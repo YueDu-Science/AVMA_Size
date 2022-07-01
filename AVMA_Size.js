@@ -3494,6 +3494,9 @@ function Init_StimRoutineBegin(trials) {
     subset_key = key_list_C.filter((x,i) => subset_pair.includes(i))
     subset_symb = symb.filter((x,i) => subset_pair.includes(i))
 
+    console.log(key_list)
+    console.log(subset_key)
+    
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
       symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
