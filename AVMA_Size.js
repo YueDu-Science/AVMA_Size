@@ -191,8 +191,8 @@ var rt_pre_block = 3;
 var rt_hand_yes = 0;
 var tr_hand_yes = 0;
 
-var cr_old_yes = 1;
-var rt_pre_yes = 1;
+var cr_old_yes = 0;
+var rt_pre_yes = 0;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
@@ -3439,6 +3439,7 @@ var remap_pair_1 = [];
 var remap_pair_2 = [];
 var subset_pair = [];
 var subset_key;
+var subset_symb;
 var Init_StimComponents;
 var pair_swap;
 function Init_StimRoutineBegin(trials) {
@@ -3484,7 +3485,11 @@ function Init_StimRoutineBegin(trials) {
     symb_remap_ind = Object.assign({}, symb_map_ind);
     
     subset_pair = remap_pair_1.concat(remap_pair_2);
+    
+    subset_symb = symb[subset_pair];
     subset_key = key_list[subset_pair];
+    console.log(subset_symb);
+    console.log(subset_key);
 
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
