@@ -3440,6 +3440,7 @@ var remap_pair_1 = [];
 var remap_pair_2 = [];
 var subset_pair = [];
 var subset_key;
+var subset_key_1;
 var subset_symb;
 var Init_StimComponents;
 var pair_swap;
@@ -3491,12 +3492,12 @@ function Init_StimRoutineBegin(trials) {
       subset_pair = remap_pair_2.concat(remap_pair_1);
     }
 
+    subset_key_1 = key_list.filter((x,i) => subset_pair.includes(i))
     subset_key = key_list_C.filter((x,i) => subset_pair.includes(i))
     subset_symb = symb.filter((x,i) => subset_pair.includes(i))
 
-    console.log(key_list)
-    console.log(subset_key)
     
+
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
       symb_remap_ind[remap_pair_2[0]] = symb_map_ind[remap_pair_2[1]];
@@ -7824,7 +7825,7 @@ function Instr_TR_Old_PreRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Pre_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Pre_Press.getKeys({keyList: subset_key, waitRelease: false});
+      let theseKeys = Instr_TR_Old_Pre_Press.getKeys({keyList: subset_key_1, waitRelease: false});
       _Instr_TR_Old_Pre_Press_allKeys = _Instr_TR_Old_Pre_Press_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Pre_Press_allKeys.length > 0) {
         Instr_TR_Old_Pre_Press.keys = _Instr_TR_Old_Pre_Press_allKeys[0].name;  // just the first key pressed
@@ -8368,7 +8369,7 @@ function Instr_RT_PreRoutineEachFrame(trials) {
     }
 
     if (Instr_RT_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_RT_Press.getKeys({keyList: subset_key, waitRelease: false});
+      let theseKeys = Instr_RT_Press.getKeys({keyList: subset_key_1, waitRelease: false});
       _Instr_RT_Press_allKeys = _Instr_RT_Press_allKeys.concat(theseKeys);
       if (_Instr_RT_Press_allKeys.length > 0) {
         Instr_RT_Press.keys = _Instr_RT_Press_allKeys[0].name;  // just the first key pressed
@@ -8630,7 +8631,7 @@ function Instr_TR_Old_PostRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Post_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: key_list, waitRelease: false});
+      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: subset_key_1, waitRelease: false});
       _Instr_TR_Old_Post_Press_allKeys = _Instr_TR_Old_Post_Press_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Post_Press_allKeys.length > 0) {
         Instr_TR_Old_Post_Press.keys = _Instr_TR_Old_Post_Press_allKeys[0].name;  // just the first key pressed
