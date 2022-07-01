@@ -194,7 +194,7 @@ var tr_hand_yes = 0;
 
 var cr_old_yes = 0;
 var rt_pre_yes = 0;
-var rt_yes = 0;
+var rt_yes = 1;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
 
@@ -6128,6 +6128,7 @@ function Instr_TR_HandRoutineEnd(trials) {
 
 var _Instr_Block_Num_Press_allKeys;
 var Instr_Block_NumComponents;
+var key_list_1;
 function Instr_Block_NumRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Instr_Block_Num'-------
@@ -6178,6 +6179,12 @@ function Instr_Block_NumRoutineBegin(trials) {
           '\n\n\nPress (H, U, I, or L) to start'));
     }
     
+    if (set_size === 8) {
+      key_list_1 = key_list
+    } else if (set_size === 4){ 
+      key_list_1 = subset_list
+    }
+
     Instr_Block_Num_Press.keys = undefined;
     Instr_Block_Num_Press.rt = undefined;
     _Instr_Block_Num_Press_allKeys = [];
@@ -6227,7 +6234,7 @@ function Instr_Block_NumRoutineEachFrame(trials) {
     }
 
     if (Instr_Block_Num_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_Block_Num_Press.getKeys({keyList: key_list, waitRelease: false});
+      let theseKeys = Instr_Block_Num_Press.getKeys({keyList: key_list_1, waitRelease: false});
       _Instr_Block_Num_Press_allKeys = _Instr_Block_Num_Press_allKeys.concat(theseKeys);
       if (_Instr_Block_Num_Press_allKeys.length > 0) {
         Instr_Block_Num_Press.keys = _Instr_Block_Num_Press_allKeys[0].name;  // just the first key pressed
