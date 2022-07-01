@@ -1592,17 +1592,6 @@ function experimentInit() {
     opacity: 0.3, depth: 0, interpolate: true,
   });
   
-  TR_Penalty_Text = new visual.TextStim({
-    win: psychoJS.window,
-    name: 'TR_Penalty_Text',
-    alignHoriz: 'center',
-    text: 'default text',
-    font: 'Arial',
-    units: undefined, 
-    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
-    color: new util.Color('white'),  opacity: 1,
-    depth: -1.0 
-  });
   
   TR_Penalty_Press = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
@@ -6475,6 +6464,29 @@ function TR_Enter_Trials_HandRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
+
+
+    if (set_size === 8) {
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+
+    } else if (set_size === 4){ 
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (${subset_key}) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press  (${subset_key}) to continue.`
+    ;
+    }
+
     //TR_Beep_Hand.stop();  // ensure sound has stopped at end of routine
     sound_vol = 0;
     if ((TR_Press_Hand.keys !== undefined)) {
@@ -6744,38 +6756,10 @@ function TR_PenaltyRoutineBegin(trials) {
     frameN = -1;
 
 
-    penalty_toolate_text = `Response was too late.
-2 second penalty.
-After 2 second, press (H, U, I, or L) to continue.`
-    ;
-    penalty_tooearly_text = `Response was too early.
-2 second penalty.
-After 2 second, press (H, U, I, or L) to continue.`
-    ;
-
     if (set_size === 8) {
       key_list_1 = ['h','u','i','l'];
-
-      penalty_toolate_text = `Response was too late.
-        2 second penalty.
-        After 2 second, press (H,U,I,L) to continue.`
-    ;
-    penalty_tooearly_text = `Response was too early.
-        2 second penalty.
-        After 2 second, press (H,U,I,L) to continue.`
-    ;
-
     } else if (set_size === 4){ 
       key_list_1 = subset_key_1;
-
-      penalty_toolate_text = `Response was too late.
-        2 second penalty.
-        After 2 second, press (${subset_key}) to continue.`
-    ;
-    penalty_tooearly_text = `Response was too early.
-        2 second penalty.
-        After 2 second, press  (${subset_key}) to continue.`
-    ;
     }
     // update component parameters for each repeat
   //  TR_Rec_Frame_Penalty.setLineColor(new util.Color(rec_frame_color));
