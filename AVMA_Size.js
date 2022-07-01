@@ -3791,14 +3791,7 @@ Press (H, U, I, or L) to start.`
     ;
         }
     }
-    penalty_toolate_text = `Response was too late.
-2 second penalty.
-After 2 second, press (H, U, I, or L) to continue.`
-    ;
-    penalty_tooearly_text = `Response was too early.
-2 second penalty.
-After 2 second, press (H, U, I, or L) to continue.`
-    ;
+    
     feedback_early_text = `little early`;
     feedback_late_text = `little late`;
     feedback_good_text = `good timing`;
@@ -6750,10 +6743,39 @@ function TR_PenaltyRoutineBegin(trials) {
     TR_PenaltyClock.reset(); // clock
     frameN = -1;
 
+
+    penalty_toolate_text = `Response was too late.
+2 second penalty.
+After 2 second, press (H, U, I, or L) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+2 second penalty.
+After 2 second, press (H, U, I, or L) to continue.`
+    ;
+
     if (set_size === 8) {
       key_list_1 = ['h','u','i','l'];
+
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+
     } else if (set_size === 4){ 
       key_list_1 = subset_key_1;
+
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (${subset_key}) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press  (${subset_key}) to continue.`
+    ;
     }
     // update component parameters for each repeat
   //  TR_Rec_Frame_Penalty.setLineColor(new util.Color(rec_frame_color));
@@ -8428,9 +8450,9 @@ function Instr_RT_PreRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
-    psychoJS.experiment.addData('Instr_RT_Press.keys', Instr_RT_Press.keys);
+    psychoJS.experiment.addData('Instr_RT_Pre_Press.keys', Instr_RT_Pre_Press.keys);
     if (typeof Instr_RT_Pre_Press.keys !== 'undefined') {  // we had a response
-        psychoJS.experiment.addData('Instr_RT_Press.rt', Instr_RT_Pre_Press.rt);
+        psychoJS.experiment.addData('Instr_RT_Pre_Press.rt', Instr_RT_Pre_Press.rt);
         routineTimer.reset();
         }
     
