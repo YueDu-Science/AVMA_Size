@@ -8306,13 +8306,14 @@ function Instr_RT_PreRoutineBegin(trials) {
     stim_type = "Symb";
     remap = 0;
     pre_rt = 1;
-    if ((session === 1)) {
-        block_count = 0;
-    } else {
-        if ((session === 2)) {
-            block_count = 5;
-        }
-    }
+    // if ((session === 1)) {
+    //     block_count = 0;
+    // } else {
+    //     if ((session === 2)) {
+    //         block_count = 5;
+    //     }
+    // }
+    block_count = 0;
     symb = symb_map;
     //symb_g = symb_g_map;
     //symb_r = symb_r_map;
@@ -8446,6 +8447,7 @@ function Instr_RTRoutineBegin(trials) {
             block_count = 5;
         }
     } */
+    block_count = 0;
     symb = symb_map;
     //symb_g = symb_g_map;
     //symb_r = symb_r_map;
