@@ -8627,7 +8627,7 @@ function Instr_TR_Old_PostRoutineEachFrame(trials) {
     }
 
     if (Instr_TR_Old_Post_Press.status === PsychoJS.Status.STARTED) {
-      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: subset_key, waitRelease: false});
+      let theseKeys = Instr_TR_Old_Post_Press.getKeys({keyList: key_list, waitRelease: false});
       _Instr_TR_Old_Post_Press_allKeys = _Instr_TR_Old_Post_Press_allKeys.concat(theseKeys);
       if (_Instr_TR_Old_Post_Press_allKeys.length > 0) {
         Instr_TR_Old_Post_Press.keys = _Instr_TR_Old_Post_Press_allKeys[0].name;  // just the first key pressed
