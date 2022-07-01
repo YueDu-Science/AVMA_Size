@@ -186,17 +186,18 @@ var rt_block = 3;
 var tr_block_old = 9;
 var tr_block_new_swap = 1;
 var tr_block_new_stop = 0;
-var rt_pre_block = 12;
+var rt_pre_block = 3;
 
-
-var tr_hand_yes = 0;
 var rt_hand_yes = 0;
-var cr_old_yes = 0;
+var tr_hand_yes = 0;
+
+var cr_old_yes = 1;
 var rt_pre_yes = 1;
-var cr_new_yes = 0;
 var rt_yes = 1;
 var tr_old_pre_yes = 0;
 var tr_old_post_yes = 1;
+
+var cr_new_yes = 0;
 var tr_new_yes = 0;
 var sound_check_yes = 0;
 var num_trials_sound_check = 20;
