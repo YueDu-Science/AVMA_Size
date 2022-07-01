@@ -3490,7 +3490,7 @@ function Init_StimRoutineBegin(trials) {
     } else {
       subset_pair = remap_pair_2.concat(remap_pair_1);
     }
-    
+
     subset_key = key_list_C.filter((x,i) => subset_pair.includes(i))
     subset_symb = symb.filter((x,i) => subset_pair.includes(i))
 
@@ -6131,6 +6131,7 @@ function Instr_Block_NumRoutineBegin(trials) {
     frameN = -1;
 
     block_count = (block_count + 1);
+    console.log(block_count);
 
     if (block_type === "TR" && stim_type === "Symb" && remap === 0) {
       if (block_count <= 3) {
