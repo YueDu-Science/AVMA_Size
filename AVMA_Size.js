@@ -163,6 +163,7 @@ var time_limit = 1.5;
 var too_late_tol = 0.2;
 var stop_tol = 2;
 var key_list = ["a", "w", "e", "f", "h", "u", "i", "l"];
+var key_list_C = ["A", "W", "E", "F", "H", "U", "I", "L"];
 var x_symb = [0, 1, 2, 3, 4, 5, 6, 7];
 var x8_new = x_symb;
 var x16 = x8_new.concat(x8_new);
@@ -3486,11 +3487,8 @@ function Init_StimRoutineBegin(trials) {
     
     subset_pair = remap_pair_1.concat(remap_pair_2);
   
-    subset_key = key_list.filter((x,i) => subset_pair.includes(i))
+    subset_key = key_list_C.filter((x,i) => subset_pair.includes(i))
     subset_symb = symb.filter((x,i) => subset_pair.includes(i))
-
-    console.log(subset_symb);
-    console.log(subset_key);
 
       symb_remap_ind[remap_pair_1[0]] = symb_map_ind[remap_pair_1[1]];
       symb_remap_ind[remap_pair_1[1]] = symb_map_ind[remap_pair_1[0]];
@@ -3662,7 +3660,7 @@ Your job is to press the corresponding key as quickly and as accurately as possi
     
 There will be ${rt_block} blocks with short breaks in between.
 
-In first block, only (${subset_pair}) will appear, and that means only keys (${subset_key}) are required. 
+In first block, only (${subset_key}) will appear, and that means only keys (${subset_key}) are required. 
 
 In the last two blocks, all symbols will appear, and all keys are required. You will see a reminder before each block.
 
