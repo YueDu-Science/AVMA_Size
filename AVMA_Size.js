@@ -8309,7 +8309,7 @@ function TR_FeedbackRoutineEnd(trials) {
 }
 
 var _Instr_RT_Pre_Press_allKeys;
-var Instr_RTComponents;
+var Instr_RT_PreComponents;
 function Instr_RT_PreRoutineBegin(trials) {
   return function () {
     //------Prepare to start Routine 'Instr_RT'-------
@@ -8338,11 +8338,11 @@ function Instr_RT_PreRoutineBegin(trials) {
     //symb_r = symb_r_map;
     
     // keep track of which components have finished
-    Instr_RTComponents = [];
-    Instr_RTComponents.push(Instr_RT_Text);
-    Instr_RTComponents.push(Instr_RT_Pre_Press);
+    Instr_RT_PreComponents = [];
+    Instr_RT_PreComponents.push(Instr_RT_Text);
+    Instr_RT_PreComponents.push(Instr_RT_Pre_Press);
     
-    for (const thisComponent of Instr_RTComponents)
+    for (const thisComponent of Instr_RT_PreComponents)
       if ('status' in thisComponent)
         thisComponent.status = PsychoJS.Status.NOT_STARTED;
     
@@ -8404,7 +8404,7 @@ function Instr_RT_PreRoutineEachFrame(trials) {
     }
     
     continueRoutine = false;  // reverts to True if at least one component still running
-    for (const thisComponent of Instr_RTComponents)
+    for (const thisComponent of Instr_RT_PreComponents)
       if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
         continueRoutine = true;
         break;
@@ -8423,18 +8423,18 @@ function Instr_RT_PreRoutineEachFrame(trials) {
 function Instr_RT_PreRoutineEnd(trials) {
   return function () {
     //------Ending Routine 'Instr_RT'-------
-    for (const thisComponent of Instr_RTComponents) {
+    for (const thisComponent of Instr_RT_PreComponents) {
       if (typeof thisComponent.setAutoDraw === 'function') {
         thisComponent.setAutoDraw(false);
       }
     }
     psychoJS.experiment.addData('Instr_RT_Press.keys', Instr_RT_Press.keys);
-    if (typeof Instr_RT_Press.keys !== 'undefined') {  // we had a response
-        psychoJS.experiment.addData('Instr_RT_Press.rt', Instr_RT_Press.rt);
+    if (typeof Instr_RT_Pre_Press.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('Instr_RT_Press.rt', Instr_RT_Pre_Press.rt);
         routineTimer.reset();
         }
     
-    Instr_RT_Press.stop();
+    Instr_RT_Pre_Press.stop();
     // the Routine "Instr_RT" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
