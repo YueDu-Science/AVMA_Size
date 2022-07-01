@@ -8072,6 +8072,28 @@ function TR_Enter_TrialsRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     }
+
+    if (set_size === 8) {
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press (H,U,I,L) to continue.`
+    ;
+
+    } else if (set_size === 4){ 
+      penalty_toolate_text = `Response was too late.
+        2 second penalty.
+        After 2 second, press (${subset_key}) to continue.`
+    ;
+    penalty_tooearly_text = `Response was too early.
+        2 second penalty.
+        After 2 second, press  (${subset_key}) to continue.`
+    ;
+    }
+
     //TR_Beep.stop();  // ensure sound has stopped at end of routine
     sound_vol = 0;
     if ((TR_Press.keys !== undefined)) {
